@@ -1,4 +1,5 @@
 const URL = 'http://localhost:3000/api';
+require('.env');
 
 export {
   signIn,
@@ -47,4 +48,13 @@ function signUp(creds) {
     body: JSON.stringify(creds)
   })
     .then(responseHandler);
+}
+
+function getRecipes(ingredient) {
+  const apiKey = process.env.API_KEY;
+  const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=25&any_kw=' +
+  encodeURIComponent(ingredient) + 
+  '&api_key=' + apiKey;
+  return fetch(url)
+    .then(response => response.json());
 }
