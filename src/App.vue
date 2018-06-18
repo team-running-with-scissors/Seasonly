@@ -1,12 +1,21 @@
 <template>
   <div id="app">
     <div>
+      <h1>Let's do it</h1>
       <auth
         id="auth"
         v-show="isZoomed"
         :toggleZoom="toggleZoom"
       />
+      <nav>
+        <router-link to="/">HOME</router-link>
+        &nbsp;
+        <router-link to="/about">ABOUT</router-link>
+        &nbsp;
+        <router-link to="/user">USER</router-link>
+      </nav>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
