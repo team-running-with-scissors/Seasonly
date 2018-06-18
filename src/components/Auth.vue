@@ -50,7 +50,7 @@
 <script>
 import {
   signUp,
-  signIn } from '../services/api.js';
+  signIn } from '../../services/api.js';
 // import './main.css';
 
 export default {
