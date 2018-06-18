@@ -1,6 +1,7 @@
 // For Winblows and Linuxxx
 require('dotenv').config();
-const apiKey = process.env.API_KEY;
+// const apiKey = process.env.API_KEY;
+const apiKey = 'K0ACWNU09ihIYSJfG0UmG4u99d9Oj2Da';
 
 // For Everybody! :->
 const URL = 'http://localhost:3000/api';
@@ -56,7 +57,7 @@ function signUp(creds) {
 }
 
 function getRecipes(ingredient) {
-  const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=25&any_kw=' +
+  const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
   '&api_key=' + apiKey;
   return fetch(url)
