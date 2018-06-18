@@ -6,7 +6,16 @@
       <button @click.prevent="handleSearch">Search!</button>
     </div>
     <div id="container-main">
-
+      <ul v-if="searched">
+        <li
+          v-for="result in searchResults"
+          :key="result.RecipeID"
+        >
+          <h1>{{ result.Title }}</h1>
+          <img :src="result.PhotoUrl">
+        </li>
+      </ul>
+      {{ searchResults }}
     </div>
   </div>
 </div>
@@ -17,7 +26,9 @@ import { getRecipes } from '../../services/api.js';
 export default {
   data() {
     return {
-      searchTerm: null
+      searchTerm: null,
+      searchResults: null,
+      searched: false
     };
   },
   methods: {
@@ -25,8 +36,9 @@ export default {
       console.log('in the search diddle');
       getRecipes(this.searchTerm)
         .then(result => {
-          console.log('the resuts', result);
-          // JUST DO STUFF
+          console.log('the resuts', result.Results);
+          this.searchResults = result.Results;
+          this.searched = true;
         });
     }
   }
@@ -34,9 +46,23 @@ export default {
 </script>
 
 <style scoped>
-#container-search {
+#container-whole {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 777px;
+  margin: auto;
+}
+ul {
+  list-style: none;
+}
+li {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 6px;
+}
+img {
+  width: 200px;
+  float: right;
 }
 </style>
