@@ -13,6 +13,8 @@
         <router-link to="/about">ABOUT</router-link>
         &nbsp;
         <router-link to="/user">USER</router-link>
+        &nbsp;
+        <router-link to="/search">SEARCH</router-link>
       </nav>
     </div>
     <router-view></router-view>
