@@ -1,8 +1,9 @@
 <template>
+<div>
 <div id="container-main">
   <div id="container-login">
     <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()">
-      <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span id="exit"><a @click.prevent="handleZoom"><b>X</b></a></span>
+      <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
       <div id="message"></div>
       Username:
       <input
@@ -42,6 +43,7 @@
       </div>
     </form>
   </div>
+</div>
 </div>
 </template>
 
@@ -171,18 +173,26 @@ export default {
 
 form {
   color: white;
+  background: steelblue;
   border: 1px solid black;
   border-radius: 13px;
   padding: 13px;
   width: fit-content;
   display: flex;
   flex-direction: column;
+  box-shadow: 1px 1px 3px black;
 }
-a {
+#handlers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#link-switch {
   float: left;
   cursor: pointer;
   color: blue;
   text-decoration: underline;
+  font-size: .75rem;
 }
 button {
   float: right;
@@ -216,5 +226,18 @@ h1 {
 }
 #exit {
   float: right;
+  position: absolute;
+  cursor: pointer;
+  border-top: 1px solid gray;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid gray;
+  padding: 0 3px;
+  background-color: slategrey;
+}
+#container-login {
+  z-index: 1;
+  width: fit-content;
+  margin: auto;
 }
 </style>
