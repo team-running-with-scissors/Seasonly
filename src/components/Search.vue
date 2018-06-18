@@ -13,7 +13,7 @@
 </template>
 
 <script>
-
+import { getRecipes } from '../../services/api.js';
 export default {
   data() {
     return {
@@ -22,7 +22,12 @@ export default {
   },
   methods: {
     handleSearch() {
-      alert('hi');
+      console.log('in the search diddle');
+      getRecipes(this.searchTerm)
+        .then(result => {
+          console.log('the resuts', result);
+          // JUST DO STUFF
+        });
     }
   }
 }
