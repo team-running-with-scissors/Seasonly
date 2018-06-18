@@ -3,7 +3,8 @@ require('.env');
 
 export {
   signIn,
-  signUp
+  signUp,
+  getRecipes
 };
 
 function responseHandler(response) {
