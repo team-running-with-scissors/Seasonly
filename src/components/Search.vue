@@ -15,7 +15,6 @@
           <img :src="result.PhotoUrl">
         </li>
       </ul>
-      {{ searchResults }}
     </div>
   </div>
 </div>
@@ -56,13 +55,21 @@ export default {
 ul {
   list-style: none;
 }
+h1 {
+  display: inline;
+}
 li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 1px solid black;
   border-radius: 6px;
   padding: 6px;
 }
 img {
-  width: 200px;
+  display: block;
+  height: auto;
+  width: 100px;
   float: right;
 }
 </style>
