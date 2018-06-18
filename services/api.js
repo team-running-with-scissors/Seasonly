@@ -1,5 +1,8 @@
+// For Winblows and Linuxxx
+require('dotenv').config();
+
+// For Everybody! :->
 const URL = 'http://localhost:3000/api';
-require('.env');
 
 export {
   signIn,
