@@ -5,6 +5,7 @@ import router from './router';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
+Vue.component('ViewRouter');
 
 new Vue({
   router,
