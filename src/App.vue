@@ -3,11 +3,10 @@
     <div>
       <auth
         id="auth"
-        :v-show="isZoomed"
+        v-show="isZoomed"
         :toggleZoom="toggleZoom"
       />
     </div>
-      {{ isZoomed }}
   </div>
 </template>
 
@@ -18,7 +17,7 @@ export default {
   name: 'app',
   data() {
     return {
-      isZoomed: false
+      isZoomed: true
     };
   },
   methods: {
