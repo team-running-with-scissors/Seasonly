@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     toggleZoom() {
-      console.log('should be togglin');
+      console.log('everyday I\'m togglin');
       this.isZoomed = !this.isZoomed;
     }
   },
