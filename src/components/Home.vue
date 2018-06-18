@@ -1,13 +1,11 @@
 <template>
   <div id="home">
-    <div id="header">
-      <router-link to="/about">About</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/about">About</router-link>
-    </div>  
-    <div id="body">
-      <router-view></router-view>
-    </div> 
+
+    <h1 class="page-header">eatSeasonal</h1>
+
+    <p>Our eatSeasonal app helps you to consume food in a more environmentally conscious way by identifying and purchasing foods that are in season! Search for ingredients that are in season, find recipes using those items and automatically add them to your shopping list. You can also save your favorite recipes!</p>
+    
+
   </div>
 </template>
 
@@ -17,6 +15,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+h1 {
+ font-family: 'Lobster Two', cursive;
+ font-size: 64px;
+
+}
 
 </style>
