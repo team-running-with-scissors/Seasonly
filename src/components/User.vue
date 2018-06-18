@@ -1,6 +1,5 @@
 <template>
-  <div id="shopping-list">
-    
+  <div>
   </div>
 </template>
 
