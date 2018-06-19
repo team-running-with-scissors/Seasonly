@@ -30,7 +30,10 @@
 </template>
 
 <script>
-
+import {
+  updateShoppingList,
+  getShoppingList,
+  addToShoppingList } from '../services/api.js';
 import Auth from './components/Auth.vue';
 export default {
   name: 'app',
@@ -38,7 +41,7 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
-      shoppingList: null
+      shoppingList: []
     };
   },
   methods: {
@@ -53,11 +56,28 @@ export default {
     toggleLogin() {
       this.isZoomed = true;
     },
-    addToMasterList(listItems) {
-      this.shoppingList = listItems;
+    addToMasterList(ingredients) {
+      addToShoppingList(ingredients)
+        .then(result => {
+          if(result.added) {
+            this.shoppingList = ingredients;
+          }
+        });
     },
     getFromMasterList() {
+      getShoppingList(localStorage.getItem('userid'))
+        .then(result => {
+          this.shoppingList.push(result);
+        });
+      console.log('the list is', this.shoppingList);
       return this.shoppingList;
+    },
+    updateMasterList(newList) {
+      console.log('\n\n list is', newList);
+      updateShoppingList(newList)
+        .then(result => {
+          console.log('\n\nresult is', result);
+        });
     }
   },
   components: {
