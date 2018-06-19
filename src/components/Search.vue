@@ -7,13 +7,34 @@
     </div>
     <div>
       <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
+      <div>
+        <button class="filter-button"
+         v-on:click="ingredientType = 0"
+         >All</button>
+
+        <button class="filter-button" 
+        v-on:click="ingredientType = 1"
+        >Veggies</button>
+
+        <button class="filter-button" 
+        v-on:click="ingredientType = 2"
+        >Fruit</button>
+
+        <button class="filter-button" 
+        v-on:click="ingredientType = 3"
+        >Meat</button>
+        
+        <button class="filter-button" 
+        v-on:click="ingredientType = 4"
+        >Seafood</button>
+      </div>
       <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
       >
         <option disabled value="">Please select one</option>
         <option 
-        v-for="item in seasonalIng"
+        v-for="item in filteredIngredients"
         :key="item.index" 
         :value="item.food"
         >{{ item.food }}
@@ -66,15 +87,17 @@ export default {
       searchTerm: '',
       searchResults: null,
       searched: false,
-      seasonalIng: null,
+      seasonalIng: [],
       recipeZoom: false,
-      selectedRecipe: null
+      selectedRecipe: null,
+      ingredientType: 0
     };
   },
 
   created() {
     const d = new Date;
     const n = d.getMonth();
+    this.filteredIngredients = this.seasonalIng;
     getFoods()
       .then(ingredient => {
         this.seasonalIng = ingredient.filter(x => {
@@ -108,6 +131,13 @@ export default {
   },
 
   computed: {
+
+    filteredIngredients() {
+      return this.seasonalIng.filter(ingredient => {
+        return (this.ingredientType === 0 || this.ingredientType === ingredient.type_id);
+      });
+    },
+
     currentMonth() {
       switch(new Date().getMonth()) {
         case 0:
@@ -175,5 +205,17 @@ img {
   overflow: hidden;
   height: 100px;
   width: 100px;
+}
+
+.filter-button {
+  background-color: lightgray;
+  border: none;
+  margin-bottom: 15px;
+  padding: 5px;
+
+}
+.filter-button:hover {
+  background-color: gray;
+  cursor: pointer;
 }
 </style>
