@@ -1,6 +1,8 @@
 <template>
 <div>
-<div id="container-main">
+  <span id='click-me' class="full-screen" @click="handleZoom"></span>
+
+<div id="container-main" class="full-screen">
   <div id="container-login">
     <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()" :key="newUser ? 123 : 456">
       <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
@@ -57,7 +59,11 @@ export default {
   props: {
     toggleZoom: {
       type: Function,
-      require: true
+      required: true
+    },
+    loggedIn: {
+      type: Function,
+      required: true
     }
   },
   data() {
@@ -151,6 +157,7 @@ export default {
           message.textContent = 'Welcome back ' + res.username.charAt(0).toUpperCase() + res.username.slice(1);
           this.creds = {};
           sucess = true;
+          this.loggedIn(res);
         });
       if(!sucess) {
         message.textContent = 'Invalid username or password!';
@@ -164,7 +171,11 @@ export default {
 };
 </script>
 <style scoped>
-
+#container-login {
+  width: fit-content;
+  margin: auto;
+  z-index: 1;
+}
 form {
   color: white;
   background: steelblue;
@@ -205,7 +216,7 @@ h1 {
 #message {
   color: black;
 }
-#container-main {
+.full-screen {
   position: fixed;
   display: flex;
   top: 0;
@@ -216,7 +227,10 @@ h1 {
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+#click-me {
   background-color: rgba(0, 0, 0, .69);
+  z-index: 0;
 }
 #exit {
   float: right;
@@ -228,10 +242,5 @@ h1 {
   border-left: 1px solid gray;
   padding: 0 3px;
   background-color: slategrey;
-}
-#container-login {
-  z-index: 1;
-  width: fit-content;
-  margin: auto;
 }
 </style>

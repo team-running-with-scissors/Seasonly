@@ -2,22 +2,27 @@
   <div id="app">
     <div>
       <h1>Let's do it</h1>
-      <auth
-        id="auth"
-        v-show="isZoomed"
-        :toggleZoom="toggleZoom"
-      />
       <nav>
         <router-link to="/">HOME</router-link>
         &nbsp;
         <router-link to="/about">ABOUT</router-link>
         &nbsp;
         <router-link v-if="isLoggedIn" to="/user">PROFILE</router-link>
+        <a href="#" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
         &nbsp;
         <router-link to="/search">SEARCH</router-link>
       </nav>
     </div>
     <router-view></router-view>
+    
+<transition name="fade-out">
+  <auth
+    id="auth"
+    v-show="isZoomed"
+    :toggleZoom="toggleZoom"
+    :loggedIn="loggedIn"
+  />
+</transition>
   </div>
 </template>
 
@@ -28,7 +33,7 @@ export default {
   name: 'app',
   data() {
     return {
-      isZoomed: true,
+      isZoomed: false,
       isLoggedIn: false
     };
   },
@@ -36,6 +41,14 @@ export default {
     toggleZoom() {
       console.log('everyday I\'m togglin');
       this.isZoomed = !this.isZoomed;
+    },
+    loggedIn(credentials) {
+      console.log('frogs on a log in the foggy bog bog', credentials);
+      this.isLoggedIn = true;
+    },
+    toggleLogin() {
+      this.isZoomed = true;
+
     }
   },
   components: {
@@ -53,4 +66,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+/* .fade-out- */
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div>
-<div id="container-main" @click.prevent="handleZoom">
+<div id="container-main" class="full-screen">
   <div id="container-recipe">
     <div id="exit" @click.prevent="handleZoom">
       <b>X</b>
@@ -22,6 +22,7 @@
       </div>
     </div>
   </div>
+  <span id='click-me' class="full-screen" @click="handleZoom"></span>
 </div>
 </div>
 </template>
@@ -67,7 +68,7 @@ export default {
   flex-direction: column;
   box-shadow: 1px 1px 3px black;
 }
-#container-main {
+.full-screen {
   position: fixed;
   display: flex;
   top: 0;
@@ -78,7 +79,10 @@ export default {
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+#click-me {
   background-color: rgba(0, 0, 0, .69);
+  z-index: 0;
 }
 #container-details {
   display: flex;
