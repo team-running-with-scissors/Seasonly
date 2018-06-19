@@ -10,6 +10,7 @@
     "build:server": "npm run build && npm run copy"
   },
   "dependencies": {
+    "@material/textfield": "^0.36.1",
     "dotenv": "^6.0.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
