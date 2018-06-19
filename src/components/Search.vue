@@ -2,7 +2,7 @@
 <div>
   <div id="container-whole">
     <div id="container-search">
-      <input v-model="searchTerm">
+      <input @keypress.enter="handleSearch" v-model="searchTerm">
       <button @click.prevent="handleSearch">Search!</button>
     </div>
     <div>
@@ -36,11 +36,11 @@
       </ul>
 
       <recipe-card
-        @click="toggleRecipe"
         :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
         v-if="recipeZoom"
       />
+      
     </div>
   </div>
 </div>
