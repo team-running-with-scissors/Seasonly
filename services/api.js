@@ -1,5 +1,5 @@
 // For Winblows and Linuxxx
-require('dotenv').config();
+// require('dotenv').config();
 // const apiKey = process.env.API_KEY;
 const apiKey = 'K0ACWNU09ihIYSJfG0UmG4u99d9Oj2Da';
 
@@ -81,7 +81,9 @@ function getFoods() {
 }
 
 function addToShoppingList(ingredients) {
+  console.log('ingredients are', ingredients);
   return fetch(`${URL}/list`, {
+    method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(ingredients)
   })

@@ -18,7 +18,7 @@
       Password:
       <input
         required
-        @keyup="validate"
+        @keyup.prevent="validate"
         :type="show ? 'text' : 'password'"
         :name="newUser ? 'new-password' : 'current-password'"
         v-model="creds.password"

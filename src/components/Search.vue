@@ -38,9 +38,9 @@
       <recipe-card
         :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
+        :addToMasterList="addToMasterList"
         v-if="recipeZoom"
       />
-      
     </div>
   </div>
 </div>
@@ -52,6 +52,12 @@ import { searchRecipes, getRecipe, getFoods } from '../../services/api.js';
 import RecipeCard from './RecipeCard.vue';
 
 export default {
+  props: {
+    addToMasterList: {
+      type: Function,
+      required: true
+    }
+  },
   components: {
     RecipeCard
   },
@@ -63,7 +69,6 @@ export default {
       seasonalIng: null,
       recipeZoom: false,
       selectedRecipe: null
-
     };
   },
 
