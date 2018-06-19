@@ -1,5 +1,5 @@
 <template>
-  <div id="about">
+  <div class="content" id="about">
     <h1>Team Running with Scissors</h1>
     <h3>Wow look at those guys!</h3>
     <div>
