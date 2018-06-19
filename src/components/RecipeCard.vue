@@ -1,47 +1,26 @@
 <template>
 <div>
 <div id="container-main">
-  <div id="container-login">
-    <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()">
-      <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
-      <div id="message"></div>
-      Username:
-      <input
-        required
-        @keyup="validate"
-        v-model="creds.username"
-        pattern=".{3,20}"
-      >
-      <br>
-      Password:
-      <input
-        required
-        @keyup="validate"
-        :type="show ? 'text' : 'password'"
-        :name="newUser ? 'new-password' : 'current-password'"
-        v-model="creds.password"
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
-      >
-      <br>
-      <span v-show="newUser" id="requirements">
-        <strong><span id="user-limit">Username must be 3-20 characters</span></strong><br>
-        <strong>Password must contain:</strong><br>
-        <span id="lower">1 lower case letter</span><br>
-        <span id="upper">1 upper case letter</span><br>
-        <span id="number">1 number</span><br>
-        <span id="symbol">1 symbol</span><br>
-        <span id="limit">8-20 characters</span><br>
-      </span><br>
-      <div id="handlers">
-        <a id="link-switch" @click.prevent="toggle">
-          {{ newUser ? "Already a member?" : "New user?"}}
-        </a>
-        <button>
-          Submit
-        </button>
-        <button v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Hide' : 'Show' }}</button><br>
+  <div id="container-recipe">
+    <div id="exit" @click.prevent="handleZoom">
+      <b>X</b>
+    </div>
+    <h1>{{ selectedRecipe.Title }}</h1>
+    <div id="container-details">
+      <div id="ingredients">
+        <ul>
+          <li
+            v-for="ingredient in selectedRecipe.Ingredients"
+            :key="ingredient.Name"
+          >
+            {{ ingredient.Name }}
+          </li>
+        </ul>
       </div>
-    </form>
+      <div id="instructions">
+        <p>{{ selectedRecipe.Instructions }}</p>
+      </div>
+    </div>
   </div>
 </div>
 </div>
@@ -52,11 +31,11 @@
 
 export default {
   props: {
-    recipeZoom: {
+    toggleRecipe: {
       type: Function,
       require: true
     },
-    recipe: Array
+    selectedRecipe: Object
   },
   data() {
     return {
@@ -69,55 +48,24 @@ export default {
   },
   methods: {
     handleZoom() {
-      this.recipeZoom();
+      this.toggleRecipe();
     }
-  },
-  created() {
-    console.log('hey we exist!');
   }
 };
 </script>
 <style scoped>
-
-form {
+#container-recipe {
   color: white;
   background: steelblue;
   border: 1px solid black;
   border-radius: 13px;
   padding: 13px;
   width: fit-content;
+  z-index: 1;
+  margin: auto;
   display: flex;
   flex-direction: column;
   box-shadow: 1px 1px 3px black;
-}
-#handlers {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-#link-switch {
-  float: left;
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
-  font-size: .75rem;
-}
-button {
-  float: right;
-}
-h1 {
-  display: inline;
-  margin: 0 auto;
-}
-#requirements {
-  text-align: center;
-  margin: 0 auto;
-  color: black;
-  font-size: .69em;
-  display: inline-block;
-}
-#message {
-  color: black;
 }
 #container-main {
   position: fixed;
@@ -132,6 +80,11 @@ h1 {
   align-items: center;
   background-color: rgba(0, 0, 0, .69);
 }
+#container-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 #exit {
   float: right;
   position: absolute;
@@ -143,9 +96,19 @@ h1 {
   padding: 0 3px;
   background-color: slategrey;
 }
-#container-login {
-  z-index: 1;
-  width: fit-content;
-  margin: auto;
+#ingredients {
+  float: left;
+}
+#instructions {
+  max-width: 400px;
+  float: right;
+  padding: 13px;
+  background-color: rgba(0, 0, 0, .69);
+}
+ul {
+  /* list-style: none; */
+  font-size: .75rem;
+  text-align: left;
+  padding-right: 33px;
 }
 </style>

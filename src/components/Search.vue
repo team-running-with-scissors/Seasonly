@@ -22,7 +22,7 @@
 
       <recipe-card
         @click="toggleRecipe"
-        :recipe="recipe"
+        :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
         v-if="recipeZoom"
       />
@@ -43,7 +43,8 @@ export default {
       searchTerm: null,
       searchResults: null,
       searched: false,
-      recipeZoom: false
+      recipeZoom: false,
+      selectedRecipe: null
     };
   },
   methods: {
@@ -60,7 +61,8 @@ export default {
       // Make another API call, then send the returned data to the RecipeCard component/page
       getRecipe(recipe)
         .then(result => {
-          console.log('the reustl is', result);
+          this.recipeZoom = true;
+          this.selectedRecipe = result;
         });
     },
     toggleRecipe() {
