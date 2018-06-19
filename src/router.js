@@ -16,8 +16,8 @@ export default new VueRouter({
       path: '/user/:id', 
       component: User,
       children: [
-        { path: 'favorite-recipes', component: FavoriteRecipes },
-        { path: 'shopping-list', component: ShoppingList }
+        { path: '/favorite-recipes', component: FavoriteRecipes },
+        { path: '/shopping-list', component: ShoppingList }
       ]
     },
     { path: '*', redirect: '/' }
