@@ -14,11 +14,11 @@ export default {
   }, 
   data() {
     return {
-
+      shoppingList: null
     };
   },
   created() {
-
+    this.shoppingList = this.getFromMasterList;
   }
 };
 </script>
