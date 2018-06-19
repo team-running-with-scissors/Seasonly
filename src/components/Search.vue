@@ -7,27 +7,27 @@
     </div>
     <div>
       <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
-      <div>
-        <button class="filter-button"
-         v-on:click="ingredientType = 0"
+      <span class="button-container">
+        <button :class="[ingredientType === 0 ? active : '' ]" class="filter-button"
+         @click="ingredientType = 0"  
          >All</button>
 
-        <button class="filter-button" 
-        v-on:click="ingredientType = 1"
+        <button :class="[ingredientType === 1 ? active : '' ]" class="filter-button" 
+        @click="ingredientType = 1"
         >Veggies</button>
 
-        <button class="filter-button" 
-        v-on:click="ingredientType = 2"
+        <button :class="[ingredientType === 2 ? active : '' ]" class="filter-button" 
+        @click="ingredientType = 2"
         >Fruit</button>
 
-        <button class="filter-button" 
-        v-on:click="ingredientType = 3"
+        <button :class="[ingredientType === 3 ? active : '' ]" class="filter-button" 
+        @click="ingredientType = 3"
         >Meat</button>
         
-        <button class="filter-button" 
-        v-on:click="ingredientType = 4"
+        <button :class="[ingredientType === 4 ? active : '' ]" class="filter-button" 
+        @click="ingredientType = 4"
         >Seafood</button>
-      </div>
+      </span><br/>
       <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
@@ -90,7 +90,8 @@ export default {
       seasonalIng: [],
       recipeZoom: false,
       selectedRecipe: null,
-      ingredientType: 0
+      ingredientType: 0,
+      active: 'active'
     };
   },
 
@@ -127,7 +128,7 @@ export default {
     },
     toggleRecipe() {
       this.recipeZoom = !this.recipeZoom;
-    }
+    },
   },
 
   computed: {
@@ -206,16 +207,26 @@ img {
   height: 100px;
   width: 100px;
 }
-
+.button-container {
+  border: 2px solid darkgray;
+  border-radius: 3px;
+}
 .filter-button {
   background-color: lightgray;
+  opacity: .75;
   border: none;
   margin-bottom: 15px;
   padding: 5px;
-
+  width: 60px;
 }
 .filter-button:hover {
-  background-color: gray;
+  opacity: 1;
   cursor: pointer;
 }
+
+.active {
+  background-color: green;
+  color: white;
+}
+
 </style>
