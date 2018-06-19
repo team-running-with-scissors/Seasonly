@@ -12,7 +12,8 @@
         &nbsp;
         <router-link class="link" to="/about">ABOUT</router-link> &nbsp; |
         &nbsp;
-        <router-link class="link" to="/user">USER</router-link> &nbsp; |
+ <router-link v-if="isLoggedIn" to="/user">PROFILE</router-link>
+
         &nbsp;
         <router-link class="link" to="/search">SEARCH</router-link>
       </nav>
@@ -28,7 +29,8 @@ export default {
   name: 'app',
   data() {
     return {
-      isZoomed: true
+      isZoomed: true,
+      isLoggedIn: false
     };
   },
   methods: {
@@ -52,6 +54,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 #auth {
 }
 
@@ -84,4 +87,5 @@ Font-Size: 1.75em;
 .link:hover{
   color:#2c3e50;
 }
+
 </style>
