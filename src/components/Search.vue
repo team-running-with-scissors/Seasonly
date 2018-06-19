@@ -7,10 +7,17 @@
     </div>
     <div>
       <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
-      <select v-model="searchTerm">
+      <select 
+      v-model="searchTerm"
+      @change.prevent="handleSearch"
+      >
         <option disabled value="">Please select one</option>
-        <option v-for="item in seasonalIng"
-        :key="item.index" value="Select">{{ item.food }}</option>
+        <option 
+        v-for="item in seasonalIng"
+        :key="item.index" 
+        :value="item.food"
+        >{{ item.food }}
+        </option>
       </select>
     </div>
     <div id="container-main">
