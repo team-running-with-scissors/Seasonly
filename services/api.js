@@ -11,7 +11,8 @@ export {
   signUp,
   searchRecipes,
   getRecipe,
-  getFoods
+  getFoods,
+  addToShoppingList
 };
 
 function responseHandler(response) {
@@ -75,6 +76,14 @@ function getRecipe(ingredientId) {
 function getFoods() {
   return fetch(`${URL}/search`, {
     headers: { 'Content-Type': 'application/json' }
+  })
+    .then(responseHandler);
+}
+
+function addToShoppingList(ingredients) {
+  return fetch(`${URL}/list`, {
+    headers: getHeaders(true),
+    body: JSON.stringify(ingredients)
   })
     .then(responseHandler);
 }

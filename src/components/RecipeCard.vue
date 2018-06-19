@@ -16,20 +16,21 @@
             {{ ingredient.Name }}
           </li>
         </ul>
+      <button @click.prevent="handleAdd">Add to shopping list</button>
       </div>
       <div id="instructions">
         <p>{{ selectedRecipe.Instructions }}</p>
       </div>
     </div>
   </div>
-  <span id='click-me' class="full-screen" @click="handleZoom"></span>
+  <span id='click-me' class="full-screen" @click.prevent="handleZoom"></span>
 </div>
 </div>
 </template>
 
 <script>
 // import './main.css';
-
+import { addToShoppingList } from '../../services/api.js';
 export default {
   props: {
     toggleRecipe: {
@@ -50,6 +51,17 @@ export default {
   methods: {
     handleZoom() {
       this.toggleRecipe();
+    },
+    handleAdd() {
+      let ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
+        acc[i] = { name : cur.Name, selected : false };
+        return acc;
+      }, []);
+      console.log('\n\nasdklfjas', ingredients, typeof(ingredients));
+      addToShoppingList(this.selectedRecipe.Ingredients)
+        .then(result => {
+
+        });
     }
   }
 };
