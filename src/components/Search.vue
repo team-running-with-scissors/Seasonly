@@ -9,7 +9,7 @@
       <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
       <div>
         <button class="filter-button"
-         v-on:click="ingredientType "
+         v-on:click="ingredientType = 0"
          >All</button>
 
         <button class="filter-button" 
@@ -84,7 +84,7 @@ export default {
       seasonalIng: [],
       recipeZoom: false,
       selectedRecipe: null,
-      ingredientType: ''
+      ingredientType: 0
     };
   },
 
@@ -128,8 +128,8 @@ export default {
 
     filteredIngredients() {
       return this.seasonalIng.filter(ingredient => {
-        return (this.ingredientType === '' || this.ingredientType === ingredient.type_id)
-      })
+        return (this.ingredientType === 0 || this.ingredientType === ingredient.type_id);
+      });
     },
 
     currentMonth() {
