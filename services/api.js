@@ -9,8 +9,8 @@ const URL = 'http://localhost:3000/api';
 export {
   signIn,
   signUp,
-  getRecipes,
-  getFoods
+  searchRecipes,
+  getRecipe
 };
 
 function responseHandler(response) {
@@ -40,7 +40,7 @@ function getHeaders(hasBody) {
 }
 
 function signIn(creds) {
-  return fetch(`${URL}/signin`, {
+  return fetch(`${URL}/auth/signin`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -49,7 +49,7 @@ function signIn(creds) {
 }
 
 function signUp(creds) {
-  return fetch(`${URL}/signup`, {
+  return fetch(`${URL}/auth/signup`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -57,7 +57,7 @@ function signUp(creds) {
     .then(responseHandler);
 }
 
-function getRecipes(ingredient) {
+function searchRecipes(ingredient) {
   const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
   '&api_key=' + apiKey;
@@ -65,9 +65,8 @@ function getRecipes(ingredient) {
     .then(response => response.json());
 }
 
-function getFoods() {
-  return fetch(`${URL}/search`, {
-    headers: { 'Content-Type': 'application/json' }
-  })
-    .then(responseHandler);
+function getRecipe(ingredientId) {
+  const url = 'http://api2.bigoven.com/recipe/' + ingredientId + '?api_key=' + apiKey;
+  return fetch(url)
+    .then(response => response.json());
 }
