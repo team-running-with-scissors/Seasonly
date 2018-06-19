@@ -14,7 +14,8 @@ export {
   getFoods,
   addToShoppingList,
   updateShoppingList,
-  getShoppingList
+  getShoppingList,
+  getFavorites
 };
 
 function responseHandler(response) {
@@ -109,3 +110,11 @@ function getShoppingList(userid) {
   })
     .then(responseHandler);
 }
+
+function getFavorites(userid) {
+  return fetch(`${URL}/user/:id/favorite-recipes`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
