@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div id = "user-profile"
   </div>
 </template>
 
 <script>
 export default {
+  
 
 };
 </script>
