@@ -9,7 +9,8 @@ const URL = 'http://localhost:3000/api';
 export {
   signIn,
   signUp,
-  getRecipes
+  searchRecipes,
+  getRecipe
 };
 
 function responseHandler(response) {
@@ -56,10 +57,16 @@ function signUp(creds) {
     .then(responseHandler);
 }
 
-function getRecipes(ingredient) {
+function searchRecipes(ingredient) {
   const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
   '&api_key=' + apiKey;
+  return fetch(url)
+    .then(response => response.json());
+}
+
+function getRecipe(ingredientId) {
+  const url = 'http://api2.bigoven.com/recipe/' + ingredientId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
 }
