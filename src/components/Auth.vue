@@ -2,7 +2,7 @@
 <div>
 <div id="container-main">
   <div id="container-login">
-    <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()">
+    <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()" :key="newUser ? 123 : 456">
       <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
       <div id="message"></div>
       Username:
@@ -36,10 +36,10 @@
         <a id="link-switch" @click.prevent="toggle">
           {{ newUser ? "Already a member?" : "New user?"}}
         </a>
+        <button v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Hide' : 'Show' }}</button><br>
         <button>
           Submit
         </button>
-        <button v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Hide' : 'Show' }}</button><br>
       </div>
     </form>
   </div>
@@ -128,40 +128,34 @@ export default {
       }
     },
     handleSignUp() {
-      console.log('signing up', this.creds);
       let message = document.getElementById('message');
+      let sucess = false;
       this.creds.username = this.creds.username.toLowerCase();
       signUp(this.creds)
         .then(res => {
-          if(res.error) {
-            message.textContent = 'Username already exists!';
-          }
-          else {
-            this.userid = res.id;
-            message.textContent = 'Successful creation!';
-          }
+          this.userid = res.id;
+          message.textContent = 'Successful creation!';
           this.creds = {};
+          sucess = true;
         });
+      if(!sucess) {
+        message.textContent = 'Username already exsists!';
+      }
     },
     handleSignIn() {
       let message = document.getElementById('message');
+      let sucess = false;
       this.creds.username = this.creds.username.toLowerCase();
-      console.log('signing in', this.creds);
       signIn(this.creds)
         .then(res => {
-          console.log('checking if sucessful login');
-          if(res.error) {
-            message.textContent = 'Invalid username or password!';
-            this.creds.password = '';
-          }
-          else {
-            // Do things here and re-route
-            // this.setUserId(res);
-            console.log('res is ', res);
-            message.textContent = 'Welcome back ' + res.name;
-            this.creds = {};
-          }
+          message.textContent = 'Welcome back ' + res.username.charAt(0).toUpperCase() + res.username.slice(1);
+          this.creds = {};
+          sucess = true;
         });
+      if(!sucess) {
+        message.textContent = 'Invalid username or password!';
+        this.creds.password = '';
+      }
     },
     handleZoom() {
       this.toggleZoom();
