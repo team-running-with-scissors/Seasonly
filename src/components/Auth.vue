@@ -139,10 +139,10 @@ export default {
       this.creds.username = this.creds.username.toLowerCase();
       signUp(this.creds)
         .then(res => {
-          this.userid = res.id;
           message.textContent = 'Successful creation!';
           this.creds = {};
           sucess = true;
+          this.loggedIn(res);
         });
       if(!sucess) {
         message.textContent = 'Username already exsists!';

@@ -30,7 +30,6 @@
 
 <script>
 // import './main.css';
-import { addToShoppingList } from '../../services/api.js';
 export default {
   props: {
     toggleRecipe: {
@@ -58,20 +57,12 @@ export default {
     },
     handleAdd() {
       let ingredients = {};
+      let userid = localStorage.getItem('userid');
       ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
-        acc[i] = { name : cur.Name, selected : false, userid : 1 }; // Replace with localstorage userid
+        acc[i] = { name : cur.Name, selected : false, userid : userid }; // Replace with localstorage userid
         return acc;
       }, []);
-
-      // let i = { userid : 1, selected : false, name : 'bananas' };
-      console.log('\n\nasdklfjas', ingredients, typeof(ingredients));
-      addToShoppingList(ingredients)
-        .then(result => {
-          console.log('\n\n result is', result);
-          if(result.added) {
-            this.addToMasterList(ingredients);
-          }
-        });
+      this.addToMasterList(ingredients);
     }
   }
 };

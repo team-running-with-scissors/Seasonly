@@ -12,7 +12,9 @@ export {
   searchRecipes,
   getRecipe,
   getFoods,
-  addToShoppingList
+  addToShoppingList,
+  updateShoppingList,
+  getShoppingList
 };
 
 function responseHandler(response) {
@@ -86,6 +88,24 @@ function addToShoppingList(ingredients) {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(ingredients)
+  })
+    .then(responseHandler);
+}
+
+function updateShoppingList(newList) {
+  console.log('in the api', newList);
+  return fetch(`${URL}/list`, {
+    method: 'PUT',
+    headers: getHeaders(true),
+    body: JSON.stringify(newList)
+  })
+    .then(responseHandler);
+}
+
+function getShoppingList(userid) {
+  console.log('user is ', userid);
+  return fetch(`${URL}/list/${userid}`, {
+    headers: getHeaders()
   })
     .then(responseHandler);
 }
