@@ -1,15 +1,18 @@
 <template>
   <div id = "user-profile">
     <shopping-list :getFromMasterList = "getFromMasterList" />
+    <FavoriteRecipes/>
   </div>
 </template>
 
 <script>
 import ShoppingList from './ShoppingList.vue';
+import FavoriteRecipes from './FavoriteRecipes.vue';
 
 export default {
   components: {
-    ShoppingList
+    ShoppingList,
+    FavoriteRecipes
   },
   props: {
     getFromMasterList: {
