@@ -1,6 +1,6 @@
 <template>
 <div>
-<div id="container-main">
+<div id="container-main" @click.prevent="handleZoom">
   <div id="container-recipe">
     <div id="exit" @click.prevent="handleZoom">
       <b>X</b>
@@ -104,6 +104,8 @@ export default {
   float: right;
   padding: 13px;
   background-color: rgba(0, 0, 0, .69);
+  max-height: 400px;
+  overflow-y: scroll;
 }
 ul {
   /* list-style: none; */
