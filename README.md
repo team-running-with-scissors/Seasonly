@@ -1,5 +1,5 @@
-# Project MVP: NBA Player Draft and Save
-Our app allows users to search and select a group of players and save them in your own personal draft. Pulling from the full NBA API, you can view thumbnails of your players or drill down into a full data view. Upcoming versions will feature game mechanics, commenting and upvoting saved drafts and colorful statistical reporting views.
+# Project MVP: eat Seasonally app
+Our app allows a user to select from a list of foods that are in season in a particular month, or select all foods that are in season for a particular season, and then search for recipes containing those foods. Ingredients for the selected recipes can be saved to a personal shopping list, helping users to eat more seasonal foods and consume in a more environmentally conscious way.
 
 **Team Running With Scissors**
 Erik, Robyn, Robert, Mark
