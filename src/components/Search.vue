@@ -10,38 +10,65 @@
         <li
           v-for="result in searchResults"
           :key="result.RecipeID"
+          @click.prevent="handleView(result.RecipeID)"
         >
+          <div id="image">
+            <img :src="result.PhotoUrl">
+          </div>
           <h1>{{ result.Title }}</h1>
-          <img :src="result.PhotoUrl">
+          <p>{{ result.Description }}</p>
         </li>
       </ul>
+
+      <recipe-card
+        @click="toggleRecipe"
+        :recipe="recipe"
+        :toggleRecipe="toggleRecipe"
+        v-if="recipeZoom"
+      />
     </div>
   </div>
 </div>
 </template>
 
 <script>
-import { getRecipes } from '../../services/api.js';
+import { searchRecipes, getRecipe } from '../../services/api.js';
+import RecipeCard from './RecipeCard.vue';
 export default {
+  components: {
+    RecipeCard
+  },
   data() {
     return {
       searchTerm: null,
       searchResults: null,
-      searched: false
+      searched: false,
+      recipeZoom: false
     };
   },
   methods: {
     handleSearch() {
       console.log('in the search diddle');
-      getRecipes(this.searchTerm)
+      searchRecipes(this.searchTerm)
         .then(result => {
           console.log('the resuts', result.Results);
           this.searchResults = result.Results;
           this.searched = true;
         });
+    },
+    handleView(recipe) {
+      // Make another API call, then send the returned data to the RecipeCard component/page
+      getRecipe(recipe)
+        .then(result => {
+          console.log('the reustl is', result);
+        });
+    },
+    toggleRecipe() {
+      console.log('everyday I\'m togglin');
+      this.recipeZoom = !this.recipeZoom;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -56,20 +83,28 @@ ul {
   list-style: none;
 }
 h1 {
-  display: inline;
+  /* display: inline; */
+  float: right;
 }
 li {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
   border: 1px solid black;
   border-radius: 6px;
   padding: 6px;
+  cursor: pointer;
+  align-items: center;
+  height: fit-content;
 }
 img {
-  display: block;
-  height: auto;
+  vertical-align: middle;
+  max-height: 100%;
+}
+#image {
+  overflow: hidden;
+  height: 100px;
   width: 100px;
-  float: right;
 }
 </style>
