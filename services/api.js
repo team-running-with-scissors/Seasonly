@@ -40,7 +40,7 @@ function getHeaders(hasBody) {
 }
 
 function signIn(creds) {
-  return fetch(`${URL}/signin`, {
+  return fetch(`${URL}/auth/signin`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -49,7 +49,7 @@ function signIn(creds) {
 }
 
 function signUp(creds) {
-  return fetch(`${URL}/signup`, {
+  return fetch(`${URL}/auth/signup`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)

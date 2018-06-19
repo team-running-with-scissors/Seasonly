@@ -12,7 +12,7 @@
         &nbsp;
         <router-link to="/about">ABOUT</router-link>
         &nbsp;
-        <router-link to="/user">USER</router-link>
+        <router-link v-if="isLoggedIn" to="/user">PROFILE</router-link>
         &nbsp;
         <router-link to="/search">SEARCH</router-link>
       </nav>
@@ -28,7 +28,8 @@ export default {
   name: 'app',
   data() {
     return {
-      isZoomed: true
+      isZoomed: true,
+      isLoggedIn: false
     };
   },
   methods: {
