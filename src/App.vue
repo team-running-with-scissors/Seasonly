@@ -28,7 +28,7 @@ export default {
   name: 'app',
   data() {
     return {
-      isZoomed: true
+      isZoomed: false
     };
   },
   methods: {
