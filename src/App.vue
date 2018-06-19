@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div>
+      {{ shoppingList }}
       <h1 class="title">seasonly</h1>
       <nav>
         <router-link class="link" to="/">HOME</router-link> &nbsp; |
@@ -13,7 +14,10 @@
         <router-link class="link" to="/search">SEARCH</router-link>
       </nav>
     </div>
-    <router-view></router-view>
+    <router-view
+      :getFromMasterList="getFromMasterList"
+      :addToMasterList="addToMasterList"
+    ></router-view>
     
 <transition name="fade-out">
   <auth
@@ -34,7 +38,8 @@ export default {
   data() {
     return {
       isZoomed: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      shoppingList: null
     };
   },
   methods: {
@@ -48,7 +53,12 @@ export default {
     },
     toggleLogin() {
       this.isZoomed = true;
-
+    },
+    addToMasterList(listItems) {
+      this.shoppingList = listItems;
+    },
+    getFromMasterList() {
+      return this.shoppingList;
     }
   },
   components: {
