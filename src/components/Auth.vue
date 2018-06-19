@@ -18,12 +18,13 @@
       Password:
       <input
         required
-        @keyup="validate"
+        @keyup.prevent="validate"
         :type="show ? 'text' : 'password'"
         :name="newUser ? 'new-password' : 'current-password'"
         v-model="creds.password"
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
       >
+      <a id="show-hide" v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
       <br>
       <span v-show="newUser" id="requirements">
         <strong><span id="user-limit">Username must be 3-20 characters</span></strong><br>
@@ -38,8 +39,7 @@
         <a id="link-switch" @click.prevent="toggle">
           {{ newUser ? "Already a member?" : "New user?"}}
         </a>
-        <button v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Hide' : 'Show' }}</button><br>
-        <button>
+        <button type="submit">
           Submit
         </button>
       </div>
@@ -175,6 +175,15 @@ export default {
   width: fit-content;
   margin: auto;
   z-index: 1;
+}
+
+#show-hide{
+  font-size: .75em;
+  text-decoration: underline;
+}
+#show-hide:hover{
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.849);
 }
 form {
   color: white;

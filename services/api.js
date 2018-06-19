@@ -81,7 +81,9 @@ function getFoods() {
 }
 
 function addToShoppingList(ingredients) {
+  console.log('ingredients are', ingredients);
   return fetch(`${URL}/list`, {
+    method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(ingredients)
   })

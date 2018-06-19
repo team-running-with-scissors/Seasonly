@@ -9,7 +9,7 @@
       <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
       <div>
         <button class="filter-button"
-         v-on:click="ingredientType "
+         v-on:click="ingredientType = 0"
          >All</button>
 
         <button class="filter-button" 
@@ -59,9 +59,9 @@
       <recipe-card
         :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
+        :addToMasterList="addToMasterList"
         v-if="recipeZoom"
       />
-      
     </div>
   </div>
 </div>
@@ -73,6 +73,12 @@ import { searchRecipes, getRecipe, getFoods } from '../../services/api.js';
 import RecipeCard from './RecipeCard.vue';
 
 export default {
+  props: {
+    addToMasterList: {
+      type: Function,
+      required: true
+    }
+  },
   components: {
     RecipeCard
   },
@@ -84,14 +90,14 @@ export default {
       seasonalIng: [],
       recipeZoom: false,
       selectedRecipe: null,
-      ingredientType: ''
+      ingredientType: 0
     };
   },
 
   created() {
     const d = new Date;
     const n = d.getMonth();
-    this.filteredIngredients = this.seasonalIng;
+
     getFoods()
       .then(ingredient => {
         this.seasonalIng = ingredient.filter(x => {
@@ -128,8 +134,8 @@ export default {
 
     filteredIngredients() {
       return this.seasonalIng.filter(ingredient => {
-        return (this.ingredientType === '' || this.ingredientType === ingredient.type_id)
-      })
+        return (this.ingredientType === 0 || this.ingredientType === ingredient.type_id);
+      });
     },
 
     currentMonth() {
