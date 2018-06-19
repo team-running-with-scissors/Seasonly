@@ -12,7 +12,7 @@
         &nbsp;
         <router-link class="link" to="/about">ABOUT</router-link> &nbsp; |
         &nbsp;
- <router-link v-if="isLoggedIn" to="/user">PROFILE</router-link>
+        <router-link v-if="isLoggedIn" to="/user">PROFILE</router-link>
 
         &nbsp;
         <router-link class="link" to="/search">SEARCH</router-link>

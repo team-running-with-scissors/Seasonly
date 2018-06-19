@@ -41,7 +41,7 @@
 
 <script>
 
-import { searchRecipes, getRecipe } from '../../services/api.js';
+import { searchRecipes, getRecipe, getFoods } from '../../services/api.js';
 import RecipeCard from './RecipeCard.vue';
 
 export default {
