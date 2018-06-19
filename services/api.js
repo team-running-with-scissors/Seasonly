@@ -10,7 +10,8 @@ export {
   signIn,
   signUp,
   searchRecipes,
-  getRecipe
+  getRecipe,
+  getFoods
 };
 
 function responseHandler(response) {
@@ -69,4 +70,11 @@ function getRecipe(ingredientId) {
   const url = 'http://api2.bigoven.com/recipe/' + ingredientId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
+}
+
+function getFoods() {
+  return fetch(`${URL}/search`, {
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(responseHandler);
 }

@@ -5,6 +5,21 @@
       <input @keypress.enter="handleSearch" v-model="searchTerm">
       <button @click.prevent="handleSearch">Search!</button>
     </div>
+    <div>
+      <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
+      <select 
+      v-model="searchTerm"
+      @change.prevent="handleSearch"
+      >
+        <option disabled value="">Please select one</option>
+        <option 
+        v-for="item in seasonalIng"
+        :key="item.index" 
+        :value="item.food"
+        >{{ item.food }}
+        </option>
+      </select>
+    </div>
     <div id="container-main">
       <ul v-if="searched">
         <li
@@ -32,21 +47,37 @@
 </template>
 
 <script>
-import { searchRecipes, getRecipe } from '../../services/api.js';
+
+import { searchRecipes, getRecipe, getFoods } from '../../services/api.js';
 import RecipeCard from './RecipeCard.vue';
+
 export default {
   components: {
     RecipeCard
   },
   data() {
     return {
-      searchTerm: null,
+      searchTerm: '',
       searchResults: null,
       searched: false,
+      seasonalIng: null,
       recipeZoom: false,
       selectedRecipe: null
+
     };
   },
+
+  created() {
+    const d = new Date;
+    const n = d.getMonth();
+    getFoods()
+      .then(ingredient => {
+        this.seasonalIng = ingredient.filter(x => {
+          return x.month_id - 1 === n;
+        });
+      });
+  },
+
   methods: {
     handleSearch() {
       console.log('in the search diddle');
@@ -68,6 +99,37 @@ export default {
     },
     toggleRecipe() {
       this.recipeZoom = !this.recipeZoom;
+    }
+  },
+
+  computed: {
+    currentMonth() {
+      switch(new Date().getMonth()) {
+        case 0:
+          return 'January';
+        case 1:
+          return 'February';
+        case 2:
+          return 'March';
+        case 3:
+          return 'April';
+        case 4:
+          return 'May';
+        case 5:
+          return 'June';
+        case 6:
+          return 'July';
+        case 7:
+          return 'August';
+        case 8:
+          return 'September';
+        case 9:
+          return 'October';
+        case 10:
+          return 'November';
+        case 11:
+          return 'Dicember';
+      }
     }
   }
 };

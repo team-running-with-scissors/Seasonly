@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <div>
-      <h1>Let's do it</h1>
+      <h1 class="title">seasonly</h1>
       <nav>
-        <router-link to="/">HOME</router-link>
+        <router-link class="link" to="/">HOME</router-link> &nbsp; |
         &nbsp;
-        <router-link to="/about">ABOUT</router-link>
+        <router-link class="link" to="/about">ABOUT</router-link> &nbsp; |
         &nbsp;
         <router-link v-if="isLoggedIn" to="/user">PROFILE</router-link>
         <a href="#" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
         &nbsp;
-        <router-link to="/search">SEARCH</router-link>
+        <router-link class="link" to="/search">SEARCH</router-link>
       </nav>
     </div>
     <router-view></router-view>
@@ -67,6 +67,36 @@ export default {
   margin-top: 60px;
 }
 
+#auth {
+}
 
-/* .fade-out- */
+.title{
+Font-Family: 'Roboto', Sans-Serif;
+Font-Size: 4.0em;
+
+} 
+
+/* .content{
+Font-Family: 'Lora', Serif;
+Font-Size: 1.75em;
+} */
+/* 
+.title{
+Font-Family: 'Roboto Condensed', Sans-Serif;
+Font-Size: 4.0em;
+} */
+.content{
+Font-Family: 'Cabin', Sans-Serif;
+Font-Size: 1.75em;
+}
+
+.link{
+  Font-Family: 'Roboto Condensed', Sans-Serif;
+  text-decoration: none;
+  color: gray;
+}
+
+.link:hover{
+  color:#2c3e50;
+}
 </style>
