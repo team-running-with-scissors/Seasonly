@@ -48,7 +48,7 @@ export default {
       this.isZoomed = !this.isZoomed;
     },
     loggedIn(credentials) {
-      console.log('frogs on a log in the foggy bog bog', credentials);
+      localStorage.setItem('userid', credentials.id);
       this.isLoggedIn = true;
     },
     toggleLogin() {
