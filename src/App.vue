@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div>
+      {{ shoppingList }}
       <h1 class="title">seasonly</h1>
       <nav>
         <router-link class="link" to="/">HOME</router-link> &nbsp; |
