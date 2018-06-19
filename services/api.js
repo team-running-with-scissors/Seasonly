@@ -9,7 +9,8 @@ const URL = 'http://localhost:3000/api';
 export {
   signIn,
   signUp,
-  getRecipes
+  getRecipes,
+  getFoods
 };
 
 function responseHandler(response) {
@@ -62,4 +63,11 @@ function getRecipes(ingredient) {
   '&api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
+}
+
+function getFoods() {
+  return fetch(`${URL}/search`, {
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(responseHandler);
 }
