@@ -58,6 +58,7 @@ export default {
         });
     },
     handleView(recipe) {
+      console.log(recipe);
       // Make another API call, then send the returned data to the RecipeCard component/page
       getRecipe(recipe)
         .then(result => {
@@ -66,7 +67,6 @@ export default {
         });
     },
     toggleRecipe() {
-      console.log('everyday I\'m togglin');
       this.recipeZoom = !this.recipeZoom;
     }
   }
