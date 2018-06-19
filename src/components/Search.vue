@@ -91,7 +91,7 @@ export default {
   created() {
     const d = new Date;
     const n = d.getMonth();
-    this.filteredIngredients = this.seasonalIng;
+
     getFoods()
       .then(ingredient => {
         this.seasonalIng = ingredient.filter(x => {
