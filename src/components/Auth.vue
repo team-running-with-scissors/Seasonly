@@ -4,7 +4,7 @@
 
 <div id="container-main" class="full-screen">
   <div id="container-login">
-    <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()" :key="newUser ? 123 : 456">
+    <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()" :key="newUser ? 'abc' : 'def'">
       <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
       <div id="message"></div>
       Username:
