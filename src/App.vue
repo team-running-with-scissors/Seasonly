@@ -16,6 +16,7 @@
     <router-view
       :userShoppingList="userShoppingList"
       :addToMasterList="addToMasterList"
+      :addToMasterFavoriteList="addToMasterFavoriteList"
       :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
@@ -37,8 +38,11 @@ import {
   updateShoppingList,
   getShoppingList,
   addToShoppingList,
+
+  addToFavoritesList,
   clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
+
 import Auth from './components/Auth.vue';
 export default {
   name: 'app',
@@ -46,6 +50,7 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
+      favoritesList: [],
       userShoppingList: [],
       userid: null
     };
@@ -112,6 +117,15 @@ export default {
             this.userShoppingList = newList;
           }
         });
+    },
+    addToMasterFavoriteList(savedRecipe) {
+      addToFavoritesList(savedRecipe)
+        .then(result => {
+          if(result.added) {
+            this.favoritesList = savedRecipe;
+          }
+        });
+      console.log('fav list:', this.favoritesList);
     }
   },
   components: {

@@ -15,9 +15,11 @@ export {
   getShoppingList,
   addToShoppingList,
   updateShoppingList,
+  getFavorites,
+  addToFavoritesList,
   clearItemsFromShoppingList,
-  clearShoppingList,
-  getFavorites
+  clearShoppingList
+
 };
 
 function responseHandler(response) {
@@ -152,4 +154,17 @@ function getFavorites(userid) {
     headers: getHeaders()
   })
     .then(responseHandler);
+
 }
+
+function addToFavoritesList(savedRecipes) {
+  console.log('this is in api bobby', savedRecipes);
+  return fetch(`${URL}/favorite-recipes`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(savedRecipes)
+  })
+    .then(responseHandler);
+}
+
+
