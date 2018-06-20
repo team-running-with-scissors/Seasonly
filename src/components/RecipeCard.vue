@@ -53,11 +53,6 @@ export default {
   },
   data() {
     return {
-      newUser: true,
-      creds: { username : '', password : '' },
-      label: null,
-      show: false,
-      valid: false,
       addedToList: false
     };
   },
@@ -69,7 +64,7 @@ export default {
       let ingredients = {};
       let userid = localStorage.getItem('userid');
       ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
-        acc[i] = { name : cur.Name, selected : false, userid : userid }; // Replace with localstorage userid
+        acc[i] = { item : cur.Name, selected : false, userid : userid }; // Replace with localstorage userid
         return acc;
       }, []);
       this.addToMasterList(ingredients);

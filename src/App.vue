@@ -16,6 +16,7 @@
     <router-view
       :userShoppingList="userShoppingList"
       :addToMasterList="addToMasterList"
+      :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
     ></router-view>
@@ -36,6 +37,7 @@ import {
   updateShoppingList,
   getShoppingList,
   addToShoppingList,
+  clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
 import Auth from './components/Auth.vue';
 export default {
@@ -44,7 +46,7 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
-      userShoppingList: null,
+      userShoppingList: [],
       userid: null
     };
   },
@@ -67,8 +69,7 @@ export default {
       addToShoppingList(ingredients)
         .then(result => {
           if(result.added) {
-            // Need to push or concat the ingredients here
-            this.userShoppingList += ingredients;
+            this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
           }
         });
     },
@@ -78,13 +79,26 @@ export default {
           this.userShoppingList = Object.assign(result);
         });
     },
+    deleteFromMasterList(selectedItems) {
+      let itemsPackage = {};
+      itemsPackage.userid = this.userid;
+      itemsPackage.items = selectedItems;
+      clearItemsFromShoppingList(itemsPackage)
+        .then(result => {
+          if(result.updated) {
+            console.log('we clearddd the seleceted');
+            this.userShoppingList = this.userShoppingList.filter(el => !el.selected);
+            console.log('new shopping list', this.userShoppingList);
+            // Clear out selectedItems from this.userShoppingList
+          }
+        });
+    },
     clearMasterList() {
-      console.log('in the thingsyting');
       clearShoppingList(this.userid)
         .then(result => {
           console.log('resuts are', result);
           if(result.cleared) {
-            this.userShoppingList = null;
+            this.userShoppingList = [];
           }
         });
     },
@@ -93,6 +107,10 @@ export default {
       updateShoppingList(newList)
         .then(result => {
           console.log('\n\nresult is', result);
+          if(result.updated) {
+            console.log('list has been updated!');
+            this.userShoppingList = newList;
+          }
         });
     }
   },
