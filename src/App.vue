@@ -69,20 +69,23 @@ export default {
         .then(result => {
           if(result.added) {
             // Need to push or concat the ingredients here
-            this.userShoppingList.push(ingredients);
+            this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
+            console.log('asijfasjdflist is ', ingredients);
           }
         });
     },
     setMasterList(userid) {
       return getShoppingList(userid)
         .then(result => {
+          console.log('thie is reslut', result);
           this.userShoppingList = Object.assign(result);
+          console.log('items added');
         });
     },
     deleteFromMasterList(selectedItems) {
+      selectedItems.userid = this.userid;
       console.log('deleting selected', selectedItems);
-      let condition = { userid : this.userid, condition : 'selected' };
-      clearShoppingList(condition)
+      clearShoppingList(selectedItems)
         .then(result => {
           if(result.cleared) {
             console.log('we clearddd the seleceted');
@@ -91,13 +94,11 @@ export default {
         });
     },
     clearMasterList() {
-      let condition = { userid : this.userid, condition : 'all' };
-      console.log('in the thingsyting', condition);
-      clearShoppingList(condition)
+      clearShoppingList(this.userid)
         .then(result => {
           console.log('resuts are', result);
           if(result.cleared) {
-            this.userShoppingList = null;
+            this.userShoppingList = [];
           }
         });
     },
@@ -106,6 +107,10 @@ export default {
       updateShoppingList(newList)
         .then(result => {
           console.log('\n\nresult is', result);
+          if(result.updated) {
+            console.log('list has been updated!');
+            this.userShoppingList = newList;
+          }
         });
     }
   },

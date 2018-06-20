@@ -4,9 +4,9 @@
       <ul>
         <li
             v-if="userShoppingList"
-            :class="item.selected ? 'checked' : 'unchecked'"
             v-for="item in userShoppingList"
-            :key="item.name"
+            :class="item.selected ? 'checked' : 'unchecked'"
+            :key="item.item"
             @click.prevent="item.selected = !item.selected"
           >
           {{ item.item }}
@@ -14,6 +14,7 @@
       </ul>
       <div id="buttons">
         <button @click.prevent="handleClear">Clear List</button>
+        <button @click.prevent="handleClearSelected">Clear Selected Items</button>
         <button @click.prevent="handleUpdate">Save</button>
       </div>
     </form>
@@ -41,9 +42,10 @@ export default {
     handleUpdate() {
       
     },
-    handleDelete() {
-      // Get selected items and send
-      this.deleteFromMasterList();
+    handleClearSelected() {
+      let tempList = this.userShoppingList.filter(el => el.selected);
+      console.log('selecte ditems are', tempList);
+      this.deleteFromMasterList(tempList);
     },
     handleClear() {
       console.log('in the shoppinglist');
@@ -69,8 +71,10 @@ export default {
 }
 #buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  background-color: rgba(0, 64, 128, .69);
+  padding: 3px;
 }
 ul {
   list-style: none;

@@ -113,8 +113,8 @@ function getShoppingList(userid) {
 }
 
 // Condition is { userid : #, type : 'all/selected' }
-function clearShoppingList(condition) {
-  return fetch(`${URL}/list/${condition.id}`, {
+function clearShoppingList(id) {
+  return fetch(`${URL}/list/${id}`, {
     method: 'DELETE',
     headers: getHeaders()
   })
