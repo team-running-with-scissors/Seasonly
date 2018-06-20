@@ -15,7 +15,8 @@ export {
   addToShoppingList,
   updateShoppingList,
   getShoppingList,
-  getFavorites
+  getFavorites,
+  addToFavoritesList
 };
 
 function responseHandler(response) {
@@ -114,6 +115,15 @@ function getShoppingList(userid) {
 function getFavorites(userid) {
   return fetch(`${URL}/user/${userid}/favorite-recipes`, {
     headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+function addToFavoritesList(savedRecipes) {
+  return fetch(`${URL}/favorite-recipes`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(savedRecipes)
   })
     .then(responseHandler);
 }

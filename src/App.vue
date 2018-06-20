@@ -16,6 +16,7 @@
     <router-view
       :getFromMasterList="getFromMasterList"
       :addToMasterList="addToMasterList"
+      :addToMasterFavoriteList="addToMasterFavoriteList"
     ></router-view>
     
 <transition name="fade-out">
@@ -33,7 +34,8 @@
 import {
   updateShoppingList,
   getShoppingList,
-  addToShoppingList } from '../services/api.js';
+  addToShoppingList,
+  addToFavoritesList } from '../services/api.js';
 import Auth from './components/Auth.vue';
 export default {
   name: 'app',
@@ -41,7 +43,8 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
-      shoppingList: []
+      shoppingList: [],
+      favoritesList: []
     };
   },
   methods: {
@@ -79,6 +82,15 @@ export default {
         .then(result => {
           console.log('\n\nresult is', result);
         });
+    },
+    addToMasterFavoriteList(savedRecipe) {
+      addToFavoritesList(savedRecipe)
+        .then(result => {
+          if(result.added) {
+            this.favoritesList = savedRecipe;
+          }
+        });
+      console.log('fav list:', this.favoritesList);
     }
   },
   components: {
