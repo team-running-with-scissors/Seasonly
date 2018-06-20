@@ -146,6 +146,7 @@ export default {
           this.creds = resetCreds();
           sucess = true;
           this.loggedIn(res);
+          this.toggleZoom();
         });
       if(!sucess) {
         message.textContent = 'Username already exsists!';
@@ -161,6 +162,7 @@ export default {
           this.creds = resetCreds();
           sucess = true;
           this.loggedIn(res);
+          this.toggleZoom();
         });
       if(!sucess) {
         message.textContent = 'Invalid username or password!';

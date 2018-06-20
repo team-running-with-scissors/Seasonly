@@ -23,7 +23,7 @@
 <transition name="fade-out">
   <auth
     id="auth"
-    v-show="isZoomed"
+    v-if="isZoomed"
     :toggleZoom="toggleZoom"
     :loggedIn="loggedIn"
   />
