@@ -16,9 +16,9 @@
         <h2>Please add items to your shopping list.</h2>
       </div>
       <div id="buttons">
-        <button @click.prevent="handleClear">Clear List</button>
-        <button @click.prevent="handleClearSelected">Clear Selected Items</button>
-        <button @click.prevent="handleUpdate">Save</button>
+        <button class="ghost-button" @click.prevent="handleClear">Clear List</button>
+        <button class="ghost-button" @click.prevent="handleClearSelected">Clear Selected</button>
+        <button class="ghost-button" @click.prevent="handleUpdate">Save</button>
       </div>
     </form>
   </div>
@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 #shopping-list {
-  width: 333px;
+  width: 666px;
   margin: 20px auto;
   background: rgba(0, 0, 0, .69);
   border-radius: 20px;
@@ -84,7 +84,7 @@ export default {
 }
 #buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 64, 128, .69);
   padding: 3px;
