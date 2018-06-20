@@ -48,12 +48,10 @@ export default {
     },
     selectedRecipe: Object,
     addToMasterList: {
-      type: Function,
-      required: true
+      type: Function
     },
     addToMasterFavoriteList: {
-      type: Function,
-      required: true
+      type: Function
     }
 
   },
@@ -81,7 +79,7 @@ export default {
       let favorites = {};
       let userid = localStorage.getItem('userid');
       favorites = [{ recipe_name : this.selectedRecipe.Title, user_id : userid, recipe_id : this.selectedRecipe.RecipeID, selected : false }];
-      console.log('look here bobby', favorites)
+      console.log('look here bobby', favorites);
       // console.log('fav recipes:', this.savedRecipes);
       this.addToMasterFavoriteList(favorites);
     }
