@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div>
-      <h1 class="title">seasonly</h1>
+      <img id="top-logo" src="../assets/seasonly_logo_white.svg">
       <nav>
         <router-link class="link" to="/">HOME</router-link> &nbsp; |
         &nbsp;
@@ -122,10 +122,15 @@ export default {
 #auth {
 }
 
+#top-logo{
+  width: 15%;
+  max-width: 50%;
+  margin-bottom: 15px
+}
+
 .title{
 Font-Family: 'Roboto', Sans-Serif;
 Font-Size: 4.0em;
-
 } 
 
 /* .content{
