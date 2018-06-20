@@ -69,6 +69,7 @@ export default {
   font-size: 2em;
   color: #fff;
   text-align: center;
+  padding-top: 20px;
 }
 .checked {
   cursor: pointer;
@@ -87,7 +88,7 @@ export default {
 }
 ul {
   list-style: none;
-  margin-left: 0px;
+  padding: 0 50px;
 }
 li {
   border-bottom: 1px solid #fff;
