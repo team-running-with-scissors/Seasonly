@@ -24,7 +24,7 @@
         v-model="creds.password"
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
       >
-      <a id="show-hide" v-show="!newUser" @click.prevent="show = !show">{{ !show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
+      <a id="show-hide" v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
       <br>
       <span v-show="newUser" id="requirements">
         <strong><span id="user-limit">Username must be 3-20 characters</span></strong><br>

@@ -7,7 +7,7 @@
             v-for="(item, index) in userShoppingList"
             :class="item.selected ? 'checked' : 'unchecked'"
             :key="index"
-            @click.prevent="item.selected = !item.selected"
+            @click.prevent="handleUpdate(item)"
           >
           {{ item.item }}
         </li>
@@ -16,9 +16,8 @@
         <h2>Please add items to your shopping list.</h2>
       </div>
       <div id="buttons">
-        <button @click.prevent="handleClear">Clear List</button>
-        <button @click.prevent="handleClearSelected">Clear Selected Items</button>
-        <button @click.prevent="handleUpdate">Save</button>
+        <button class="ghost-button" @click.prevent="handleClear">Clear List</button>
+        <button class="ghost-button" @click.prevent="handleClearSelected">Clear Selected</button>
       </div>
     </form>
   </div>
@@ -42,7 +41,8 @@ export default {
     userShoppingList: Array
   },
   methods: {
-    handleUpdate() {
+    handleUpdate(item) {
+      item.selected = !item.selected;
       this.updateMasterList(this.userShoppingList);
     },
     handleClearSelected() {
@@ -62,7 +62,8 @@ export default {
   width: 333px;
   margin: 20px auto;
   background: rgba(0, 0, 0, .69);
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .list-header {
   font-family: 'Sedgwick Ave', cursive;
@@ -86,16 +87,28 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(0, 64, 128, .69);
+  /* background-color: rgba(0, 0, 0, .69); */
   padding: 3px;
+  padding-bottom: 20px;
 }
 ul {
   list-style: none;
   padding: 0 50px;
 }
 li {
+  margin: auto;
+  max-width: 200px;
   border-bottom: 1px solid #fff;
   padding: 10px; 
 }
-
+li:hover {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, .69);
+  color: rgb(21, 82, 99);
+}
+.ghost-button {
+  width: fit-content;
+  padding: 3px 13px;
+  font-size: 1rem;
+}
 </style>

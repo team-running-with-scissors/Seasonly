@@ -9,8 +9,18 @@
         &nbsp;<router-link class="link" to="/search">SEARCH</router-link>
         &nbsp; |
         &nbsp;
-        <router-link class="link" v-if="isLoggedIn" to="/user">PROFILE</router-link>
+        <span v-if="isLoggedIn">
+          <router-link class="link" to="/user/shopping-list">LIST</router-link>
+          &nbsp; |
+          &nbsp;
+          <router-link class="link" to="/user/favorite-recipes">FAVORITES</router-link>
+        </span>
         <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
+        <span v-if="isLoggedIn">
+          &nbsp; |
+          &nbsp;
+          <a href="#" class="link"  @click.prevent="logout">LOGOUT</a>
+        </span>
       </nav>
     </div>
     <router-view
@@ -44,6 +54,7 @@ import {
   clearShoppingList } from '../services/api.js';
 
 import Auth from './components/Auth.vue';
+
 export default {
   name: 'app',
   data() {
@@ -60,6 +71,14 @@ export default {
       console.log('everyday I\'m togglin');
       this.isZoomed = !this.isZoomed;
     },
+    logout() {
+    this.isLoggedIn = false;
+    this.favoritesList = [];
+    this.userShoppingList = [];
+    this.userid = null;
+    localStorage.clear();
+    this.$router.push('/');
+    },
     loggedIn(credentials) {
       localStorage.setItem('userid', credentials.id);
       this.userid = credentials.id;
@@ -73,6 +92,9 @@ export default {
     addToMasterList(ingredients) {
       addToShoppingList(ingredients)
         .then(result => {
+          console.log('more chees pelase', result);
+
+
           if(result.added) {
             this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
           }

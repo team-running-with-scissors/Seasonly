@@ -44,22 +44,4 @@ margin-right: 10%;
 border-top: 1px solid white;
 
 }
-.ghost-button {
-  display: inline-block;
-  font-size: 20px;
-  width: 200px;
-  padding: 8px;
-  color: #fff;
-  background-color: rgba(255, 255, 255, .2);
-  border: 1px solid #fff;
-  text-align: center;
-  outline: none;
-  text-decoration: none;
-}
-.ghost-button:hover,
-.ghost-button:active {
-  background-color: #fff;
-  color: #000;
-}
-
 </style>
