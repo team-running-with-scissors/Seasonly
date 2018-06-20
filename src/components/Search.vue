@@ -192,7 +192,7 @@ export default {
   width: 777px;
   margin: 20px 10% 20px 10%;
   background: rgba(0, 0, 0, .69);
-  padding: 20px 40px;
+  padding: 20px;
   border-radius: 20px;
 }
 ul {
