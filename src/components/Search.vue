@@ -65,6 +65,7 @@
         :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
         :addToMasterList="addToMasterList"
+        
         v-if="recipeZoom"
         :addToMasterFavoriteList="addToMasterFavoriteList"
       />

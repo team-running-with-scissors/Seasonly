@@ -7,7 +7,7 @@
         &nbsp;
         <router-link class="link" to="/about">ABOUT</router-link> &nbsp; |
         &nbsp;<router-link class="link" to="/search">SEARCH</router-link>
-         &nbsp; |
+        &nbsp; |
         &nbsp;
         <router-link class="link" v-if="isLoggedIn" to="/user">PROFILE</router-link>
         <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
