@@ -3,9 +3,9 @@
     <form>
       <ul v-if="userShoppingList.length > 0">
         <li
-            v-for="item in userShoppingList"
+            v-for="(item, index) in userShoppingList"
             :class="item.selected ? 'checked' : 'unchecked'"
-            :key="item.item"
+            :key="index"
             @click.prevent="item.selected = !item.selected"
           >
           {{ item.item }}
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     handleUpdate() {
-      
+      this.updateMasterList(this.userShoppingList);
     },
     handleClearSelected() {
       let tempList = this.userShoppingList.filter(el => el.selected);

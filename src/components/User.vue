@@ -10,7 +10,7 @@
     <div v-else>
       <p>Please add indgredients to your shopping list.</p>
     </div>
-    <FavoriteRecipes/>
+    <!-- <FavoriteRecipes/> -->
   </div>
 </template>
 
