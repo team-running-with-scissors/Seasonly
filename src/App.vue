@@ -73,6 +73,9 @@ export default {
     addToMasterList(ingredients) {
       addToShoppingList(ingredients)
         .then(result => {
+          console.log('more chees pelase', result);
+
+
           if(result.added) {
             this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
           }

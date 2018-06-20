@@ -14,8 +14,8 @@
       >
         <ul>
           <li
-            v-for="ingredient in selectedRecipe.Ingredients"
-            :key="ingredient.Name"
+            v-for="(ingredient, index) in selectedRecipe.Ingredients"
+            :key="index"
           >
             {{ ingredient.Name }}
           </li>
