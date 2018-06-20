@@ -2,7 +2,7 @@
 <div>
   <div id="container-whole">
     <div id="container-search">
-      <input @keypress.enter="handleSearch" v-model="searchTerm">
+      <input id="search-box" @keypress.enter="handleSearch" v-model="searchTerm">
       <button @click.prevent="handleSearch">Search!</button>
     </div>
     <div>
@@ -225,8 +225,12 @@ img {
 }
 
 .active {
-  background-color: green;
+  background-color: rgb(0, 103, 221);
   color: white;
+}
+
+#search-box{
+  margin-top: 25px;
 }
 
 </style>
