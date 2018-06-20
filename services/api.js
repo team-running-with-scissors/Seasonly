@@ -112,7 +112,7 @@ function getShoppingList(userid) {
 }
 
 function getFavorites(userid) {
-  return fetch(`${URL}/user/:id/favorite-recipes`, {
+  return fetch(`${URL}/user/${userid}/favorite-recipes`, {
     headers: getHeaders()
   })
     .then(responseHandler);
