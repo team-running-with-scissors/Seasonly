@@ -1,15 +1,24 @@
 <template>
   <div id="shopping-list">
-    <form @submit.prevent="handleSave">
-      <div
-          :class="item.selected ? 'checked' : 'unchecked'"
-          v-for="item in shoppingList"
-          :key="item.name"
-          @click.prevent="item.selected = !item.selected"
-        >
-        {{ item.name }}
+    <form>
+      <ul v-if="userShoppingList.length > 0">
+        <li
+            v-for="item in userShoppingList"
+            :class="item.selected ? 'checked' : 'unchecked'"
+            :key="item.item"
+            @click.prevent="item.selected = !item.selected"
+          >
+          {{ item.item }}
+        </li>
+      </ul>
+      <div v-else>
+        <h1>Please add items to your shopping list.</h1>
       </div>
-      <button type="submit">Save</button>
+      <div id="buttons">
+        <button @click.prevent="handleClear">Clear List</button>
+        <button @click.prevent="handleClearSelected">Clear Selected Items</button>
+        <button @click.prevent="handleUpdate">Save</button>
+      </div>
     </form>
   </div>
 </template>
@@ -17,28 +26,43 @@
 <script>
 export default {
   props: {
-    getFromMasterList: {
+    updateMasterList: {
       type: Function,
       required: true
-    }
-  }, 
-  data() {
-    return {
-      shoppingList: null
-    };
+    },
+    deleteFromMasterList: {
+      type: Function,
+      required: true
+    },
+    clearMasterList: {
+      type : Function,
+      required : true
+    },
+    userShoppingList: Array
   },
   methods: {
-    handleSave() {
-    
+    handleUpdate() {
+      
+    },
+    handleClearSelected() {
+      let tempList = this.userShoppingList.filter(el => el.selected);
+      console.log('selecte ditems are', tempList);
+      this.deleteFromMasterList(tempList);
+    },
+    handleClear() {
+      console.log('in the shoppinglist');
+      this.clearMasterList();
     }
-  },
-  created() {
-    this.shoppingList = this.getFromMasterList();
   }
 };
 </script>
 
 <style>
+#shopping-list {
+  width: 333px;
+  margin: auto;
+  background: rgba(255, 255, 255, .69);
+}
 .checked {
   cursor: pointer;
   text-decoration: line-through;
@@ -46,5 +70,15 @@ export default {
 .unchecked {
   cursor: pointer;
   text-decoration: none;
+}
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(0, 64, 128, .69);
+  padding: 3px;
+}
+ul {
+  list-style: none;
 }
 </style>

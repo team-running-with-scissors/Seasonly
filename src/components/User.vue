@@ -1,6 +1,15 @@
 <template>
   <div id = "user-profile">
-    <shopping-list :getFromMasterList = "getFromMasterList" />
+    <shopping-list
+      v-if="userShoppingList"
+      :userShoppingList="userShoppingList"
+      :updateMasterList="updateMasterList"
+      :clearMasterList="clearMasterList"
+      :deleteFromMasterList="deleteFromMasterList"
+    />
+    <div v-else>
+      <p>Please add indgredients to your shopping list.</p>
+    </div>
     <FavoriteRecipes/>
   </div>
 </template>
@@ -15,18 +24,19 @@ export default {
     FavoriteRecipes
   },
   props: {
-    getFromMasterList: {
+    updateMasterList: {
       type: Function,
       required: true
-    }
-  }, 
-  data() {
-    return {
-      shoppingList: null
-    };
-  },
-  created() {
-    this.shoppingList = this.getFromMasterList;
+    },
+    deleteFromMasterList: {
+      type: Function,
+      required: true
+    },
+    clearMasterList: {
+      type: Function,
+      required: true
+    },
+    userShoppingList: Array
   }
 };
 </script>

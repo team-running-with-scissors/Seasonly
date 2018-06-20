@@ -8,7 +8,10 @@
     <h1>{{ selectedRecipe.Title }}</h1>
     <button @click="handleSaveFav">Add to favorites</button>
     <div id="container-details">
-      <div id="ingredients">
+      <div
+        id="ingredients"
+        v-if="!addedToList"
+      >
         <ul>
           <li
             v-for="ingredient in selectedRecipe.Ingredients"
@@ -18,6 +21,12 @@
           </li>
         </ul>
       <button @click.prevent="handleAdd">Add to shopping list</button>
+      </div>
+      <div
+        id="items-added"
+        v-else
+      >
+        <h1>Items added to shopping list!</h1>
       </div>
       <div id="instructions">
         <p>{{ selectedRecipe.Instructions }}</p>
@@ -50,11 +59,7 @@ export default {
   },
   data() {
     return {
-      newUser: true,
-      creds: { username : '', password : '' },
-      label: null,
-      show: false,
-      valid: false
+      addedToList: false
     };
   },
   methods: {
@@ -65,10 +70,11 @@ export default {
       let ingredients = {};
       let userid = localStorage.getItem('userid');
       ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
-        acc[i] = { name : cur.Name, selected : false, userid : userid }; // Replace with localstorage userid
+        acc[i] = { item : cur.Name, selected : false, userid : userid }; // Replace with localstorage userid
         return acc;
       }, []);
       this.addToMasterList(ingredients);
+      this.addedToList = true;
     },
     handleSaveFav() {
       let favorites = this.selectedRecipe.RecipeID;
@@ -126,6 +132,11 @@ export default {
 }
 #ingredients {
   float: left;
+}
+#items-added {
+  padding: 33px;
+  word-wrap: normal;
+  max-width: 200px;
 }
 #instructions {
   max-width: 400px;
