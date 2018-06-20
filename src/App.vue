@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <div>
-      <img id="top-logo" src="../assets/seasonly_logo_white.svg">
+      <img id="top-logo" src="../assets/seasonly_logo_white.svg" >
       <nav>
         <router-link class="link" to="/">HOME</router-link> &nbsp; |
         &nbsp;
         <router-link class="link" to="/about">ABOUT</router-link> &nbsp; |
+        &nbsp;<router-link class="link" to="/search">SEARCH</router-link>
+         &nbsp; |
         &nbsp;
         <router-link class="link" v-if="isLoggedIn" to="/user">PROFILE</router-link>
-        <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a> &nbsp; |
-        &nbsp;
-        <router-link class="link" to="/search">SEARCH</router-link>
+        <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
       </nav>
     </div>
     <router-view
@@ -137,11 +137,9 @@ export default {
   margin-top: 60px;
 }
 
-#auth {
-}
 
 #top-logo{
-  width: 15%;
+  width: 20%;
   max-width: 50%;
   margin-bottom: 15px
 }
@@ -151,15 +149,6 @@ Font-Family: 'Roboto', Sans-Serif;
 Font-Size: 4.0em;
 } 
 
-/* .content{
-Font-Family: 'Lora', Serif;
-Font-Size: 1.75em;
-} */
-/* 
-.title{
-Font-Family: 'Roboto Condensed', Sans-Serif;
-Font-Size: 4.0em;
-} */
 .content{
 Font-Family: 'Cabin', Sans-Serif;
 Font-Size: 1.75em;
@@ -168,11 +157,12 @@ Font-Size: 1.75em;
 .link{
   Font-Family: 'Roboto Condensed', Sans-Serif;
   text-decoration: none;
-  color: gray;
+  Font-Size: 1.4em;
+  color:#fff;
 }
 
 .link:hover{
-  color:#2c3e50;
+  color:rgb(255,201,60);
 }
 
 
