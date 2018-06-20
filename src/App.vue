@@ -14,8 +14,10 @@
       </nav>
     </div>
     <router-view
-      :getFromMasterList="getFromMasterList"
       :addToMasterList="addToMasterList"
+      :updateMasterList="updateMasterList"
+      :clearMasterList="clearMasterList"
+      :shoppingList="shoppingList"
     ></router-view>
     
 <transition name="fade-out">
@@ -26,14 +28,15 @@
     :loggedIn="loggedIn"
   />
 </transition>
-  </div>
+</div>
 </template>
 
 <script>
 import {
   updateShoppingList,
   getShoppingList,
-  addToShoppingList } from '../services/api.js';
+  addToShoppingList,
+  clearShoppingList } from '../services/api.js';
 import Auth from './components/Auth.vue';
 export default {
   name: 'app',
@@ -41,7 +44,8 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
-      shoppingList: []
+      shoppingList: null,
+      userid: null
     };
   },
   methods: {
@@ -51,7 +55,10 @@ export default {
     },
     loggedIn(credentials) {
       localStorage.setItem('userid', credentials.id);
+      this.userid = credentials.id;
+      console.log('user logged in', this.userid);
       this.isLoggedIn = true;
+      this.getFromMasterList();
     },
     toggleLogin() {
       this.isZoomed = true;
@@ -60,19 +67,28 @@ export default {
       addToShoppingList(ingredients)
         .then(result => {
           if(result.added) {
+            // Need to push or concat the ingredients here
             this.shoppingList = ingredients;
           }
         });
     },
     getFromMasterList() {
-      getShoppingList(localStorage.getItem('userid'))
+      getShoppingList(this.userid)
         .then(result => {
-          this.shoppingList.push(result);
+          this.shoppingList = Object.assign(result);
+          console.log('the list is', this.shoppingList);
         });
-      console.log('the list is', this.shoppingList);
-      return this.shoppingList;
     },
-    
+    clearMasterList() {
+      console.log('in the thingsyting');
+      clearShoppingList(this.userid)
+        .then(result => {
+          console.log('resuts are', result);
+          if(result.cleared) {
+            this.shoppingList = null;
+          }
+        });
+    },
     updateMasterList(newList) {
       console.log('\n\n list is', newList);
       updateShoppingList(newList)

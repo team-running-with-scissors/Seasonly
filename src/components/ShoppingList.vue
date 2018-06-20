@@ -3,7 +3,7 @@
     <form>
       <div
           :class="item.selected ? 'checked' : 'unchecked'"
-          v-for="item in shoppingList"
+          v-for="item in tempShoppingList"
           :key="item.name"
           @click.prevent="item.selected = !item.selected"
         >
@@ -20,23 +20,29 @@
 <script>
 export default {
   props: {
-    getFromMasterList: {
+    updateMasterList: {
       type: Function,
       required: true
-    }
-  }, 
+    },
+    clearMasterList: {
+      type : Function,
+      required : true
+    },
+    shoppingList: Array
+  },
   data() {
     return {
-      shoppingList: null
-    };
+      tempShoppingList: !this.shoppingList ? null : Object.assign(this.shoppingList)
+    }
   },
   methods: {
     handleSave() {
     
+    },
+    handleClear() {
+      console.log('in the shoppinglist');
+      this.clearMasterList();
     }
-  },
-  created() {
-    this.shoppingList = this.getFromMasterList();
   }
 };
 </script>

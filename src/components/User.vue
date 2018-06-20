@@ -1,6 +1,10 @@
 <template>
   <div id = "user-profile">
-    <shopping-list :getFromMasterList = "getFromMasterList" />
+    <shopping-list
+      :clearMasterList="clearMasterList"
+      :shoppingList="shoppingList"
+      :updateMasterList="updateMasterList"
+    />
     <FavoriteRecipes/>
   </div>
 </template>
@@ -15,18 +19,15 @@ export default {
     FavoriteRecipes
   },
   props: {
-    getFromMasterList: {
+    updateMasterList: {
       type: Function,
       required: true
-    }
-  }, 
-  data() {
-    return {
-      shoppingList: null
-    };
-  },
-  created() {
-    this.shoppingList = this.getFromMasterList;
+    },
+    clearMasterList: {
+      type: Function,
+      required: true
+    },
+    shoppingList: Array
   }
 };
 </script>
