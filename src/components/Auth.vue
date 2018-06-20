@@ -4,8 +4,8 @@
 
 <div id="container-main" class="full-screen">
   <div id="container-login">
-    <form @submit.prevent="newUser ? handleSignUp() : handleSignIn()" :key="newUser ? 'abc' : 'def'">
-      <h1>{{ this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
+    <form @submit.prevent="!newUser ? handleSignUp() : handleSignIn()" :key="newUser ? 'abc' : 'def'">
+      <h1>{{ !this.newUser ? 'Sign Up' : 'Sign In' }}</h1><span @click.prevent="handleZoom" id="exit"><b>X</b></span>
       <div id="message"></div>
       Username:
       <input
@@ -20,14 +20,14 @@
       <input
         required
         @keyup.prevent="validate"
-        :type="show ? 'text' : 'password'"
-        :name="newUser ? 'new-password' : 'current-password'"
+        :type="!show ? 'text' : 'password'"
+        :name="!newUser ? 'new-password' : 'current-password'"
         v-model="creds.password"
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
       >
-      <a id="show-hide" v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
+      <a id="show-hide" v-show="newUser" @click.prevent="show = !show">{{ !show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
       <br>
-      <span v-show="newUser" id="requirements">
+      <span v-show="!newUser" id="requirements">
         <strong><span id="user-limit">Username must be 3-20 characters</span></strong><br>
         <strong>Password must contain:</strong><br>
         <span id="lower">1 lower case letter</span><br>
@@ -38,7 +38,7 @@
       </span><br>
       <div id="handlers">
         <a id="link-switch" @click.prevent="toggle">
-          {{ newUser ? "Already a member?" : "New user?"}}
+          {{ !newUser ? "Already a member?" : "New user?"}}
         </a>
         <button type="submit">
           Submit
@@ -74,7 +74,7 @@ export default {
       newUser: false,
       creds: resetCreds(),
       label: null,
-      show: false,
+      show: true,
       valid: false
     };
   },
@@ -82,7 +82,7 @@ export default {
     toggle() {
       this.newUser = !this.newUser;
       this.valid = !this.newUser;
-      this.show = false;
+      this.show = true;
       this.creds.password = '';
       this.validate();
     },
