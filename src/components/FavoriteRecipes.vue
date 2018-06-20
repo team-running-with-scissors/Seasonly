@@ -1,6 +1,9 @@
 <template>
   <div id="favorite-recipes">
-    
+    <ul>
+      <li v-for="item in userFavorites"
+      :key="item.RecipeID">{{ item.recipe_name }}</li>
+    </ul>
   </div>
 </template>
 
