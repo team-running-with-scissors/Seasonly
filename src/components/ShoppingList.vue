@@ -1,9 +1,8 @@
 <template>
   <div id="shopping-list">
     <form>
-      <ul>
+      <ul v-if="userShoppingList.length > 0">
         <li
-            v-if="userShoppingList"
             v-for="item in userShoppingList"
             :class="item.selected ? 'checked' : 'unchecked'"
             :key="item.item"
@@ -12,6 +11,9 @@
           {{ item.item }}
         </li>
       </ul>
+      <div v-else>
+        <h1>Please add items to your shopping list.</h1>
+      </div>
       <div id="buttons">
         <button @click.prevent="handleClear">Clear List</button>
         <button @click.prevent="handleClearSelected">Clear Selected Items</button>

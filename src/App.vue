@@ -37,6 +37,7 @@ import {
   updateShoppingList,
   getShoppingList,
   addToShoppingList,
+  clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
 import Auth from './components/Auth.vue';
 export default {
@@ -68,27 +69,26 @@ export default {
       addToShoppingList(ingredients)
         .then(result => {
           if(result.added) {
-            // Need to push or concat the ingredients here
             this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
-            console.log('asijfasjdflist is ', ingredients);
           }
         });
     },
     setMasterList(userid) {
       return getShoppingList(userid)
         .then(result => {
-          console.log('thie is reslut', result);
           this.userShoppingList = Object.assign(result);
-          console.log('items added');
         });
     },
     deleteFromMasterList(selectedItems) {
-      selectedItems.userid = this.userid;
-      console.log('deleting selected', selectedItems);
-      clearShoppingList(selectedItems)
+      let itemsPackage = {};
+      itemsPackage.userid = this.userid;
+      itemsPackage.items = selectedItems;
+      clearItemsFromShoppingList(itemsPackage)
         .then(result => {
-          if(result.cleared) {
+          if(result.updated) {
             console.log('we clearddd the seleceted');
+            this.userShoppingList = this.userShoppingList.filter(el => !el.selected);
+            console.log('new shopping list', this.userShoppingList);
             // Clear out selectedItems from this.userShoppingList
           }
         });

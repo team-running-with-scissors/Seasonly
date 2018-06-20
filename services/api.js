@@ -15,6 +15,7 @@ export {
   getShoppingList,
   addToShoppingList,
   updateShoppingList,
+  clearItemsFromShoppingList,
   clearShoppingList,
   getFavorites
 };
@@ -45,6 +46,8 @@ function getHeaders(hasBody) {
   return headers;
 }
 
+/////////////LOGIN////////////////////////////
+// SIGN-IN
 function signIn(creds) {
   return fetch(`${URL}/auth/signin`, {
     method: 'POST',
@@ -54,6 +57,7 @@ function signIn(creds) {
     .then(responseHandler);
 }
 
+// SIGN-UP
 function signUp(creds) {
   return fetch(`${URL}/auth/signup`, {
     method: 'POST',
@@ -63,6 +67,8 @@ function signUp(creds) {
     .then(responseHandler);
 }
 
+///////////RECIPES////////////////
+// SEARCH RECIPES
 function searchRecipes(ingredient) {
   const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
@@ -71,12 +77,15 @@ function searchRecipes(ingredient) {
     .then(response => response.json());
 }
 
+// GET RECIPES
 function getRecipe(ingredientId) {
   const url = 'http://api2.bigoven.com/recipe/' + ingredientId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
 }
 
+////////////////////SEASON/////////////
+// GET FOODS
 function getFoods() {
   return fetch(`${URL}/search`, {
     headers: { 'Content-Type': 'application/json' }
@@ -84,6 +93,17 @@ function getFoods() {
     .then(responseHandler);
 }
 
+/////////////SHOPPING_LIST///////////////
+// GET SHOPPING_LIST
+function getShoppingList(userid) {
+  console.log('user is ', userid);
+  return fetch(`${URL}/list/${userid}`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+// ADD TO SHOPPING_LIST
 function addToShoppingList(ingredients) {
   console.log('ingredients are', ingredients);
   return fetch(`${URL}/list`, {
@@ -94,9 +114,10 @@ function addToShoppingList(ingredients) {
     .then(responseHandler);
 }
 
+// UPDATE SHOPPING_LIST
 function updateShoppingList(newList) {
   console.log('in the api', newList);
-  return fetch(`${URL}/list`, {
+  return fetch(`${URL}/list/update`, {
     method: 'PUT',
     headers: getHeaders(true),
     body: JSON.stringify(newList)
@@ -104,15 +125,18 @@ function updateShoppingList(newList) {
     .then(responseHandler);
 }
 
-function getShoppingList(userid) {
-  console.log('user is ', userid);
-  return fetch(`${URL}/list/${userid}`, {
-    headers: getHeaders()
+// CLEAR ITEMS FROM SHOPPING_LIST
+function clearItemsFromShoppingList(itemsPackage) {
+  console.log('package is', JSON.stringify(itemsPackage.items));
+  return fetch(`${URL}/list/update/${itemsPackage.userid}`, {
+    method: 'DELETE',
+    headers: getHeaders(true),
+    body: JSON.stringify(itemsPackage.items)
   })
     .then(responseHandler);
 }
 
-// Condition is { userid : #, type : 'all/selected' }
+// CLEAR SHOPPING_LIST
 function clearShoppingList(id) {
   return fetch(`${URL}/list/${id}`, {
     method: 'DELETE',
@@ -121,11 +145,11 @@ function clearShoppingList(id) {
     .then(responseHandler);
 }
 
+////////////////////FAVORITES////////////
+// GET FAVORITES
 function getFavorites(userid) {
   return fetch(`${URL}/user/${userid}/favorite-recipes`, {
     headers: getHeaders()
   })
     .then(responseHandler);
 }
-
-
