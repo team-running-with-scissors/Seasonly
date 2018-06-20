@@ -14,7 +14,7 @@ export default {
   },
 
   created() {
-    getFavorites()
+    getFavorites(localStorage.getItem('userid'))
       .then(favs => {
         this.userFavorites = favs;
       });

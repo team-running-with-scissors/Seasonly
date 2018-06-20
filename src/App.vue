@@ -72,6 +72,7 @@ export default {
       console.log('the list is', this.shoppingList);
       return this.shoppingList;
     },
+    
     updateMasterList(newList) {
       console.log('\n\n list is', newList);
       updateShoppingList(newList)
