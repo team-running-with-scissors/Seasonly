@@ -95,6 +95,7 @@ ul {
 }
 li {
   border-bottom: 1px solid #fff;
-  padding: 10px;
+  padding: 10px; 
 }
+
 </style>
