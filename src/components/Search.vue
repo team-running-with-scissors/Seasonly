@@ -190,7 +190,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   width: 777px;
-  margin: 20px 10% 20px 10%;
+  margin: 20px auto;
   background: rgba(0, 0, 0, .69);
   padding: 20px;
   border-radius: 20px;

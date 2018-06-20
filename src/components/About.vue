@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 #about {
 background-color: rgba(0, 0, 0, .6);
