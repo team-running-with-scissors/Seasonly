@@ -2,6 +2,7 @@
   <div id="shopping-list">
     <form>
       <ul v-if="userShoppingList.length > 0">
+        <h2 class="list-header">Shopping List</h2>
         <li
             v-for="(item, index) in userShoppingList"
             :class="item.selected ? 'checked' : 'unchecked'"
@@ -46,7 +47,7 @@ export default {
     },
     handleClearSelected() {
       let tempList = this.userShoppingList.filter(el => el.selected);
-      console.log('selecte ditems are', tempList);
+      console.log('selected items are', tempList);
       this.deleteFromMasterList(tempList);
     },
     handleClear() {
@@ -56,13 +57,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #shopping-list {
   width: 333px;
   margin: 20px auto;
   background: rgba(0, 0, 0, .69);
-  padding: 20px 40px;
   border-radius: 20px;
+}
+.list-header {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
 }
 .checked {
   cursor: pointer;
@@ -81,5 +87,10 @@ export default {
 }
 ul {
   list-style: none;
+  margin-left: 0px;
+}
+li {
+  border-bottom: 1px solid #fff;
+  padding: 10px;
 }
 </style>
