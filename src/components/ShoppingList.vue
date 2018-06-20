@@ -12,7 +12,7 @@
           {{ item.item }}
         </li>
       </ul>
-      <div v-else>
+      <div v-else class="list-header">
         <h1>Please add items to your shopping list.</h1>
       </div>
       <div id="buttons">
