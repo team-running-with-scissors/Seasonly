@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      newUser: true,
+      newUser: false,
       creds: { username : '', password : '' },
       label: null,
       show: false,
