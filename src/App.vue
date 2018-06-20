@@ -14,10 +14,10 @@
       </nav>
     </div>
     <router-view
+      :userShoppingList="userShoppingList"
       :addToMasterList="addToMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
-      :shoppingList="shoppingList"
     ></router-view>
     
 <transition name="fade-out">
@@ -44,7 +44,7 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
-      shoppingList: null,
+      userShoppingList: null,
       userid: null
     };
   },
@@ -58,7 +58,7 @@ export default {
       this.userid = credentials.id;
       console.log('user logged in', this.userid);
       this.isLoggedIn = true;
-      this.getFromMasterList();
+      this.setMasterList(this.userid);
     },
     toggleLogin() {
       this.isZoomed = true;
@@ -68,15 +68,14 @@ export default {
         .then(result => {
           if(result.added) {
             // Need to push or concat the ingredients here
-            this.shoppingList = ingredients;
+            this.userShoppingList += ingredients;
           }
         });
     },
-    getFromMasterList() {
-      getShoppingList(this.userid)
+    setMasterList(userid) {
+      return getShoppingList(userid)
         .then(result => {
-          this.shoppingList = Object.assign(result);
-          console.log('the list is', this.shoppingList);
+          this.userShoppingList = Object.assign(result);
         });
     },
     clearMasterList() {
@@ -85,7 +84,7 @@ export default {
         .then(result => {
           console.log('resuts are', result);
           if(result.cleared) {
-            this.shoppingList = null;
+            this.userShoppingList = null;
           }
         });
     },
@@ -99,6 +98,13 @@ export default {
   },
   components: {
     Auth
+  },
+  created() {
+    this.userid = localStorage.getItem('userid');
+    if(this.userid) {
+      this.setMasterList(this.userid);
+      this.isLoggedIn = true;
+    }
   }
 };
 </script>

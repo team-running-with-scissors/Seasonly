@@ -1,10 +1,14 @@
 <template>
   <div id = "user-profile">
     <shopping-list
-      :clearMasterList="clearMasterList"
-      :shoppingList="shoppingList"
+      v-if="userShoppingList"
+      :userShoppingList="userShoppingList"
       :updateMasterList="updateMasterList"
+      :clearMasterList="clearMasterList"
     />
+    <div v-else>
+      <p>Please add indgredients to your shopping list.</p>
+    </div>
     <FavoriteRecipes/>
   </div>
 </template>
@@ -27,7 +31,7 @@ export default {
       type: Function,
       required: true
     },
-    shoppingList: Array
+    userShoppingList: Array
   }
 };
 </script>

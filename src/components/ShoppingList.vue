@@ -3,7 +3,7 @@
     <form>
       <div
           :class="item.selected ? 'checked' : 'unchecked'"
-          v-for="item in tempShoppingList"
+          v-for="item in userShoppingList"
           :key="item.name"
           @click.prevent="item.selected = !item.selected"
         >
@@ -11,7 +11,7 @@
       </div>
       <div id="buttons">
         <button @click.prevent="handleClear">Clear List</button>
-        <button @click.prevent="handleSave">Save</button>
+        <button @click.prevent="handleUpdate">Save</button>
       </div>
     </form>
   </div>
@@ -28,15 +28,10 @@ export default {
       type : Function,
       required : true
     },
-    shoppingList: Array
-  },
-  data() {
-    return {
-      tempShoppingList: !this.shoppingList ? null : Object.assign(this.shoppingList)
-    }
+    userShoppingList: Array
   },
   methods: {
-    handleSave() {
+    handleUpdate() {
     
     },
     handleClear() {
