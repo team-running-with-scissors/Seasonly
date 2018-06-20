@@ -10,6 +10,7 @@
       Username:
       <input
         required
+        ref="username"
         @keyup="validate"
         v-model="creds.username"
         pattern=".{3,20}"
@@ -54,7 +55,9 @@ import {
   signUp,
   signIn } from '../../services/api.js';
 // import './main.css';
-
+function resetCreds() {
+  return { username : '', password : '' };
+}
 export default {
   props: {
     toggleZoom: {
@@ -68,8 +71,8 @@ export default {
   },
   data() {
     return {
-      newUser: true,
-      creds: { username : '', password : '' },
+      newUser: false,
+      creds: resetCreds(),
       label: null,
       show: true,
       valid: false
@@ -140,9 +143,10 @@ export default {
       signUp(this.creds)
         .then(res => {
           message.textContent = 'Successful creation!';
-          this.creds = {};
+          this.creds = resetCreds();
           sucess = true;
           this.loggedIn(res);
+          this.toggleZoom();
         });
       if(!sucess) {
         message.textContent = 'Username already exsists!';
@@ -155,9 +159,10 @@ export default {
       signIn(this.creds)
         .then(res => {
           message.textContent = 'Welcome back ' + res.username.charAt(0).toUpperCase() + res.username.slice(1);
-          this.creds = {};
+          this.creds = resetCreds();
           sucess = true;
           this.loggedIn(res);
+          this.toggleZoom();
         });
       if(!sucess) {
         message.textContent = 'Invalid username or password!';
@@ -167,6 +172,9 @@ export default {
     handleZoom() {
       this.toggleZoom();
     }
+  },
+  mounted() {
+    this.$refs.username.focus();
   }
 };
 </script>
