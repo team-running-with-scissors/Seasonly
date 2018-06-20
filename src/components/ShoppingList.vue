@@ -1,15 +1,18 @@
 <template>
   <div id="shopping-list">
-    <form @submit.prevent="handleSave">
+    <form>
       <div
           :class="item.selected ? 'checked' : 'unchecked'"
-          v-for="item in shoppingList"
+          v-for="item in userShoppingList"
           :key="item.name"
           @click.prevent="item.selected = !item.selected"
         >
         {{ item.name }}
       </div>
-      <button type="submit">Save</button>
+      <div id="buttons">
+        <button @click.prevent="handleClear">Clear List</button>
+        <button @click.prevent="handleUpdate">Save</button>
+      </div>
     </form>
   </div>
 </template>
@@ -17,28 +20,34 @@
 <script>
 export default {
   props: {
-    getFromMasterList: {
+    updateMasterList: {
       type: Function,
       required: true
-    }
-  }, 
-  data() {
-    return {
-      shoppingList: null
-    };
+    },
+    clearMasterList: {
+      type : Function,
+      required : true
+    },
+    userShoppingList: Array
   },
   methods: {
-    handleSave() {
+    handleUpdate() {
     
+    },
+    handleClear() {
+      console.log('in the shoppinglist');
+      this.clearMasterList();
     }
-  },
-  created() {
-    this.shoppingList = this.getFromMasterList();
   }
 };
 </script>
 
 <style>
+#shopping-list {
+  width: 333px;
+  margin: auto;
+  background: rgba(255, 255, 255, .69);
+}
 .checked {
   cursor: pointer;
   text-decoration: line-through;
@@ -46,5 +55,10 @@ export default {
 .unchecked {
   cursor: pointer;
   text-decoration: none;
+}
+#buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

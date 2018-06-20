@@ -7,7 +7,10 @@
     </div>
     <h1>{{ selectedRecipe.Title }}</h1>
     <div id="container-details">
-      <div id="ingredients">
+      <div
+        id="ingredients"
+        v-if="!addedToList"
+      >
         <ul>
           <li
             v-for="ingredient in selectedRecipe.Ingredients"
@@ -17,6 +20,12 @@
           </li>
         </ul>
       <button @click.prevent="handleAdd">Add to shopping list</button>
+      </div>
+      <div
+        id="items-added"
+        v-else
+      >
+        <h1>Items added to shopping list!</h1>
       </div>
       <div id="instructions">
         <p>{{ selectedRecipe.Instructions }}</p>
@@ -48,7 +57,8 @@ export default {
       creds: { username : '', password : '' },
       label: null,
       show: false,
-      valid: false
+      valid: false,
+      addedToList: false
     };
   },
   methods: {
@@ -63,6 +73,7 @@ export default {
         return acc;
       }, []);
       this.addToMasterList(ingredients);
+      this.addedToList = true;
     }
   }
 };
@@ -115,6 +126,11 @@ export default {
 }
 #ingredients {
   float: left;
+}
+#items-added {
+  padding: 33px;
+  word-wrap: normal;
+  max-width: 200px;
 }
 #instructions {
   max-width: 400px;

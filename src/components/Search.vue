@@ -2,7 +2,12 @@
 <div>
   <div id="container-whole">
     <div id="container-search">
-      <input id="search-box" @keypress.enter="handleSearch" v-model="searchTerm">
+      <input
+        id="search-box"
+        ref="search"
+        @keypress.enter="handleSearch"
+        v-model="searchTerm"
+      >
       <button @click.prevent="handleSearch">Search!</button>
     </div>
     <div>
@@ -94,7 +99,9 @@ export default {
       active: 'active'
     };
   },
-
+  mounted(){
+    this.$refs.search.focus();
+  },
   created() {
     const d = new Date;
     const n = d.getMonth();

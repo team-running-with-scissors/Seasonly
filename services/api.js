@@ -12,9 +12,10 @@ export {
   searchRecipes,
   getRecipe,
   getFoods,
+  getShoppingList,
   addToShoppingList,
   updateShoppingList,
-  getShoppingList,
+  clearShoppingList,
   getFavorites
 };
 
@@ -111,10 +112,20 @@ function getShoppingList(userid) {
     .then(responseHandler);
 }
 
+function clearShoppingList(userid) {
+  console.log('\n\nin the api');
+  return fetch(`${URL}/list/${userid}`, {
+    method: 'DELETE',
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
 function getFavorites(userid) {
   return fetch(`${URL}/user/${userid}/favorite-recipes`, {
     headers: getHeaders()
   })
     .then(responseHandler);
 }
+
 
