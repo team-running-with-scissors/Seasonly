@@ -1,14 +1,17 @@
 <template>
   <div id="shopping-list">
     <form>
-      <div
-          :class="item.selected ? 'checked' : 'unchecked'"
-          v-for="item in userShoppingList"
-          :key="item.name"
-          @click.prevent="item.selected = !item.selected"
-        >
-        {{ item.name }}
-      </div>
+      <ul>
+        <li
+            v-if="userShoppingList"
+            :class="item.selected ? 'checked' : 'unchecked'"
+            v-for="item in userShoppingList"
+            :key="item.name"
+            @click.prevent="item.selected = !item.selected"
+          >
+          {{ item.item }}
+        </li>
+      </ul>
       <div id="buttons">
         <button @click.prevent="handleClear">Clear List</button>
         <button @click.prevent="handleUpdate">Save</button>
@@ -24,6 +27,10 @@ export default {
       type: Function,
       required: true
     },
+    deleteFromMasterList: {
+      type: Function,
+      required: true
+    },
     clearMasterList: {
       type : Function,
       required : true
@@ -32,7 +39,11 @@ export default {
   },
   methods: {
     handleUpdate() {
-    
+      
+    },
+    handleDelete() {
+      // Get selected items and send
+      this.deleteFromMasterList();
     },
     handleClear() {
       console.log('in the shoppinglist');
@@ -60,5 +71,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+ul {
+  list-style: none;
 }
 </style>

@@ -112,9 +112,9 @@ function getShoppingList(userid) {
     .then(responseHandler);
 }
 
-function clearShoppingList(userid) {
-  console.log('\n\nin the api');
-  return fetch(`${URL}/list/${userid}`, {
+// Condition is { userid : #, type : 'all/selected' }
+function clearShoppingList(condition) {
+  return fetch(`${URL}/list/${condition.id}`, {
     method: 'DELETE',
     headers: getHeaders()
   })

@@ -16,6 +16,7 @@
     <router-view
       :userShoppingList="userShoppingList"
       :addToMasterList="addToMasterList"
+      :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
     ></router-view>
@@ -44,7 +45,7 @@ export default {
     return {
       isZoomed: false,
       isLoggedIn: false,
-      userShoppingList: null,
+      userShoppingList: [],
       userid: null
     };
   },
@@ -68,7 +69,7 @@ export default {
         .then(result => {
           if(result.added) {
             // Need to push or concat the ingredients here
-            this.userShoppingList += ingredients;
+            this.userShoppingList.push(ingredients);
           }
         });
     },
@@ -78,9 +79,21 @@ export default {
           this.userShoppingList = Object.assign(result);
         });
     },
+    deleteFromMasterList(selectedItems) {
+      console.log('deleting selected', selectedItems);
+      let condition = { userid : this.userid, condition : 'selected' };
+      clearShoppingList(condition)
+        .then(result => {
+          if(result.cleared) {
+            console.log('we clearddd the seleceted');
+            // Clear out selectedItems from this.userShoppingList
+          }
+        });
+    },
     clearMasterList() {
-      console.log('in the thingsyting');
-      clearShoppingList(this.userid)
+      let condition = { userid : this.userid, condition : 'all' };
+      console.log('in the thingsyting', condition);
+      clearShoppingList(condition)
         .then(result => {
           console.log('resuts are', result);
           if(result.cleared) {

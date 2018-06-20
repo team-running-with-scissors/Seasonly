@@ -53,11 +53,6 @@ export default {
   },
   data() {
     return {
-      newUser: true,
-      creds: { username : '', password : '' },
-      label: null,
-      show: false,
-      valid: false,
       addedToList: false
     };
   },

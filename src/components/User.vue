@@ -5,6 +5,7 @@
       :userShoppingList="userShoppingList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
+      :deleteFromMasterList="deleteFromMasterList"
     />
     <div v-else>
       <p>Please add indgredients to your shopping list.</p>
@@ -24,6 +25,10 @@ export default {
   },
   props: {
     updateMasterList: {
+      type: Function,
+      required: true
+    },
+    deleteFromMasterList: {
       type: Function,
       required: true
     },
