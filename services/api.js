@@ -1,6 +1,6 @@
 // For Winblows and Linuxxx
 // require('dotenv').config();
-// const apiKey = process.env.API_KEY;
+// const apiKey = process.env.SOME_API_KEY;
 const apiKey = 'K0ACWNU09ihIYSJfG0UmG4u99d9Oj2Da';
 
 // For Everybody! :->
