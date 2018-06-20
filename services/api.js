@@ -80,8 +80,8 @@ function searchRecipes(ingredient) {
 }
 
 // GET RECIPES
-function getRecipe(ingredientId) {
-  const url = 'http://api2.bigoven.com/recipe/' + ingredientId + '?api_key=' + apiKey;
+function getRecipe(recipeId) {
+  const url = 'http://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
 }
@@ -150,7 +150,7 @@ function clearShoppingList(id) {
 ////////////////////FAVORITES////////////
 // GET FAVORITES
 function getFavorites(userid) {
-  return fetch(`${URL}/user/${userid}/favorite-recipes`, {
+  return fetch(`${URL}/favorite-recipes/${userid}`, {
     headers: getHeaders()
   })
     .then(responseHandler);

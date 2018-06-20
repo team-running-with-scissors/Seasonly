@@ -7,10 +7,11 @@
       :clearMasterList="clearMasterList"
       :deleteFromMasterList="deleteFromMasterList"
     />
+    
     <div v-else>
       <p>Please add indgredients to your shopping list.</p>
     </div>
-    <!-- <FavoriteRecipes/> -->
+    <FavoriteRecipes/>
   </div>
 </template>
 
@@ -37,10 +38,10 @@ export default {
       required: true
     },
     userShoppingList: Array
-  }
+  },
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>
