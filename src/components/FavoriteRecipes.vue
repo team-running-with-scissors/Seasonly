@@ -1,19 +1,32 @@
 <template>
   <div id="favorite-recipes">
+    <recipe-card
+    v-if="recipeZoom"
+    :selectedRecipe="selectedRecipe"
+    :toggleRecipe="toggleRecipe"/>
     <ul>
       <li v-for="item in userFavorites"
-      :key="item.RecipeID">{{ item.recipe_name }}</li>
+      :key="item.RecipeID"
+      @click.prevent="handleView(item.recipe_id)">{{ item.recipe_name }}</li>
+
     </ul>
   </div>
 </template>
 
 <script>
-import { getFavorites } from '../../services/api.js';
+import { getFavorites, getRecipe } from '../../services/api.js';
+import RecipeCard from './RecipeCard.vue';
 export default {
   data() {
     return {
-      userFavorites: []
+      userFavorites: [],
+      selectedRecipe: {},
+      recipeZoom: false
     };
+  },
+
+  components: {
+    RecipeCard
   },
 
   created() {
@@ -21,6 +34,22 @@ export default {
       .then(favs => {
         this.userFavorites = favs;
       });
+  },
+  methods: {
+    handleView(recipe) {
+      console.log(recipe);
+      // Make another API call, then send the returned data to the RecipeCard component/page
+      getRecipe(recipe)
+        .then(result => {
+          console.log('getRecipe result:', result);
+          this.recipeZoom = true;
+          this.selectedRecipe = result;
+        });
+    },
+    toggleRecipe() {
+      this.recipeZoom = !this.recipeZoom;
+
+    }, 
   }
 };
 </script>

@@ -38,10 +38,10 @@ export default {
       required: true
     },
     userShoppingList: Array
-  }
+  },
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>
