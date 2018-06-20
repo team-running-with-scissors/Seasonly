@@ -3,6 +3,7 @@
   <div id="container-whole">
     <div id="container-search">
       <input
+        id="search-box"
         ref="search"
         @keypress.enter="handleSearch"
         v-model="searchTerm"
@@ -231,8 +232,12 @@ img {
 }
 
 .active {
-  background-color: green;
+  background-color: rgb(0, 103, 221);
   color: white;
+}
+
+#search-box{
+  margin-top: 25px;
 }
 
 </style>
