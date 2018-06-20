@@ -15,9 +15,12 @@ export {
   getShoppingList,
   addToShoppingList,
   updateShoppingList,
+  getShoppingList,
+  getFavorites,
+  addToFavoritesList,
   clearItemsFromShoppingList,
-  clearShoppingList,
-  getFavorites
+  clearShoppingList
+
 };
 
 function responseHandler(response) {
@@ -150,6 +153,16 @@ function clearShoppingList(id) {
 function getFavorites(userid) {
   return fetch(`${URL}/user/${userid}/favorite-recipes`, {
     headers: getHeaders()
+  })
+    .then(responseHandler);
+
+}
+
+function addToFavoritesList(savedRecipes) {
+  return fetch(`${URL}/favorite-recipes`, {
+    method: 'POST',
+    headers: getHeaders(true),
+    body: JSON.stringify(savedRecipes)
   })
     .then(responseHandler);
 }

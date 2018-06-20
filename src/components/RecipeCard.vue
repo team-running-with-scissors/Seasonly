@@ -6,6 +6,7 @@
       <b>X</b>
     </div>
     <h1>{{ selectedRecipe.Title }}</h1>
+    <button @click="handleSaveFav">Add to favorites</button>
     <div id="container-details">
       <div
         id="ingredients"
@@ -49,7 +50,12 @@ export default {
     addToMasterList: {
       type: Function,
       required: true
+    },
+    addToMasterFavoriteList: {
+      type: Function,
+      required: true
     }
+
   },
   data() {
     return {
@@ -69,6 +75,11 @@ export default {
       }, []);
       this.addToMasterList(ingredients);
       this.addedToList = true;
+    },
+    handleSaveFav() {
+      let favorites = this.selectedRecipe.RecipeID;
+      // console.log('fav recipes:', this.savedRecipes);
+      this.addToMasterFavoriteList(favorites);
     }
   }
 };

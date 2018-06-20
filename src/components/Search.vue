@@ -66,6 +66,7 @@
         :toggleRecipe="toggleRecipe"
         :addToMasterList="addToMasterList"
         v-if="recipeZoom"
+        :addToMasterFavoriteList="addToMasterFavoriteList"
       />
     </div>
   </div>
@@ -80,6 +81,10 @@ import RecipeCard from './RecipeCard.vue';
 export default {
   props: {
     addToMasterList: {
+      type: Function,
+      required: true
+    },
+    addToMasterFavoriteList: {
       type: Function,
       required: true
     }
