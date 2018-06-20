@@ -15,7 +15,6 @@ export {
   getShoppingList,
   addToShoppingList,
   updateShoppingList,
-  getShoppingList,
   getFavorites,
   addToFavoritesList,
   clearItemsFromShoppingList,
