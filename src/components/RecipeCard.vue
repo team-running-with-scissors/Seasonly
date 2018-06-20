@@ -70,7 +70,7 @@ export default {
       let ingredients = {};
       let userid = localStorage.getItem('userid');
       ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
-        acc[i] = { item : cur.Name, selected : false, userid : userid }; // Replace with localstorage userid
+        acc[i] = { item : cur.Name, selected : false, user_id : userid }; // Replace with localstorage userid
         return acc;
       }, []);
       this.addToMasterList(ingredients);

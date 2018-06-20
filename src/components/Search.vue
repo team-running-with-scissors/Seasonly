@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div id="container-whole">
+  <div id="container-whole" class="content">
     <div id="container-search">
       <input
         id="search-box"
@@ -189,7 +189,10 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   width: 777px;
-  margin: auto;
+  margin: 20px 10% 20px 10%;
+  background: rgba(0, 0, 0, .69);
+  padding: 20px 40px;
+  border-radius: 20px;
 }
 ul {
   list-style: none;

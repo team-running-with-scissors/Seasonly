@@ -50,7 +50,6 @@ export default {
       this.deleteFromMasterList(tempList);
     },
     handleClear() {
-      console.log('in the shoppinglist');
       this.clearMasterList();
     }
   }
@@ -60,8 +59,10 @@ export default {
 <style>
 #shopping-list {
   width: 333px;
-  margin: auto;
-  background: rgba(255, 255, 255, .69);
+  margin: 20px auto;
+  background: rgba(0, 0, 0, .69);
+  padding: 20px 40px;
+  border-radius: 20px;
 }
 .checked {
   cursor: pointer;
