@@ -26,7 +26,7 @@
         id="items-added"
         v-else
       >
-        <h1>Items added to shopping list!</h1>
+        <h3>Items added to shopping list!</h3>
       </div>
       <div id="instructions">
         <p>{{ selectedRecipe.Instructions }}</p>
