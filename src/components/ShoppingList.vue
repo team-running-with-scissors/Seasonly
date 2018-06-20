@@ -12,8 +12,8 @@
           {{ item.item }}
         </li>
       </ul>
-      <div v-else class="list-header">
-        <h1>Please add items to your shopping list.</h1>
+      <div v-else id="please-add">
+        <h2>Please add items to your shopping list.</h2>
       </div>
       <div id="buttons">
         <button @click.prevent="handleClear">Clear List</button>
@@ -69,6 +69,9 @@ export default {
   font-size: 2em;
   color: #fff;
   text-align: center;
+  padding-top: 20px;
+}
+#please-add {
   padding-top: 20px;
 }
 .checked {
