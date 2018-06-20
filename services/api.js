@@ -158,6 +158,7 @@ function getFavorites(userid) {
 }
 
 function addToFavoritesList(savedRecipes) {
+  console.log('this is in api bobby', savedRecipes);
   return fetch(`${URL}/favorite-recipes`, {
     method: 'POST',
     headers: getHeaders(true),
@@ -165,3 +166,5 @@ function addToFavoritesList(savedRecipes) {
   })
     .then(responseHandler);
 }
+
+
