@@ -7,7 +7,7 @@
         &nbsp;
         <router-link class="link" to="/about">ABOUT</router-link> &nbsp; |
         &nbsp;<router-link class="link" to="/search">SEARCH</router-link>
-         &nbsp; |
+        &nbsp; |
         &nbsp;
         <router-link class="link" v-if="isLoggedIn" to="/user">PROFILE</router-link>
         <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
@@ -141,16 +141,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
   margin-top: 60px;
 }
-
 
 #top-logo{
   width: 20%;
