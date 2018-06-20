@@ -11,46 +11,16 @@
       <button @click.prevent="handleSearch">Search!</button>
     </div>
     <div>
-      <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
-      <span id=month-button-container>
-        <button :class="[monthChoice === 1 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 1"  
-         >January</button>
-        <button :class="[monthChoice === 2 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 2"  
-         >February</button>
-        <button :class="[monthChoice === 3 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 3"  
-         >March</button>
-        <button :class="[monthChoice === 4 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 4"  
-         >April</button>
-        <button :class="[monthChoice === 5 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 5"  
-         >May</button>
-        <button :class="[monthChoice === 6 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 6"  
-         >June</button>
-        <button :class="[monthChoice === 7 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 7"  
-         >July</button>
-        <button :class="[monthChoice === 8 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 8"  
-         >August</button>
-        <button :class="[monthChoice === 9 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 9"  
-         >September</button>
-        <button :class="[monthChoice === 10 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 10"  
-         >October</button>
-        <button :class="[monthChoice === 11 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 11"  
-         >November</button>
-        <button :class="[monthChoice === 12 ? active : '' ]" class="filter-button"
-         @click="monthChoice = 12"  
-         >December</button>
-      </span>
-      <br>
+      <h3>Just choose a season and a food type to get started!</h3>
+      <div id="month-holder">
+        <button
+        v-for="month in months"
+        :key="month.id"
+        @click="monthChoice = month.id"
+        :class="[monthChoice === month.id ? active : '' ]"
+        class="filter-button"
+        >{{ month.month }}</button>
+      </div>
       <span class="food-type-button-container">
         <button :class="[ingredientType === 0 ? active : '' ]" class="filter-button"
          @click="ingredientType = 0"  
@@ -111,7 +81,7 @@
 
 <script>
 
-import { searchRecipes, getRecipe, getFoods } from '../../services/api.js';
+import { searchRecipes, getRecipe, getFoods, getMonths } from '../../services/api.js';
 import RecipeCard from './RecipeCard.vue';
 
 export default {
@@ -138,7 +108,8 @@ export default {
       selectedRecipe: null,
       ingredientType: 0,
       active: 'active',
-      monthChoice: 6
+      monthChoice: 6,
+      months: null
     };
   },
   mounted(){
@@ -150,7 +121,11 @@ export default {
 
     getFoods()
       .then(ingredient => {
-        this.seasonalIngredients = ingredient
+        this.seasonalIngredients = ingredient;
+      });
+    getMonths()
+      .then(month => {
+        this.months = month;
       });
   },
 
@@ -182,8 +157,8 @@ export default {
 
     monthFilteredIngredients() {
       return this.seasonalIngredients.filter(ingredient => {
-        return (this.monthChoice === 0 || this.monthChoice === ingredient.month_id)
-      })
+        return (this.monthChoice === 0 || this.monthChoice === ingredient.month_id);
+      });
     },
 
     filteredIngredients() {
@@ -273,7 +248,6 @@ img {
   border: none;
   margin-bottom: 15px;
   padding: 5px;
-  width: 60px;
 }
 .filter-button:hover {
   opacity: 1;
