@@ -150,7 +150,7 @@ function clearShoppingList(id) {
 ////////////////////FAVORITES////////////
 // GET FAVORITES
 function getFavorites(userid) {
-  return fetch(`${URL}/user/${userid}/favorite-recipes`, {
+  return fetch(`${URL}/favorite-recipes/${userid}`, {
     headers: getHeaders()
   })
     .then(responseHandler);
