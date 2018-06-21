@@ -43,6 +43,7 @@
       v-for="item in filteredIngredients"
       :key="item.index"
       @click="handleSearch(item.food)"
+      :class="[searchTerm === item.food ? highlight : '' ]"
       >{{ item.food }}</a>
       <!-- <select 
       v-model="searchTerm"
@@ -123,6 +124,7 @@ export default {
       selectedRecipe: null,
       ingredientType: 0,
       active: 'active',
+      highlight: 'highlight',
       monthChoice: 6,
       months: null
     };
@@ -147,6 +149,7 @@ export default {
 
   methods: {
     handleSearch(search) {
+      this.searchTerm = search;
       console.log('in the search diddle');
       searchRecipes(search)
         .then(result => {
@@ -238,6 +241,12 @@ export default {
   font-size: 1.4em
 }
 
+.search-link:hover {
+  cursor: pointer;
+  color: rgb(255, 201, 60);
+}
+
+
 ul {
   list-style: none;
 }
@@ -282,8 +291,12 @@ img {
   cursor: pointer;
 }
 
+.highlight {
+  color: rgb(255, 201, 60);
+}
+
 .active {
-  background-color: rgb(0, 103, 221);
+  background-color: rgb(21, 82, 99);
   color: white;
 }
 
