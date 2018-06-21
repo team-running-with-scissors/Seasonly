@@ -20,7 +20,7 @@ function makeItRain(member) {
     rain.innerHTML = '<img>';
     console.log('the rain is', rain.innerHTML);
     rain.querySelector('img').src = 'images/food-' + member + '.png';
-    rain.querySelector('img').style.width = parseInt(Math.random() * 100) + 10 + 'px'; // random mole size
+    rain.querySelector('img').style.height = parseInt(Math.random() * 100) + 10 + 'px'; // random mole size
     temp.appendChild(rain);
   }
   document.body.appendChild(temp);
