@@ -10,10 +10,10 @@
         &nbsp; |
         &nbsp;
         <span v-if="isLoggedIn">
-          <router-link class="link" to="/user/shopping-list">LIST</router-link>
+          <router-link class="link" to="/shopping-list">LIST</router-link>
           &nbsp; |
           &nbsp;
-          <router-link class="link" to="/user/favorite-recipes">FAVORITES</router-link>
+          <router-link class="link" to="/favorite-recipes">FAVORITES</router-link>
         </span>
         <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
         <span v-if="isLoggedIn">

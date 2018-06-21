@@ -11,15 +11,8 @@ export default new VueRouter({
     { path: '/', component: Home },
     { path: '/about', component: About },
     { path: '/search', component: Search },
-    { path: '/user', component: User },
-    { 
-      path: '/user/:id', 
-      component: User,
-      children: [
-        { path: '/favorite-recipes', component: FavoriteRecipes },
-        { path: '/shopping-list', component: ShoppingList }
-      ]
-    },
+    { path: '/favorite-recipes', component: FavoriteRecipes },
+    { path: '/shopping-list', component: ShoppingList }
     { path: '*', redirect: '/' }
   ]
 });
