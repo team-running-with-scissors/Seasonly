@@ -35,9 +35,6 @@ export default {
     unrain() {
       makeItStop();
     }
-  },
-  created() {
-    document.addEventListener('click', this.unrain());
   }
 };
 </script>
