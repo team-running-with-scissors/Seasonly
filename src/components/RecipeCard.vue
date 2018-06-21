@@ -65,13 +65,14 @@ export default {
       this.toggleRecipe();
     },
     handleAdd() {
-      if(this.userid) {
+      console.log('this userid is', this.userid);
+      if(this.userid === null) {
         this.toggleRecipe(true);
       }
       else {
         let ingredients = {};
         ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
-          acc[i] = { item : cur.Name, selected : false, user_id : this.userid }; // Replace with localstorage userid
+          acc[i] = { item : cur.Name, selected : false, user_id : parseInt(this.userid) }; // Replace with localstorage userid
           return acc;
         }, []);
         this.addToMasterList(ingredients);
@@ -79,11 +80,16 @@ export default {
       }
     },
     handleSaveFav() {
-      let favorites = {};
-      favorites = [{ recipe_name : this.selectedRecipe.Title, user_id : this.userid, recipe_id : this.selectedRecipe.RecipeID, selected : false }];
-      console.log('look here bobby', favorites);
-      // console.log('fav recipes:', this.savedRecipes);
-      this.addToMasterFavoriteList(favorites);
+      if(this.userid === null) {
+        this.toggleRecipe(true);
+      }
+      else {
+        let favorites = {};
+        favorites = [{ recipe_name : this.selectedRecipe.Title, user_id : parseInt(this.userid), recipe_id : this.selectedRecipe.RecipeID, selected : false }];
+        console.log('look here bobby', favorites);
+        // console.log('fav recipes:', this.savedRecipes);
+        this.addToMasterFavoriteList(favorites);
+      }
     }
   }
 };

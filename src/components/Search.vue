@@ -100,6 +100,7 @@
         :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
         :addToMasterList="addToMasterList"
+        :toggleZoom="toggleZoom"
         :userid="userid"
         
         v-if="recipeZoom"
