@@ -1,5 +1,5 @@
 <template>
-  <div id="shopping-list">
+  <div id="shopping-list" class="container-main">
     <form>
       <ul v-if="userShoppingList.length > 0">
         <h2 class="list-header">Shopping List</h2>
@@ -47,7 +47,6 @@ export default {
     },
     handleClearSelected() {
       let tempList = this.userShoppingList.filter(el => el.selected);
-      console.log('selected items are', tempList);
       this.deleteFromMasterList(tempList);
     },
     handleClear() {
@@ -58,13 +57,6 @@ export default {
 </script>
 
 <style scoped>
-#shopping-list {
-  width: 333px;
-  margin: 20px auto;
-  background: rgba(0, 0, 0, .69);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
 .list-header {
   font-family: 'Sedgwick Ave', cursive;
   font-size: 2em;
@@ -87,8 +79,9 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: auto;
+  width: 300px;
   /* background-color: rgba(0, 0, 0, .69); */
-  padding: 3px;
   padding-bottom: 20px;
 }
 ul {

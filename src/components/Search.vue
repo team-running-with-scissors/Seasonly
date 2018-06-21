@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div id="container-whole" class="content">
-    <div id="container-search">
+  <div id="container-whole" class="container-main">
+    <!-- <div id="container-search">
       <input
         id="search-box"
         ref="search"
@@ -9,9 +9,9 @@
         v-model="searchTerm"
       >
       <button @click.prevent="handleSearch">Search!</button>
-    </div>
+    </div> -->
     <div>
-      <h3>Just choose a season and a food type to get started!</h3>
+      <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
       <div id="month-holder">
         <button
         v-for="month in months"
@@ -38,18 +38,27 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-      <select 
+      <button
+        class="filter-button results"
+        v-for="item in filteredIngredients"
+        :key="item.index"
+        @click="handleSearch(item.food)"
+      >
+        {{ item.food }}
+      </button>
+
+      <!-- <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
       >
-        <option disabled value="">Please select one</option>
-        <option 
+      <option disabled value="">Please select one</option>
+      <option 
         v-for="item in filteredIngredients"
         :key="item.index" 
         :value="item.food"
         >{{ item.food }}
         </option>
-      </select>
+      </select> -->
     </div>
     <div id="container-main">
       <ul v-if="searched">
@@ -121,9 +130,6 @@ export default {
       months: null
     };
   },
-  mounted(){
-    this.$refs.search.focus();
-  },
   created() {
     const d = new Date;
     const n = d.getMonth();
@@ -140,11 +146,9 @@ export default {
   },
 
   methods: {
-    handleSearch() {
-      console.log('in the search diddle');
-      searchRecipes(this.searchTerm)
+    handleSearch(search) {
+      searchRecipes(search)
         .then(result => {
-          console.log('the resuts', result.Results);
           this.searchResults = result.Results;
           this.searched = true;
         });
@@ -219,11 +223,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 777px;
-  margin: 20px auto;
-  background: rgba(0, 0, 0, .69);
-  padding: 20px;
-  border-radius: 20px;
 }
 ul {
   list-style: none;
@@ -263,6 +262,10 @@ img {
   border: none;
   margin-bottom: 15px;
   padding: 5px;
+}
+.results {
+  margin-left: 1px;
+  margin-right: 1px;
 }
 .filter-button:hover {
   opacity: 1;
