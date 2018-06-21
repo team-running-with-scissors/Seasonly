@@ -1,7 +1,7 @@
 <template>
 <div>
   <div id="container-whole" class="content">
-    <div id="container-search">
+    <!-- <div id="container-search">
       <input
         id="search-box"
         ref="search"
@@ -9,7 +9,7 @@
         v-model="searchTerm"
       >
       <button @click.prevent="handleSearch">Search!</button>
-    </div>
+    </div> -->
     <div>
       <h3>Just choose a season and a food type to get started!</h3>
       <div id="month-holder">
@@ -39,12 +39,12 @@
         >Seafood</button>
       </span><br/>
       <a
+      class="search-link"
       v-for="item in filteredIngredients"
       :key="item.index"
-      :value="item.food"
-      @click="handleSearch"
+      @click="handleSearch(item.food)"
       >{{ item.food }}</a>
-      <select 
+      <!-- <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
       >
@@ -55,7 +55,7 @@
         :value="item.food"
         >{{ item.food }}
         </option>
-      </select>
+      </select> -->
     </div>
     <div id="container-main">
       <ul v-if="searched">
@@ -146,9 +146,9 @@ export default {
   },
 
   methods: {
-    handleSearch() {
+    handleSearch(search) {
       console.log('in the search diddle');
-      searchRecipes(this.searchTerm)
+      searchRecipes(search)
         .then(result => {
           console.log('the resuts', result.Results);
           this.searchResults = result.Results;
