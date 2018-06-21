@@ -73,12 +73,12 @@ export default {
       this.isZoomed = !this.isZoomed;
     },
     logout() {
-    this.isLoggedIn = false;
-    this.favoritesList = [];
-    this.userShoppingList = [];
-    this.userid = null;
-    localStorage.clear();
-    this.$router.push('/');
+      this.isLoggedIn = false;
+      this.favoritesList = [];
+      this.userShoppingList = [];
+      this.userid = null;
+      localStorage.clear();
+      this.$router.push('/');
     },
     loggedIn(credentials) {
       localStorage.setItem('userid', credentials.id);
@@ -101,7 +101,7 @@ export default {
             this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
           }
         });
-        console.log('we made it to the end');
+      console.log('we made it to the end');
     },
     setMasterList(userid) {
       return getShoppingList(userid)
