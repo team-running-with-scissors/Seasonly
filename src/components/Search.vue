@@ -39,7 +39,7 @@
         >Seafood</button>
       </span><br/>
       <button
-        class="filter-button"
+        class="filter-button results"
         v-for="item in filteredIngredients"
         :key="item.index"
         @click="handleSearch(item.food)"
@@ -274,10 +274,9 @@ img {
   opacity: 1;
   cursor: pointer;
 }
-
 .highlight {
+  background-color: rgb(255, 201, 60);
 }
-
 .active {
   background-color: rgb(21, 82, 99);
   color: white;
