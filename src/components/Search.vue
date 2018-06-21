@@ -72,6 +72,7 @@
         :addToMasterList="addToMasterList"
         :toggleZoom="toggleZoom"
         :userid="userid"
+        :userShoppingList="userShoppingList"
         
         v-if="recipeZoom"
         :addToMasterFavoriteList="addToMasterFavoriteList"
@@ -100,7 +101,8 @@ export default {
       type: Function,
       required: true
     },
-    userid: Number
+    userid: Number,
+    userShoppingList: Array
   },
   components: {
     RecipeCard
