@@ -12,23 +12,58 @@
     </div>
     <div>
       <h3>Choose from ingredients in season({{ currentMonth }}):</h3>
-      <span class="button-container">
+      <span id=month-button-container>
+        <button :class="[monthChoice === 1 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 1"  
+         >January</button>
+        <button :class="[monthChoice === 2 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 2"  
+         >February</button>
+        <button :class="[monthChoice === 3 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 3"  
+         >March</button>
+        <button :class="[monthChoice === 4 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 4"  
+         >April</button>
+        <button :class="[monthChoice === 5 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 5"  
+         >May</button>
+        <button :class="[monthChoice === 6 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 6"  
+         >June</button>
+        <button :class="[monthChoice === 7 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 7"  
+         >July</button>
+        <button :class="[monthChoice === 8 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 8"  
+         >August</button>
+        <button :class="[monthChoice === 9 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 9"  
+         >September</button>
+        <button :class="[monthChoice === 10 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 10"  
+         >October</button>
+        <button :class="[monthChoice === 11 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 11"  
+         >November</button>
+        <button :class="[monthChoice === 12 ? active : '' ]" class="filter-button"
+         @click="monthChoice = 12"  
+         >December</button>
+      </span>
+      <br>
+      <span class="food-type-button-container">
         <button :class="[ingredientType === 0 ? active : '' ]" class="filter-button"
          @click="ingredientType = 0"  
          >All</button>
-
         <button :class="[ingredientType === 1 ? active : '' ]" class="filter-button" 
         @click="ingredientType = 1"
         >Veggies</button>
-
         <button :class="[ingredientType === 2 ? active : '' ]" class="filter-button" 
         @click="ingredientType = 2"
         >Fruit</button>
-
         <button :class="[ingredientType === 3 ? active : '' ]" class="filter-button" 
         @click="ingredientType = 3"
         >Meat</button>
-        
         <button :class="[ingredientType === 4 ? active : '' ]" class="filter-button" 
         @click="ingredientType = 4"
         >Seafood</button>
@@ -104,11 +139,12 @@ export default {
       searchTerm: '',
       searchResults: null,
       searched: false,
-      seasonalIng: [],
+      seasonalIngredients: [],
       recipeZoom: false,
       selectedRecipe: null,
       ingredientType: 0,
-      active: 'active'
+      active: 'active',
+      monthChoice: 6
     };
   },
   mounted(){
@@ -120,9 +156,7 @@ export default {
 
     getFoods()
       .then(ingredient => {
-        this.seasonalIng = ingredient.filter(x => {
-          return x.month_id - 1 === n;
-        });
+        this.seasonalIngredients = ingredient
       });
   },
 
@@ -157,8 +191,14 @@ export default {
 
   computed: {
 
+    monthFilteredIngredients() {
+      return this.seasonalIngredients.filter(ingredient => {
+        return (this.monthChoice === 0 || this.monthChoice === ingredient.month_id)
+      })
+    },
+
     filteredIngredients() {
-      return this.seasonalIng.filter(ingredient => {
+      return this.monthFilteredIngredients.filter(ingredient => {
         return (this.ingredientType === 0 || this.ingredientType === ingredient.type_id);
       });
     },
