@@ -71,6 +71,7 @@ export default {
       raining: false
     };
   },
+  
   methods: {
     toggleRain() {
       this.raining = true;
