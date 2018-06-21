@@ -38,15 +38,13 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-      <button
-        class="filter-button results"
-        v-for="item in filteredIngredients"
-        :key="item.index"
-        @click="handleSearch(item.food)"
-      >
-        {{ item.food }}
-      </button>
-
+      <a
+      class="search-link"
+      v-for="item in filteredIngredients"
+      :key="item.index"
+      @click="handleSearch(item.food)"
+      :class="[searchTerm === item.food ? highlight : '' ]"
+      >{{ item.food }}</a>
       <!-- <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
@@ -126,6 +124,7 @@ export default {
       selectedRecipe: null,
       ingredientType: 0,
       active: 'active',
+      highlight: 'highlight',
       monthChoice: 6,
       months: null
     };
@@ -147,6 +146,8 @@ export default {
 
   methods: {
     handleSearch(search) {
+      this.searchTerm = search;
+      console.log('in the search diddle');
       searchRecipes(search)
         .then(result => {
           this.searchResults = result.Results;
@@ -224,6 +225,19 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+.search-link{
+  margin: 5px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.4em
+}
+
+.search-link:hover {
+  cursor: pointer;
+  color: rgb(255, 201, 60);
+}
+
+
 ul {
   list-style: none;
 }
@@ -272,8 +286,12 @@ img {
   cursor: pointer;
 }
 
+.highlight {
+  color: rgb(255, 201, 60);
+}
+
 .active {
-  background-color: rgb(0, 103, 221);
+  background-color: rgb(21, 82, 99);
   color: white;
 }
 
