@@ -67,9 +67,7 @@ export default {
       userid: null
     };
   },
-  mode: {
-    history: true
-  },
+  
   methods: {
     toggleZoom() {
       console.log('everyday I\'m togglin');
