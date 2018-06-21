@@ -73,12 +73,12 @@ export default {
       this.isZoomed = !this.isZoomed;
     },
     logout() {
-    this.isLoggedIn = false;
-    this.favoritesList = [];
-    this.userShoppingList = [];
-    this.userid = null;
-    localStorage.clear();
-    this.$router.push('/');
+      this.isLoggedIn = false;
+      this.favoritesList = [];
+      this.userShoppingList = [];
+      this.userid = null;
+      localStorage.clear();
+      this.$router.push('/');
     },
     loggedIn(credentials) {
       localStorage.setItem('userid', credentials.id);
@@ -91,17 +91,12 @@ export default {
       this.isZoomed = true;
     },
     addToMasterList(ingredients) {
-      console.log('filsansdfisa', ingredients);
       addToShoppingList(ingredients)
         .then(result => {
-          console.log('more cheese pelase', result);
-
-
           if(result.added) {
             this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
           }
         });
-        console.log('we made it to the end');
     },
     setMasterList(userid) {
       return getShoppingList(userid)
@@ -116,17 +111,13 @@ export default {
       clearItemsFromShoppingList(itemsPackage)
         .then(result => {
           if(result.updated) {
-            console.log('we clearddd the seleceted');
             this.userShoppingList = this.userShoppingList.filter(el => !el.selected);
-            console.log('new shopping list', this.userShoppingList);
-            // Clear out selectedItems from this.userShoppingList
           }
         });
     },
     clearMasterList() {
       clearShoppingList(this.userid)
         .then(result => {
-          console.log('resuts are', result);
           if(result.cleared) {
             this.userShoppingList = [];
           }
@@ -136,9 +127,7 @@ export default {
       console.log('\n\n list is', newList);
       updateShoppingList(newList)
         .then(result => {
-          console.log('\n\nresult is', result);
           if(result.updated) {
-            console.log('list has been updated!');
             this.userShoppingList = newList;
           }
         });
@@ -150,7 +139,6 @@ export default {
             this.favoritesList = savedRecipe;
           }
         });
-      console.log('fav list:', this.favoritesList);
     }
   },
   components: {
