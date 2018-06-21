@@ -12,7 +12,7 @@
     </div> -->
     <div>
       <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
-      <div id="month-holder">
+      <div id="month-holder" v-if="months">
         <button
         v-for="month in months"
         :key="month.id"
@@ -131,10 +131,6 @@ export default {
     };
   },
   created() {
-    // const d = new Date;
-    // const n = d.getMonth();
-    // this.monthChoice = n + 1;
-
     getFoods()
       .then(ingredient => {
         this.seasonalIngredients = ingredient;
@@ -201,35 +197,6 @@ export default {
         return (this.ingredientType === 0 || this.ingredientType === ingredient.type_id);
       });
     },
-
-    // currentMonth() {
-    //   switch(new Date().getMonth()) {
-    //     case 0:
-    //       return 'January';
-    //     case 1:
-    //       return 'February';
-    //     case 2:
-    //       return 'March';
-    //     case 3:
-    //       return 'April';
-    //     case 4:
-    //       return 'May';
-    //     case 5:
-    //       return 'June';
-    //     case 6:
-    //       return 'July';
-    //     case 7:
-    //       return 'August';
-    //     case 8:
-    //       return 'September';
-    //     case 9:
-    //       return 'October';
-    //     case 10:
-    //       return 'November';
-    //     case 11:
-    //       return 'Dicember';
-    //   }
-    // }
   }
 };
 </script>
@@ -246,13 +213,10 @@ export default {
   font-weight: bold;
   font-size: 1.4em
 }
-
 .search-link:hover {
   cursor: pointer;
   color: rgb(255, 201, 60);
 }
-
-
 ul {
   list-style: none;
 }
@@ -307,7 +271,7 @@ img {
 }
 
 .active {
-  background-color: rgb(21, 82, 99);
+  background-color: rgb(90, 71, 56);
   color: white;
 }
 .winter {
@@ -326,7 +290,6 @@ img {
   background-color: rgb(255, 154, 59);
   color: white;
 }
-
 #search-box{
   margin-top: 25px;
 }
