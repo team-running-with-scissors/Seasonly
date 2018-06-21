@@ -2,22 +2,22 @@
   <div class="container-main" id="about">
     <h1>Team Running with Scissors</h1>
     <h3>Wow look at those guys!</h3>
-    <div @click="rain(1)">
+    <div @click.prevent="rain(1)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Mark is one cool dude</p>
     </div>
-    <div @click="rain(2)">
+    <div @click.prevent="rain(2)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Robert is one cool dude</p>
     </div>
-    <div @click="rain(3)">
+    <div @click.prevent="rain(3)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Erik is one cool dude</p>
     </div>
-    <div @click="rain(4)">
+    <div @click.prevent="rain(4)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Robyn is one cool dude</p>

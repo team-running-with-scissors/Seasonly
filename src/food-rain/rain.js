@@ -10,22 +10,16 @@ function makeItRain(member) {
 
     var rain = document.createElement('span');
     rain.classList.add('rain');                         // Might not works
-    rain.style = 'left: ' + randomX + '%; top: -100px;';
+    rain.style = 'left: ' + randomX + '%; top: -1000px;';
     rain.style.setProperty('animation-delay', randomY + '00ms');
     rain.style.setProperty('animation-duration', randomD + '00ms');
-
-    // rain.addEventListener('animationiteration', () => {
-    //   const drip = new Audio('sounds/drip' + (parseInt(Math.random() * 2) + 1) + '.wav'); // plays sound every time a falling mole restarts
-    //   drip.play();
-    // });
-
     // Bobby - Pineapples
     // Mark - Cucumbers
     // Robyn - 
     // Erik - Turkeys
     rain.innerHTML = '<img>';
     console.log('the rain is', rain.innerHTML);
-    rain.querySelector('img').src = '../images/food-' + member + '.png';
+    rain.querySelector('img').src = 'images/food-' + member + '.png';
     rain.querySelector('img').style.width = parseInt(Math.random() * 100) + 10 + 'px'; // random mole size
     temp.appendChild(rain);
   }
