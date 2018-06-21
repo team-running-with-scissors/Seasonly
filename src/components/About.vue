@@ -26,9 +26,10 @@ import { makeItRain, makeItStop } from '../food-rain/rain.js';
 export default {
   methods: {
     rain(member) {
-      console.log('housing over');
-      makeItStop();
       makeItRain(member);
+    },
+    unrain() {
+      makeItStop();
     }
   }
 };

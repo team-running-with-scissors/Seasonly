@@ -38,13 +38,15 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-      <a
-      class="search-link"
-      v-for="item in filteredIngredients"
-      :key="item.index"
-      @click="handleSearch(item.food)"
-      :class="[searchTerm === item.food ? highlight : '' ]"
-      >{{ item.food }}</a>
+      <button
+        class="filter-button results"
+        v-for="item in filteredIngredients"
+        :key="item.index"
+        @click="handleSearch(item.food)"
+        :class="[searchTerm === item.food ? highlight : '' ]"
+      >
+        {{ item.food }}
+      </button>
       <!-- <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
@@ -240,19 +242,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.search-link{
-  margin: 5px;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1.4em
-}
-
-.search-link:hover {
-  cursor: pointer;
-  color: rgb(255, 201, 60);
-}
-
-
 ul {
   list-style: none;
 }
@@ -301,11 +290,9 @@ img {
   opacity: 1;
   cursor: pointer;
 }
-
 .highlight {
-  color: rgb(255, 201, 60);
+  background-color: rgb(255, 201, 60);
 }
-
 .active {
   background-color: rgb(21, 82, 99);
   color: white;
