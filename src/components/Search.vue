@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div id="container-whole" class="container-main">
-    <div id="container-search">
+  <div id="container-whole" class="content">
+    <!-- <div id="container-search">
       <input
         id="search-box"
         ref="search"
@@ -9,9 +9,9 @@
         v-model="searchTerm"
       >
       <button @click.prevent="handleSearch">Search!</button>
-    </div>
+    </div> -->
     <div>
-      <h3>Just choose a season and a food type to get started!</h3>
+      <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
       <div id="month-holder">
         <button
         v-for="month in months"
@@ -38,7 +38,13 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-      <select 
+      <a
+      class="search-link"
+      v-for="item in filteredIngredients"
+      :key="item.index"
+      @click="handleSearch(item.food)"
+      >{{ item.food }}</a>
+      <!-- <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
       >
@@ -49,7 +55,7 @@
         :value="item.food"
         >{{ item.food }}
         </option>
-      </select>
+      </select> -->
     </div>
     <div id="container-main">
       <ul v-if="searched">
@@ -140,9 +146,9 @@ export default {
   },
 
   methods: {
-    handleSearch() {
+    handleSearch(search) {
       console.log('in the search diddle');
-      searchRecipes(this.searchTerm)
+      searchRecipes(search)
         .then(result => {
           console.log('the resuts', result.Results);
           this.searchResults = result.Results;
@@ -220,6 +226,13 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+.search-link{
+  margin: 5px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.4em
+}
+
 ul {
   list-style: none;
 }
