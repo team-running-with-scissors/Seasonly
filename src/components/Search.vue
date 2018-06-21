@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div id="container-whole" class="content">
+  <div id="container-whole" class="container-main">
     <!-- <div id="container-search">
       <input
         id="search-box"
@@ -49,8 +49,8 @@
       v-model="searchTerm"
       @change.prevent="handleSearch"
       >
-        <option disabled value="">Please select one</option>
-        <option 
+      <option disabled value="">Please select one</option>
+      <option 
         v-for="item in filteredIngredients"
         :key="item.index" 
         :value="item.food"
@@ -129,9 +129,6 @@ export default {
       months: null
     };
   },
-  mounted(){
-    this.$refs.search.focus();
-  },
   created() {
     const d = new Date;
     const n = d.getMonth();
@@ -153,7 +150,6 @@ export default {
       console.log('in the search diddle');
       searchRecipes(search)
         .then(result => {
-          console.log('the resuts', result.Results);
           this.searchResults = result.Results;
           this.searched = true;
         });
@@ -228,11 +224,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 777px;
-  margin: 20px auto;
-  background: rgba(0, 0, 0, .69);
-  padding: 20px;
-  border-radius: 20px;
 }
 .search-link{
   margin: 5px;
@@ -285,6 +276,10 @@ img {
   border: none;
   margin-bottom: 15px;
   padding: 5px;
+}
+.results {
+  margin-left: 1px;
+  margin-right: 1px;
 }
 .filter-button:hover {
   opacity: 1;

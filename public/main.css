@@ -1,9 +1,28 @@
-body {
-    background-size: 120%;
+@keyframes back-glow {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 50% 50%;
+    }
+}
+
+
+#background-image {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-position: center;
     background-image: url("image-full-2.jpg");
-    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-color: aquamarine;
+    z-index: -1;
+}
+
+body {
+    background: linear-gradient(rgb(0, 128, 255), rgb(0, 64, 128));
+    background-size: 800%;
+    background-repeat: no-repeat;
 }
 
 .ghost-button {
@@ -23,4 +42,14 @@ body {
 .ghost-button:active {
     background-color: #fff;
     color: #000;
+}
+
+.container-main {
+    background-color: rgba(0, 0, 0, .6);
+    max-width: 666px;
+    margin: 20px auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 20px 20px 40px 20px;
 }
