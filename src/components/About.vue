@@ -1,5 +1,5 @@
 <template>
-  <div class="content" id="about">
+  <div class="container-main" id="about">
     <h1>Team Running with Scissors</h1>
     <h3>Wow look at those guys!</h3>
     <div>
@@ -32,18 +32,6 @@ export default {
 </script>
 
 <style scoped>
-
-#about {
-background-color: rgba(0, 0, 0, .6);
-margin-top: 20px;
-margin-left: 10%;
-margin-right: 10%;
-border-radius: 20px;
-padding-top: 20px;
-padding-left: 20px;
-padding-right: 20px;
-padding-bottom: 40px;
-}
 h1, h3, p {
   color: #fff;
 }

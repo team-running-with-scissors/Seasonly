@@ -1,5 +1,5 @@
 <template>
-  <div id="favorite-recipes">
+  <div id="favorite-recipes" class="container-main">
     <recipe-card
     v-if="recipeZoom"
     :selectedRecipe="selectedRecipe"
@@ -63,22 +63,26 @@ export default {
 };
 </script>
 
-<style>
-
-#favorite-recipes {
-  background-color: rgba(0, 0, 0, .6);
-  margin-top: 20px;
-  margin-left: 10%;
-  margin-right: 10%;
-  border-radius: 20px;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 40px;
-}
-
+<style scoped>
 ul {
   list-style: none;
+  padding: 0 50px;
 }
-
+li {
+  margin: auto;
+  max-width: 200px;
+  border-bottom: 1px solid #fff;
+  padding: 10px; 
+}
+li:hover {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, .69);
+  color: rgb(21, 82, 99);
+  cursor: pointer;
+}
+.ghost-button {
+  width: fit-content;
+  padding: 3px 13px;
+  font-size: 1rem;
+}
 </style>
