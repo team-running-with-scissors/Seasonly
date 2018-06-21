@@ -2,22 +2,22 @@
   <div class="container-main" id="about">
     <h1>Team Running with Scissors</h1>
     <h3>Wow look at those guys!</h3>
-    <div @click.prevent="rain(1)">
+    <div @click.stop="rain(1)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Mark is one cool dude</p>
     </div>
-    <div @click.prevent="rain(2)">
+    <div @click.stop="rain(2)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Robert is one cool dude</p>
     </div>
-    <div @click.prevent="rain(3)">
+    <div @click.stop="rain(3)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Erik is one cool dude</p>
     </div>
-    <div @click.prevent="rain(4)">
+    <div @click.stop="rain(4)">
       <div class="image" style="backgroundColor=red">
       </div>
       <p>Robyn is one cool dude</p>
@@ -30,10 +30,14 @@ import { makeItRain, makeItStop } from '../food-rain/rain.js';
 export default {
   methods: {
     rain(member) {
-      console.log('housing over');
-      makeItStop();
       makeItRain(member);
+    },
+    unrain() {
+      makeItStop();
     }
+  },
+  created() {
+    document.addEventListener('click', this.unrain());
   }
 };
 </script>

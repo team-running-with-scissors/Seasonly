@@ -4,7 +4,7 @@ function makeItRain(member) {
   var temp = document.createDocumentFragment();
   for(var r = 0; r < dropCount; r++) {
 
-    var randomX = Math.round(Math.random() * 80) + 10; // random position (left to right)
+    var randomX = Math.round(Math.random() * 100); // random position (left to right)
     var randomY = Math.round(Math.random() * 50); // random start time
     var randomD = Math.round(Math.random() * 30) + 60; // random duration 
 
@@ -18,7 +18,6 @@ function makeItRain(member) {
     // Robyn - 
     // Erik - Turkeys
     rain.innerHTML = '<img>';
-    console.log('the rain is', rain.innerHTML);
     rain.querySelector('img').src = 'images/food-' + member + '.png';
     rain.querySelector('img').style.height = parseInt(Math.random() * 100) + 10 + 'px'; // random mole size
     temp.appendChild(rain);
