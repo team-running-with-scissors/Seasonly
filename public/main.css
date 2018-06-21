@@ -1,8 +1,9 @@
 body {
-    background-size: 150%;
+    background-size: 120%;
     background-image: url("image-full-2.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-color: aquamarine;
 }
 
 .ghost-button {
