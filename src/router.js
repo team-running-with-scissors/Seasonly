@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router';
-import User from './components/User.vue';
+// import User from './components/User.vue';
 import Home from './components/Home.vue';
 import About from './components/About.vue';
 import Search from './components/Search.vue';
