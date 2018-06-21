@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div id="container-whole" class="content">
+  <div id="container-whole" class="container-main">
     <!-- <div id="container-search">
       <input
         id="search-box"
@@ -38,18 +38,21 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-      <a
-      class="search-link"
-      v-for="item in filteredIngredients"
-      :key="item.index"
-      @click="handleSearch(item.food)"
-      >{{ item.food }}</a>
+      <button
+        class="filter-button results"
+        v-for="item in filteredIngredients"
+        :key="item.index"
+        @click="handleSearch(item.food)"
+      >
+        {{ item.food }}
+      </button>
+
       <!-- <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
       >
-        <option disabled value="">Please select one</option>
-        <option 
+      <option disabled value="">Please select one</option>
+      <option 
         v-for="item in filteredIngredients"
         :key="item.index" 
         :value="item.food"
@@ -127,9 +130,6 @@ export default {
       months: null
     };
   },
-  mounted(){
-    this.$refs.search.focus();
-  },
   created() {
     const d = new Date;
     const n = d.getMonth();
@@ -147,10 +147,8 @@ export default {
 
   methods: {
     handleSearch(search) {
-      console.log('in the search diddle');
       searchRecipes(search)
         .then(result => {
-          console.log('the resuts', result.Results);
           this.searchResults = result.Results;
           this.searched = true;
         });
@@ -226,13 +224,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.search-link{
-  margin: 5px;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1.4em
-}
-
 ul {
   list-style: none;
 }
@@ -271,6 +262,10 @@ img {
   border: none;
   margin-bottom: 15px;
   padding: 5px;
+}
+.results {
+  margin-left: 1px;
+  margin-right: 1px;
 }
 .filter-button:hover {
   opacity: 1;
