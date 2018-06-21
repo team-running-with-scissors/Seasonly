@@ -118,6 +118,7 @@ export default {
   created() {
     const d = new Date;
     const n = d.getMonth();
+    this.monthChoice = n + 1;
 
     getFoods()
       .then(ingredient => {
