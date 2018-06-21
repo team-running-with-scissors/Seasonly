@@ -46,11 +46,9 @@ export default {
   },
   methods: {
     handleView(recipe) {
-      console.log(recipe);
       // Make another API call, then send the returned data to the RecipeCard component/page
       getRecipe(recipe)
         .then(result => {
-          console.log('getRecipe result:', result);
           this.recipeZoom = true;
           this.selectedRecipe = result;
         });

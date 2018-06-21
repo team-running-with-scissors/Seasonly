@@ -66,8 +66,8 @@ export default {
       this.toggleRecipe();
     },
     handleAdd() {
-      console.log('this userid is', this.userid);
-      if(this.userid === null) {
+      console.log('this userid is', this.userid, typeof(this.userid));
+      if(typeof(this.userid) !== 'number' || isNaN(this.userid)) {
         this.toggleRecipe(true);
       }
       else {
@@ -88,8 +88,6 @@ export default {
       else {
         let favorites = {};
         favorites = [{ recipe_name : this.selectedRecipe.Title, user_id : parseInt(this.userid), recipe_id : this.selectedRecipe.RecipeID, selected : false }];
-        console.log('look here bobby', favorites);
-        // console.log('fav recipes:', this.savedRecipes);
         this.addToMasterFavoriteList(favorites);
       }
     }

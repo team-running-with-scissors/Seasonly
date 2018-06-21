@@ -47,7 +47,6 @@ export default {
     },
     handleClearSelected() {
       let tempList = this.userShoppingList.filter(el => el.selected);
-      console.log('selected items are', tempList);
       this.deleteFromMasterList(tempList);
     },
     handleClear() {
