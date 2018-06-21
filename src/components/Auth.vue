@@ -24,7 +24,7 @@
         v-model="creds.password"
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
       >
-      <a id="show-hide" v-show="!newUser" @click.prevent="show = !show">{{ show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
+      <a id="show-hide" @click.prevent="show = !show">{{ show ? 'Click to Hide Your Password' : 'Click to Show Your Password' }}</a><br>
       <br>
       <span v-show="newUser" id="requirements">
         <strong><span id="user-limit">Username must be 3-20 characters</span></strong><br>
@@ -94,42 +94,42 @@ export default {
       const symbol = document.getElementById('symbol');
       // Check user limit
       if(this.creds.username.match(/^.{3,20}$/)) {
-        userLimit.style.color = 'green';
+        userLimit.style.color = 'rgb(0, 255, 0)';
       }
       else {
         userLimit.style.color = 'red';
       }
       // Check lower
       if(this.creds.password.match(/[a-z]/g)) {
-        lower.style.color = 'green';
+        lower.style.color = 'rgb(0, 255, 0)';
       }
       else {
         lower.style.color = 'red';
       }
       // Check upper
       if(this.creds.password.match(/[A-Z]/g)) {
-        upper.style.color = 'green';
+        upper.style.color = 'rgb(0, 255, 0)';
       }
       else {
         upper.style.color = 'red';
       }
       // Check number
       if(this.creds.password.match(/[\d]/g)) {
-        number.style.color = 'green';
+        number.style.color = 'rgb(0, 255, 0)';
       }
       else {
         number.style.color = 'red';
       }
       // Check limit
       if(this.creds.password.match(/^.{8,20}$/)) {
-        limit.style.color = 'green';
+        limit.style.color = 'rgb(0, 255, 0)';
       }
       else {
         limit.style.color = 'red';
       }
       // Check symbol
       if(this.creds.password.match(/\W/g)) {
-        symbol.style.color = 'green';
+        symbol.style.color = 'rgb(0, 255, 0)';
       }
       else {
         symbol.style.color = 'red';
