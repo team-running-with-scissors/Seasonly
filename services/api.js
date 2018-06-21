@@ -4,8 +4,8 @@
 const apiKey = 'K0ACWNU09ihIYSJfG0UmG4u99d9Oj2Da';
 
 // For Everybody! :->
-//const URL = 'http://localhost:3000/api';
-const URL = '/api';
+const URL = 'http://localhost:3000/api';
+//const URL = '/api';
 
 export {
   signIn,
@@ -53,7 +53,7 @@ function getHeaders(hasBody) {
 /////////////LOGIN////////////////////////////
 // SIGN-IN
 function signIn(creds) {
-  return fetch(`/api/auth/signin`, {
+  return fetch(`${URL}/auth/signin`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -63,7 +63,7 @@ function signIn(creds) {
 
 // SIGN-UP
 function signUp(creds) {
-  return fetch(`/api/auth/signup`, {
+  return fetch(`${URL}/auth/signup`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -91,7 +91,7 @@ function getRecipe(recipeId) {
 ////////////////////SEASON/////////////
 // GET FOODS
 function getFoods() {
-  return fetch(`api/search`, {
+  return fetch(`${URL}/search`, {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(responseHandler);
