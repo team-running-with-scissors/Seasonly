@@ -1,7 +1,7 @@
 <template>
 <div>
   <div id="container-whole" class="content">
-    <div id="container-search">
+    <!-- <div id="container-search">
       <input
         id="search-box"
         ref="search"
@@ -9,32 +9,32 @@
         v-model="searchTerm"
       >
       <button @click.prevent="handleSearch">Search!</button>
-    </div>
+    </div> -->
     <div>
       <h3>Just choose a season and a food type to get started!</h3>
       <div id="month-holder">
         <button
         v-for="month in months"
         :key="month.id"
-        @click="monthChoice = month.id"
-        :class="[monthChoice === month.id ? active : '' ]"
+        @click="monthChoice = month.id; seasonColors()"
+        :class="monthChoice === month.id ? activeSeason: ''"
         class="filter-button"
         >{{ month.month }}</button>
       </div>
       <span class="food-type-button-container">
-        <button :class="[ingredientType === 0 ? active : '' ]" class="filter-button"
+        <button :class="ingredientType === 0 ? active : '' " class="filter-button"
          @click="ingredientType = 0"  
          >All</button>
-        <button :class="[ingredientType === 1 ? active : '' ]" class="filter-button" 
+        <button :class="ingredientType === 1 ? active : '' " class="filter-button" 
         @click="ingredientType = 1"
         >Veggies</button>
-        <button :class="[ingredientType === 2 ? active : '' ]" class="filter-button" 
+        <button :class="ingredientType === 2 ? active : '' " class="filter-button" 
         @click="ingredientType = 2"
         >Fruit</button>
-        <button :class="[ingredientType === 3 ? active : '' ]" class="filter-button" 
+        <button :class="ingredientType === 3 ? active : '' " class="filter-button" 
         @click="ingredientType = 3"
         >Meat</button>
-        <button :class="[ingredientType === 4 ? active : '' ]" class="filter-button" 
+        <button :class="ingredientType === 4 ? active : '' " class="filter-button" 
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
@@ -117,17 +117,18 @@ export default {
       selectedRecipe: null,
       ingredientType: 0,
       active: 'active',
-      monthChoice: 6,
-      months: null
+      monthChoice: null,
+      months: null,
+      activeSeason: ''
     };
   },
   mounted(){
     this.$refs.search.focus();
   },
   created() {
-    const d = new Date;
-    const n = d.getMonth();
-    this.monthChoice = n + 1;
+    // const d = new Date;
+    // const n = d.getMonth();
+    // this.monthChoice = n + 1;
 
     getFoods()
       .then(ingredient => {
@@ -166,6 +167,20 @@ export default {
         this.recipeZoom = !this.recipeZoom;
       }
     },
+    seasonColors() {
+      if(this.monthChoice === 12 || this.monthChoice < 3) {
+        return this.activeSeason = 'winter';
+      }
+      else if(this.monthChoice > 2 && this.monthChoice < 6) {
+        return this.activeSeason = 'spring';
+      }
+      else if(this.monthChoice > 5 && this.monthChoice < 9) {
+        return this.activeSeason = 'summer';
+      }
+      else if(this.monthChoice > 8 && this.monthChoice < 12) { 
+        return this.activeSeason = 'autum';
+      }
+    }
   },
 
   computed: {
@@ -182,34 +197,34 @@ export default {
       });
     },
 
-    currentMonth() {
-      switch(new Date().getMonth()) {
-        case 0:
-          return 'January';
-        case 1:
-          return 'February';
-        case 2:
-          return 'March';
-        case 3:
-          return 'April';
-        case 4:
-          return 'May';
-        case 5:
-          return 'June';
-        case 6:
-          return 'July';
-        case 7:
-          return 'August';
-        case 8:
-          return 'September';
-        case 9:
-          return 'October';
-        case 10:
-          return 'November';
-        case 11:
-          return 'Dicember';
-      }
-    }
+    // currentMonth() {
+    //   switch(new Date().getMonth()) {
+    //     case 0:
+    //       return 'January';
+    //     case 1:
+    //       return 'February';
+    //     case 2:
+    //       return 'March';
+    //     case 3:
+    //       return 'April';
+    //     case 4:
+    //       return 'May';
+    //     case 5:
+    //       return 'June';
+    //     case 6:
+    //       return 'July';
+    //     case 7:
+    //       return 'August';
+    //     case 8:
+    //       return 'September';
+    //     case 9:
+    //       return 'October';
+    //     case 10:
+    //       return 'November';
+    //     case 11:
+    //       return 'Dicember';
+    //   }
+    // }
   }
 };
 </script>
@@ -243,6 +258,7 @@ li {
   cursor: pointer;
   align-items: center;
   height: fit-content;
+  margin-bottom: 5px;
 }
 img {
   vertical-align: middle;
@@ -271,6 +287,22 @@ img {
 
 .active {
   background-color: rgb(0, 103, 221);
+  color: white;
+}
+.winter {
+  background-color: rgb(21, 82, 99);
+  color: white;
+}
+.spring {
+  background-color: rgb(3, 148, 60);
+  color: white;
+}
+.summer {
+  background-color: rgb(255, 201, 60);
+  color: white;
+}
+.autum {
+  background-color: rgb(255, 154, 59);
   color: white;
 }
 
