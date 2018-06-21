@@ -24,12 +24,30 @@
 <script>
 import { makeItRain, makeItStop } from '../food-rain/rain.js';
 export default {
+  props: {
+    toggleRain: {
+      type: Function,
+      required: true
+    }
+  },
+  data() {
+    return {
+      member: []
+    };
+  },
   methods: {
-    rain(member) {
-      makeItRain(member);
-    },
-    unrain() {
-      makeItStop();
+    rain(id) {
+      console.log('mememner', this.member);
+      if(!this.member[id - 1].rain) {
+        makeItRain(id);
+        this.member[id - 1].rain = true;
+      }
+      this.toggleRain();
+    }
+  },
+  created() {
+    for(let i = 1; i < 5; i++) {
+      this.member.push({ rain: false });
     }
   }
 };
