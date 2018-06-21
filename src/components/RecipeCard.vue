@@ -70,6 +70,8 @@ export default {
         this.toggleRecipe(true);
       }
       else {
+        console.log('ingreeeeeeeeedz', this.selectedRecipe.Ingredients);
+        let tempIng = this.selectedRecipe.Ingredients.filter(el => this.userShoppingList.every(a => el.Name != a.item))
         let ingredients = {};
         ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
           acc[i] = { item : cur.Name, selected : false, user_id : parseInt(this.userid) }; // Replace with localstorage userid
