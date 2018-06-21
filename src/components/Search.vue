@@ -38,6 +38,12 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
+      <a
+      v-for="item in filteredIngredients"
+      :key="item.index"
+      :value="item.food"
+      @click="handleSearch"
+      >{{ item.food }}</a>
       <select 
       v-model="searchTerm"
       @change.prevent="handleSearch"
