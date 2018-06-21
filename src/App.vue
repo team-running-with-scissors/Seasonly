@@ -30,6 +30,8 @@
       :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
+      :userid="userid"
+      :toggleZoom="toggleZoom"
     ></router-view>
     
 <transition name="fade">
