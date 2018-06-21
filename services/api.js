@@ -73,7 +73,7 @@ function signUp(creds) {
 ///////////RECIPES////////////////
 // SEARCH RECIPES
 function searchRecipes(ingredient) {
-  const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
+  const url = 'https://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
   '&api_key=' + apiKey;
   return fetch(url)
@@ -82,7 +82,7 @@ function searchRecipes(ingredient) {
 
 // GET RECIPES
 function getRecipe(recipeId) {
-  const url = 'http://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
+  const url = 'https://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
 }
