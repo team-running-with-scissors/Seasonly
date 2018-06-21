@@ -18,8 +18,8 @@ export {
   getFavorites,
   addToFavoritesList,
   clearItemsFromShoppingList,
-  clearShoppingList
-
+  clearShoppingList,
+  getMonths
 };
 
 function responseHandler(response) {
@@ -147,6 +147,12 @@ function clearShoppingList(id) {
     .then(responseHandler);
 }
 
+function getMonths(){
+  return fetch(`${URL}/months`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
 ////////////////////FAVORITES////////////
 // GET FAVORITES
 function getFavorites(userid) {
