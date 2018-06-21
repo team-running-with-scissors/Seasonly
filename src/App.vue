@@ -32,6 +32,7 @@
       :clearMasterList="clearMasterList"
       :userid="userid"
       :toggleZoom="toggleZoom"
+      :toggleRain="toggleRain"
     ></router-view>
     
 <transition name="fade">
@@ -54,6 +55,8 @@ import {
   clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
 
+import { makeItStop } from './food-rain/rain.js';
+
 import Auth from './components/Auth.vue';
 
 export default {
@@ -64,10 +67,14 @@ export default {
       isLoggedIn: false,
       favoritesList: [],
       userShoppingList: [],
-      userid: null
+      userid: null,
+      raining: false
     };
   },
   methods: {
+    toggleRain() {
+      this.raining = true;
+    },
     toggleZoom() {
       console.log('everyday I\'m togglin');
       this.isZoomed = !this.isZoomed;
@@ -143,6 +150,13 @@ export default {
   },
   components: {
     Auth
+  },
+  watch: {
+    '$route': function() {
+      if(this.raining) {
+        makeItStop();
+      }
+    }
   },
   created() {
     this.userid = parseInt(localStorage.getItem('userid'));
