@@ -70,6 +70,8 @@
         :selectedRecipe="selectedRecipe"
         :toggleRecipe="toggleRecipe"
         :addToMasterList="addToMasterList"
+        :toggleZoom="toggleZoom"
+        :userid="userid"
         
         v-if="recipeZoom"
         :addToMasterFavoriteList="addToMasterFavoriteList"
@@ -93,7 +95,12 @@ export default {
     addToMasterFavoriteList: {
       type: Function,
       required: true
-    }
+    },
+    toggleZoom: {
+      type: Function,
+      required: true
+    },
+    userid: Number
   },
   components: {
     RecipeCard
@@ -149,8 +156,13 @@ export default {
           this.selectedRecipe = result;
         });
     },
-    toggleRecipe() {
-      this.recipeZoom = !this.recipeZoom;
+    toggleRecipe(newUser) {
+      if(newUser) {
+        this.toggleZoom();
+      }
+      else {
+        this.recipeZoom = !this.recipeZoom;
+      }
     },
   },
 

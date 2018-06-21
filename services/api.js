@@ -23,6 +23,7 @@ export {
 };
 
 function responseHandler(response) {
+  console.log('response is', response);
   if(response.ok) return response.json();
   return response.json().then(err => {
     throw err.message;
@@ -160,7 +161,6 @@ function getFavorites(userid) {
     headers: getHeaders()
   })
     .then(responseHandler);
-
 }
 
 function addToFavoritesList(savedRecipes) {

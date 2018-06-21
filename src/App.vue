@@ -30,6 +30,8 @@
       :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
+      :userid="userid"
+      :toggleZoom="toggleZoom"
     ></router-view>
     
 <transition name="fade">
@@ -48,7 +50,6 @@ import {
   updateShoppingList,
   getShoppingList,
   addToShoppingList,
-
   addToFavoritesList,
   clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
@@ -90,15 +91,17 @@ export default {
       this.isZoomed = true;
     },
     addToMasterList(ingredients) {
+      console.log('filsansdfisa', ingredients);
       addToShoppingList(ingredients)
         .then(result => {
-          console.log('more chees pelase', result);
+          console.log('more cheese pelase', result);
 
 
           if(result.added) {
             this.userShoppingList = this.userShoppingList.concat(Object.assign(ingredients));
           }
         });
+        console.log('we made it to the end');
     },
     setMasterList(userid) {
       return getShoppingList(userid)
@@ -154,7 +157,7 @@ export default {
     Auth
   },
   created() {
-    this.userid = localStorage.getItem('userid');
+    this.userid = parseInt(localStorage.getItem('userid'));
     if(this.userid) {
       this.setMasterList(this.userid);
       this.isLoggedIn = true;

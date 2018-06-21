@@ -52,8 +52,8 @@ export default {
     },
     addToMasterFavoriteList: {
       type: Function
-    }
-
+    },
+    userid: Number
   },
   data() {
     return {
@@ -65,23 +65,31 @@ export default {
       this.toggleRecipe();
     },
     handleAdd() {
-      let ingredients = {};
-      let userid = localStorage.getItem('userid');
-      ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
-        acc[i] = { item : cur.Name, selected : false, user_id : userid }; // Replace with localstorage userid
-        return acc;
-      }, []);
-      
-      this.addToMasterList(ingredients);
-      this.addedToList = true;
+      console.log('this userid is', this.userid);
+      if(this.userid === null) {
+        this.toggleRecipe(true);
+      }
+      else {
+        let ingredients = {};
+        ingredients = this.selectedRecipe.Ingredients.reduce((acc, cur, i) => {
+          acc[i] = { item : cur.Name, selected : false, user_id : parseInt(this.userid) }; // Replace with localstorage userid
+          return acc;
+        }, []);
+        this.addToMasterList(ingredients);
+        this.addedToList = true;
+      }
     },
     handleSaveFav() {
-      let favorites = {};
-      let userid = localStorage.getItem('userid');
-      favorites = [{ recipe_name : this.selectedRecipe.Title, user_id : userid, recipe_id : this.selectedRecipe.RecipeID, selected : false }];
-      console.log('look here bobby', favorites);
-      // console.log('fav recipes:', this.savedRecipes);
-      this.addToMasterFavoriteList(favorites);
+      if(this.userid === null) {
+        this.toggleRecipe(true);
+      }
+      else {
+        let favorites = {};
+        favorites = [{ recipe_name : this.selectedRecipe.Title, user_id : parseInt(this.userid), recipe_id : this.selectedRecipe.RecipeID, selected : false }];
+        console.log('look here bobby', favorites);
+        // console.log('fav recipes:', this.savedRecipes);
+        this.addToMasterFavoriteList(favorites);
+      }
     }
   }
 };

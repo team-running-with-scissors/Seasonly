@@ -1,5 +1,6 @@
 <template>
   <div id = "user-profile">
+    <div
     <shopping-list
       v-if="userShoppingList"
       :userShoppingList="userShoppingList"
