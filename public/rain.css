@@ -1,0 +1,24 @@
+@-webkit-keyframes raining {
+    from {
+        top: -100px;
+    }
+    to {
+        top:90%;
+    }
+}
+
+@keyframes raining {
+    from {
+        top: -100px;
+    }
+    to {
+        top:90%;
+    }
+}
+
+.rain {
+    position: fixed;
+    -webkit-animation: raining ease-in forwards infinite;
+            animation: raining ease-in forwards infinite;
+    z-index: -1;
+}
