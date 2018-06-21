@@ -53,7 +53,7 @@ function getHeaders(hasBody) {
 /////////////LOGIN////////////////////////////
 // SIGN-IN
 function signIn(creds) {
-  return fetch(`/auth/signin`, {
+  return fetch(`/api/auth/signin`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -63,7 +63,7 @@ function signIn(creds) {
 
 // SIGN-UP
 function signUp(creds) {
-  return fetch(`/auth/signup`, {
+  return fetch(`/api/auth/signup`, {
     method: 'POST',
     headers: getHeaders(true),
     body: JSON.stringify(creds)
@@ -91,7 +91,7 @@ function getRecipe(recipeId) {
 ////////////////////SEASON/////////////
 // GET FOODS
 function getFoods() {
-  return fetch(`/search`, {
+  return fetch(`api/search`, {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(responseHandler);
