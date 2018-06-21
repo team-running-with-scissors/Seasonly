@@ -91,7 +91,7 @@ function getRecipe(recipeId) {
 ////////////////////SEASON/////////////
 // GET FOODS
 function getFoods() {
-  return fetch(`api/search`, {
+  return fetch(`/api/search`, {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(responseHandler);
