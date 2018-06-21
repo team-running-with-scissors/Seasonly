@@ -11,7 +11,7 @@
       <button @click.prevent="handleSearch">Search!</button>
     </div> -->
     <div>
-      <h3>Just choose a season and a food type to get started!</h3>
+      <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
       <div id="month-holder">
         <button
         v-for="month in months"
@@ -231,6 +231,13 @@ export default {
   padding: 20px;
   border-radius: 20px;
 }
+.search-link{
+  margin: 5px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.4em
+}
+
 ul {
   list-style: none;
 }
