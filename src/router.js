@@ -12,7 +12,7 @@ export default new VueRouter({
     { path: '/about', component: About },
     { path: '/search', component: Search },
     { path: '/favorite-recipes', component: FavoriteRecipes },
-    { path: '/shopping-list', component: ShoppingList }
+    { path: '/shopping-list', component: ShoppingList },
     { path: '*', redirect: '/' }
   ]
 });
