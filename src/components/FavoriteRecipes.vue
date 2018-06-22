@@ -1,5 +1,6 @@
 <template>
   <div id="favorite-recipes" class="container-main">
+    <h2 class="list-header">Your Favorite Recipes</h2>
     <recipe-card
     v-if="recipeZoom"
     :selectedRecipe="selectedRecipe"
@@ -65,6 +66,12 @@ export default {
 </script>
 
 <style scoped>
+.list-header {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+}
 ul {
   list-style: none;
   padding: 0 50px;

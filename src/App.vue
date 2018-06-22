@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div>
-      <img id="top-logo" src="../assets/seasonly_logo_white.svg" >
+      <img id="top-logo" src="../assets/seasonly_logo_new.svg" >
       <nav>
         <router-link class="link" to="/">HOME</router-link> &nbsp; |
         &nbsp;

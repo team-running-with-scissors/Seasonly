@@ -9,20 +9,15 @@
 
 
 #background-image {
-    top: 0;
-    height: 100%;
-    width: 100%;
     position: fixed;
-    background-position: center;
-    background-image: url("image-full-2.jpg");
-    background-repeat: no-repeat;
-    z-index: -1;
+
 }
 
 body {
-    background: linear-gradient(rgb(0, 128, 255), rgb(0, 64, 128));
-    background-size: 800%;
+    background-image: url("image-full-2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .ghost-button {
@@ -45,11 +40,11 @@ body {
 }
 
 .container-main {
-    background-color: rgba(0, 0, 0, .6);
-    max-width: 666px;
+    background-color: rgba(0, 0, 0, .7);
+    max-width: 800px;
     margin: 20px auto;
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
-    padding: 20px 20px 40px 20px;
+    padding: 30px 20px 40px 20px;
 }
