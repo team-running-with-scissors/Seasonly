@@ -62,7 +62,7 @@ export default {
   font-size: 2em;
   color: #fff;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 0px;
 }
 #please-add {
   padding-top: 20px;
@@ -79,7 +79,9 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
   width: 300px;
   /* background-color: rgba(0, 0, 0, .69); */
   padding-bottom: 20px;
