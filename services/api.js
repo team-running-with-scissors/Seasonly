@@ -4,8 +4,7 @@
 const apiKey = 'K0ACWNU09ihIYSJfG0UmG4u99d9Oj2Da';
 
 // For Everybody! :->
-//const URL = 'http://localhost:3000/api';
-const URL = '/api';
+const URL = 'http://localhost:3000/api';
 
 export {
   signIn,
@@ -18,6 +17,7 @@ export {
   updateShoppingList,
   getFavorites,
   addToFavoritesList,
+  removeFromFavorites,
   clearItemsFromShoppingList,
   clearShoppingList,
   getMonths
@@ -74,7 +74,7 @@ function signUp(creds) {
 ///////////RECIPES////////////////
 // SEARCH RECIPES
 function searchRecipes(ingredient) {
-  const url = 'https://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
+  const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
   '&api_key=' + apiKey;
   return fetch(url)
@@ -83,7 +83,7 @@ function searchRecipes(ingredient) {
 
 // GET RECIPES
 function getRecipe(recipeId) {
-  const url = 'https://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
+  const url = 'http://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
 }
@@ -174,4 +174,12 @@ function addToFavoritesList(savedRecipes) {
     .then(responseHandler);
 }
 
-
+function removeFromFavorites(selectedRecipe) {
+  console.log('we made it hererererere', selectedRecipe);
+  return fetch(`${URL}/favorite-recipes`, {
+    method: 'DELETE',
+    headers: getHeaders(true),
+    body: JSON.stringify(selectedRecipe)
+  })
+    .then(responseHandler);
+}

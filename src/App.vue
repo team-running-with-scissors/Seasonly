@@ -27,14 +27,15 @@
       :userShoppingList="userShoppingList"
       :addToMasterList="addToMasterList"
       :addToMasterFavoriteList="addToMasterFavoriteList"
+      :removeFromMasterFavoriteList="removeFromMasterFavoriteList"
       :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
       :userid="userid"
       :toggleZoom="toggleZoom"
       :toggleRain="toggleRain"
+      :favoritesList="favoritesList"
     ></router-view>
-    
 <transition name="fade">
   <auth
     id="auth"
@@ -52,6 +53,8 @@ import {
   getShoppingList,
   addToShoppingList,
   addToFavoritesList,
+  getFavorites,
+  removeFromFavorites,
   clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
 
@@ -71,7 +74,6 @@ export default {
       raining: false
     };
   },
-  
   methods: {
     toggleRain() {
       this.raining = true;
@@ -141,11 +143,22 @@ export default {
         });
     },
     addToMasterFavoriteList(savedRecipe) {
+      console.log('the sved recipe is', savedRecipe);
       addToFavoritesList(savedRecipe)
         .then(result => {
           if(result.added) {
-            this.favoritesList = savedRecipe;
+            this.favoritesList.push(savedRecipe);
           }
+        });
+    },
+    removeFromMasterFavoriteList(favoriteInfo) {
+      let packageInfo = { userid : this.userid, recipeid : favoriteInfo };
+      console.log('fav info', packageInfo);
+      removeFromFavorites(packageInfo)
+        .then(result => {
+          if(result.removed) {
+            this.favoritesList.pop();
+          };
         });
     }
   },
@@ -164,6 +177,10 @@ export default {
     if(this.userid) {
       this.setMasterList(this.userid);
       this.isLoggedIn = true;
+      getFavorites(localStorage.getItem('userid'))
+      .then(favs => {
+        this.favoritesList = favs;
+      });
     }
   }
 };

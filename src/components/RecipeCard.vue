@@ -2,11 +2,19 @@
 <div>
 <div id="container-main" class="full-screen">
   <div id="container-recipe">
-    <div id="exit" @click.prevent="handleZoom">
-      <b>X</b>
+    <div id="container-top">
+      <div id="exit" @click.prevent="handleZoom">
+        <b>X</b>
+      </div>
+      <div id="star">
+        <span id="spans" class="fa fa-star-o"></span>
+        <div class="ring"></div>
+        <div class="ring2"></div>
+        <p id="info"></p>
+      </div>
     </div>
     <h1>{{ selectedRecipe.Title }}</h1>
-    <button @click="handleSaveFav">Add to favorites</button>
+    <!-- <button @click="handleSaveFav">Add to favorites</button> -->
     <div id="container-details">
       <div
         id="ingredients"
@@ -53,13 +61,22 @@ export default {
     addToMasterFavoriteList: {
       type: Function
     },
+    removeFromMasterFavoriteList: {
+      type: Function
+    },
     userid: Number,
-    userShoppingList: Array
+    userShoppingList: Array,
+    isFavorite: Boolean
   },
   data() {
     return {
       addedToList: false
     };
+  },
+  created() {
+    setTimeout(() => {
+      starStuff(this.isFavorite, this.selectedRecipe, this.addToMasterFavoriteList, this.removeFromMasterFavoriteList, this.userid);
+    }, 200);
   },
   methods: {
     handleZoom() {
@@ -77,7 +94,7 @@ export default {
           acc[i] = { item : cur.Name, selected : false, user_id : parseInt(this.userid) }; // Replace with localstorage userid
           return acc;
         }, []);
-        this.addToMasterList(ingredients);
+        this.addToMasterFavoriteList(ingredients);
         this.addedToList = true;
       }
     },
@@ -93,8 +110,191 @@ export default {
     }
   }
 };
+
+let toggle;
+let info;
+let star;
+let spans;
+let selected;
+let addToFavorites;
+let removeFromFavorites;
+
+
+let starStuff = function(isFavorite, selectedRecipe, addToMasterFavoriteList, removeFromMasterFavoriteList, userid) {
+  selected = selectedRecipe;
+  addToFavorites = addToMasterFavoriteList;
+  removeFromFavorites = removeFromMasterFavoriteList;
+  console.log('selected is', selected);
+  star = document.getElementById('star');
+  toggle = !isFavorite;
+  toggleStar();
+  star.addEventListener('click', function() {
+    toggleStar(toggle);
+    if(toggle) {
+      let favorites = {};
+      favorites = [{ recipe_name : selected.Title, user_id : parseInt(userid), recipe_id : selected.RecipeID, selected : true }];
+      addToFavorites(favorites);
+    }
+    else {
+      removeFromFavorites(selected.RecipeID);
+    }
+  });
+}
+
+let toggleStar = function() {
+  star = document.getElementById('star');
+  info = document.getElementById('info');
+  spans = document.getElementById('spans');
+  if (toggle) {
+    toggle = !toggle;
+    star.classList.remove('active')
+    setTimeout(function() {
+      star.classList.remove('active-2')
+    }, 30)
+    star.classList.remove('active-3')
+    setTimeout(function() {
+      spans.classList.remove('fa-star')
+      spans.classList.add('fa-star-o')
+    }, 15)
+  } else {
+    toggle = !toggle;
+    star.classList.add('active')
+    star.classList.add('active-2')
+    setTimeout(function() {
+      spans.classList.add('fa-star')
+      spans.classList.remove('fa-star-o')
+    }, 150)
+    setTimeout(function() {
+      star.classList.add('active-3')
+    }, 150)
+    info.classList.add('info-tog')
+    setTimeout(function(){
+      info.classList.remove('info-tog')
+    },1000)
+  }
+  console.log('erry day ahm taahguhlynn', toggle);
+}
+
+
+
 </script>
 <style scoped>
+/* @import url(//fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic); */
+
+h4 {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	opacity: 0.7;
+}
+
+#star {
+	font-size: 33px;
+	color: rgba(0,0,0,.5);
+	width: 38px;
+	height: 38px;
+	margin: 0;
+	position: relative;
+	cursor: pointer;
+}
+
+#star span {
+	z-index: 999;
+	position: relative;
+}
+
+span:hover {
+	opacity: 0.8;
+}
+
+span:active {
+	transform: scale(0.93,0.93) translateY(2px)
+}
+
+.ring, .ring2 {
+	opacity: 0;
+	background: grey;
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	top: 19px;
+	left: 18px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.active span, .active-2 span {
+	color: #F5CC27 !important;
+}
+
+.active-2 .ring {
+	width: 58px !important;
+	height: 58px !important;
+	top: -10px !important;
+	left: -10px !important;
+	position: absolute;
+	border-radius: 50%;
+	opacity: 1 !important;
+}
+
+.active-2 .ring {
+	background: #F5CC27 !important;
+}
+
+.active-2 .ring2 {
+	background: steelblue !important;
+}
+
+.active-3 .ring2 {
+	width: 60px !important;
+	height: 60px !important;
+	top: -11px !important;
+	left: -11px !important;
+	position: absolute;
+	border-radius: 50%;
+	opacity: 1 !important;
+}
+
+#info {
+  position: fixed;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	white-space: nowrap;
+	color: grey;
+	position: relative;
+	left: -46px;
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+
+.info-tog {
+	color: steelblue;
+	position: relative;
+	top: 45px;
+	opacity: 1;
+}
+
+* {
+	transition: all .32s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #container-recipe {
   color: white;
   background: steelblue;
@@ -129,9 +329,13 @@ export default {
   flex-direction: row;
   justify-content: space-around;
 }
+#container-top {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
 #exit {
-  float: right;
-  position: absolute;
   cursor: pointer;
   border-top: 1px solid gray;
   border-right: 1px solid black;
@@ -139,6 +343,7 @@ export default {
   border-left: 1px solid gray;
   padding: 0 3px;
   background-color: slategrey;
+  height: fit-content;
 }
 #ingredients {
   float: left;

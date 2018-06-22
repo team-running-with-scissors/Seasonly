@@ -3,7 +3,7 @@
   <div id="container-whole" class="container-main">
     <div>
       <h2 class="list-header">Recipe Search</h2>
-      <h4>It's simple to get started. Just choose a category of food, month, click on a food and see your results!</h4>
+      <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
       <span class="food-type-button-container">
         <button :class="ingredientType === 0 ? active : '' " class="filter-button"
          @click="ingredientType = 0"  
@@ -21,7 +21,6 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-
       <div id="month-holder" v-if="months">
         <button
         v-for="month in months"
@@ -63,6 +62,7 @@
         :toggleZoom="toggleZoom"
         :userid="userid"
         :userShoppingList="userShoppingList"
+        :removeFromMasterFavoriteList="removeFromMasterFavoriteList"
         
         v-if="recipeZoom"
         :addToMasterFavoriteList="addToMasterFavoriteList"
@@ -84,6 +84,10 @@ export default {
       required: true
     },
     addToMasterFavoriteList: {
+      type: Function,
+      required: true
+    },
+    removeFromMasterFavoriteList: {
       type: Function,
       required: true
     },
@@ -248,19 +252,18 @@ img {
 .results {
   color: white;
   font-size: 1em;
-  
   margin-left: 1px;
   margin-right: 1px;
   border-radius: 2px;
   background-color: rgba(222, 184, 135, 0);
 }
 .activeIngredient {
-
   opacity: 1;
   font-size: 1em;
   border: 1px dashed white;
   padding: 0px;
   padding-left: 7px;
+
 }
 .filter-button:hover {
   opacity: 1;
@@ -270,30 +273,24 @@ img {
   background-color: rgb(255, 201, 60);
 }
 .active {
-  background-color: rgb(70, 54, 43);
+  background-color: rgb(90, 71, 56);
   color: white;
-  font-weight: bolder;
 }
 .winter {
   background-color: rgb(21, 82, 99);
   color: white;
-  font-weight: bolder;
 }
 .spring {
   background-color: rgb(3, 148, 60);
   color: white;
-  font-weight: bolder;
 }
 .summer {
   background-color: rgb(255, 201, 60);
   color: white;
-  font-weight: bolder;
 }
 .autum {
   background-color: rgb(255, 154, 59);
   color: white;
-  font-weight: bolder;
-  
 }
 #search-box{
   margin-top: 25px;
