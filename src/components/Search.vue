@@ -11,6 +11,7 @@
       <button @click.prevent="handleSearch">Search!</button>
     </div> -->
     <div>
+      <h2 class="list-header">Recipe Search</h2>
       <h4>It's simple to get started. Just choose a category of food, month, click on a food and see your results!</h4>
       <span class="food-type-button-container">
         <button :class="ingredientType === 0 ? active : '' " class="filter-button"
@@ -206,6 +207,13 @@ export default {
 </script>
 
 <style scoped>
+.list-header {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+}
 #container-whole {
   display: flex;
   flex-direction: column;
