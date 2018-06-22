@@ -8,7 +8,7 @@
     </div>
     <div id="robert" class="profiles">
       <img @click.prevent="rain(2)" id="robert-pic" class="image" src="../../assets/robert_head.jpg">
-      <p> Robert Thompson is a software developer from Portland, Oregon. You can often times find him lamenting over the fate of the Portland Trailblazers and his sleep schedule. </p>
+      <p> Robert Thompson is a web developer from Portland, Oregon. You can often times find him lamenting over the fate of the Portland Trailblazers and his sleep schedule. </p>
     </div>
     <div id="erik" class="profiles">
       <img @click.prevent="rain(3)" id="erik-pic" class="image" src="../../assets/erik.jpg">
@@ -70,6 +70,7 @@ h1, h3, p {
 }
 #mark-pic {
   float: left;
+  border-radius: 50%;
 }
 
 #robert {
@@ -77,6 +78,7 @@ h1, h3, p {
 }
 #robert-pic {
   float: right;
+  border-radius: 50%;
 }
 
 #erik {
@@ -84,6 +86,7 @@ h1, h3, p {
 }
 #erik-pic {
   float: left;
+  border-radius: 50%;
 }
 
 #robyn {
@@ -91,6 +94,7 @@ h1, h3, p {
 }
 #robyn-pic {
   float: right;
+  border-radius: 50%;
 }
 
 
