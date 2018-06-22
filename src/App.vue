@@ -34,8 +34,9 @@
       :userid="userid"
       :toggleZoom="toggleZoom"
       :toggleRain="toggleRain"
+      :favoritesList="favoritesList"
     ></router-view>
-    
+    {{ favoritesList }}
 <transition name="fade">
   <auth
     id="auth"
@@ -53,6 +54,7 @@ import {
   getShoppingList,
   addToShoppingList,
   addToFavoritesList,
+  removeFromFavorites,
   clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
 
@@ -141,6 +143,7 @@ export default {
         });
     },
     addToMasterFavoriteList(savedRecipe) {
+      console.log('aksldjfdsk', savedRecipe);
       addToFavoritesList(savedRecipe)
         .then(result => {
           if(result.added) {
@@ -149,12 +152,14 @@ export default {
         });
     },
     removeFromMasterFavoriteList(favoriteInfo) {
-      removeFromFavoritesList(favoriteInfo)
+      let packageInfo = { userid : this.userid, recipeid : favoriteInfo };
+      console.log('fav info', packageInfo);
+      removeFromFavorites(packageInfo)
         .then(result => {
           if(result.removed) {
             this.favoritesList.pop();
           };
-        })
+        });
     }
   },
   components: {
@@ -172,6 +177,10 @@ export default {
     if(this.userid) {
       this.setMasterList(this.userid);
       this.isLoggedIn = true;
+      getFavorites(localStorage.getItem('userid'))
+      .then(favs => {
+        this.favoritesList = favs;
+      });
     }
   }
 };

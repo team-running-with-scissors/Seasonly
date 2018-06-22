@@ -82,6 +82,7 @@
         :toggleZoom="toggleZoom"
         :userid="userid"
         :userShoppingList="userShoppingList"
+        :removeFromMasterFavoriteList="removeFromMasterFavoriteList"
         
         v-if="recipeZoom"
         :addToMasterFavoriteList="addToMasterFavoriteList"
@@ -103,6 +104,10 @@ export default {
       required: true
     },
     addToMasterFavoriteList: {
+      type: Function,
+      required: true
+    },
+    removeFromMasterFavoriteList: {
       type: Function,
       required: true
     },

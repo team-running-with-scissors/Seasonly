@@ -37,7 +37,8 @@ export default {
     userid: Number,
     addToMasterList: Function,
     addToMasterFavoriteList: Function,
-    removeFromMasterFavoriteList: Function
+    removeFromMasterFavoriteList: Function,
+    favoritesList: Array
   },
 
   components: {
@@ -47,7 +48,7 @@ export default {
   created() {
     getFavorites(localStorage.getItem('userid'))
       .then(favs => {
-        this.userFavorites = favs;
+        this.favoritesList = favs;
       });
   },
   methods: {

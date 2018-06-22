@@ -17,6 +17,7 @@ export {
   updateShoppingList,
   getFavorites,
   addToFavoritesList,
+  removeFromFavorites,
   clearItemsFromShoppingList,
   clearShoppingList,
   getMonths
@@ -173,4 +174,12 @@ function addToFavoritesList(savedRecipes) {
     .then(responseHandler);
 }
 
-
+function removeFromFavorites(selectedRecipe) {
+  console.log('we made it hererererere', selectedRecipe);
+  return fetch(`${URL}/favorite-recipes`, {
+    method: 'DELETE',
+    headers: getHeaders(true),
+    body: JSON.stringify(selectedRecipe)
+  })
+    .then(responseHandler);
+}

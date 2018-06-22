@@ -14,7 +14,7 @@
       </div>
     </div>
     <h1>{{ selectedRecipe.Title }}</h1>
-    <button @click="handleSaveFav">Add to favorites</button>
+    <!-- <button @click="handleSaveFav">Add to favorites</button> -->
     <div id="container-details">
       <div
         id="ingredients"
@@ -61,6 +61,9 @@ export default {
     addToMasterFavoriteList: {
       type: Function
     },
+    removeFromMasterFavoriteList: {
+      type: Function
+    },
     userid: Number,
     userShoppingList: Array,
     isFavorite: Boolean
@@ -72,8 +75,7 @@ export default {
   },
   created() {
     setTimeout(() => {
-      
-      starStuff(this.isFavorite);
+      starStuff(this.isFavorite, this.selectedRecipe, this.addToMasterFavoriteList, this.removeFromMasterFavoriteList, this.userid);
     }, 200);
   },
   methods: {
@@ -92,7 +94,7 @@ export default {
           acc[i] = { item : cur.Name, selected : false, user_id : parseInt(this.userid) }; // Replace with localstorage userid
           return acc;
         }, []);
-        this.addToMasterList(ingredients);
+        this.addToMasterFavoriteList(ingredients);
         this.addedToList = true;
       }
     },
@@ -113,13 +115,29 @@ let toggle;
 let info;
 let star;
 let spans;
+let selected;
+let addToFavorites;
+let removeFromFavorites;
 
-let starStuff = function(isFavorite) {
+
+let starStuff = function(isFavorite, selectedRecipe, addToMasterFavoriteList, removeFromMasterFavoriteList, userid) {
+  selected = selectedRecipe;
+  addToFavorites = addToMasterFavoriteList;
+  removeFromFavorites = removeFromMasterFavoriteList;
+  console.log('selected is', selected);
   star = document.getElementById('star');
   toggle = !isFavorite;
   toggleStar();
   star.addEventListener('click', function() {
     toggleStar(toggle);
+    if(toggle) {
+      let favorites = {};
+      favorites = [{ recipe_name : selected.Title, user_id : parseInt(userid), recipe_id : selected.RecipeID, selected : true }];
+      addToFavorites(favorites);
+    }
+    else {
+      removeFromFavorites(selected.RecipeID);
+    }
   });
 }
 
