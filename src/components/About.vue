@@ -1,6 +1,6 @@
 <template>
   <div class="container-main" id="about">
-    <h1>Team Running with Scissors</h1>
+    <h2 class="list-header">Team Running With Scissors</h2>
     <h3>Wow look at those guys!</h3>
     <div id="mark" class="profiles">
       <img @click.prevent="rain(1)" id="mark-pic" class="image" src="../../assets/mark_head.jpg">
@@ -54,6 +54,13 @@ export default {
 </script>
 
 <style scoped>
+.list-header {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+}
 h1, h3, p {
   color: #fff;
 }

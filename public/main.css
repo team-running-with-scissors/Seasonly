@@ -9,20 +9,15 @@
 
 
 #background-image {
-    top: 0;
-    height: 100%;
-    width: 100%;
     position: fixed;
-    background-position: center;
-    background-image: url("image-full-2.jpg");
-    background-repeat: no-repeat;
-    z-index: -1;
+
 }
 
 body {
-    background: linear-gradient(rgb(0, 128, 255), rgb(0, 64, 128));
-    background-size: 800%;
+    background-image: url("image-full-2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .ghost-button {
