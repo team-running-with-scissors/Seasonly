@@ -129,9 +129,9 @@ export default {
       selectedRecipe: null,
       ingredientType: 0,
       active: 'active',
-      monthChoice: 6,
+      monthChoice: null,
       months: null,
-      activeSeason: 'summer',
+      activeSeason: null,
       highlight: 'highlight'
     };
   },
@@ -144,6 +144,10 @@ export default {
       .then(month => {
         this.months = month;
       });
+    const d = new Date;
+    const n = d.getMonth();
+    this.monthChoice = n + 1;
+    this.activeSeason = this.seasonColors();
   },
 
   methods: {
