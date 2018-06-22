@@ -94,7 +94,7 @@ export default {
           acc[i] = { item : cur.Name, selected : false, user_id : parseInt(this.userid) }; // Replace with localstorage userid
           return acc;
         }, []);
-        this.addToMasterFavoriteList(ingredients);
+        this.addToMasterList(ingredients);
         this.addedToList = true;
       }
     },
