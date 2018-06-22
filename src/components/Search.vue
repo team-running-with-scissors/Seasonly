@@ -31,16 +31,15 @@
         class="filter-button"
         >{{ month.month }}</button>
       </div>
-
-      <button
+      <a
         class="filter-button results"
         v-for="item in filteredIngredients"
         :key="item.index"
         @click="handleSearch(item.food)"
-        :class="[searchTerm === item.food ? activeSeason : '' ]"
+        :class="[searchTerm === item.food ? 'activeIngredient' : '' ]"
       >
         {{ item.food }}
-      </button>
+      </a>
     </div>
     <div id="container-main">
       <ul v-if="searched">
@@ -247,9 +246,21 @@ img {
   padding: 5px;
 }
 .results {
+  color: white;
+  font-size: 1em;
+  
   margin-left: 1px;
   margin-right: 1px;
   border-radius: 2px;
+  background-color: rgba(222, 184, 135, 0);
+}
+.activeIngredient {
+
+  opacity: 1;
+  font-size: 1em;
+  border: 1px dashed white;
+  padding: 0px;
+  padding-left: 7px;
 }
 .filter-button:hover {
   opacity: 1;
