@@ -96,6 +96,10 @@ export default {
       console.log('user logged in', this.userid);
       this.isLoggedIn = true;
       this.setMasterList(this.userid);
+      getFavorites(localStorage.getItem('userid'))
+      .then(favs => {
+        this.favoritesList = favs;
+      });
     },
     toggleLogin() {
       this.isZoomed = true;
