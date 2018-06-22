@@ -1,15 +1,6 @@
 <template>
 <div>
   <div id="container-whole" class="container-main">
-    <!-- <div id="container-search">
-      <input
-        id="search-box"
-        ref="search"
-        @keypress.enter="handleSearch"
-        v-model="searchTerm"
-      >
-      <button @click.prevent="handleSearch">Search!</button>
-    </div> -->
     <div>
       <h2 class="list-header">Recipe Search</h2>
       <h4>It's simple to get started. Just choose a category of food, month, click on a food and see your results!</h4>
@@ -40,7 +31,6 @@
         class="filter-button"
         >{{ month.month }}</button>
       </div>
-
       <a
         class="filter-button results"
         v-for="item in filteredIngredients"
@@ -50,18 +40,6 @@
       >
         {{ item.food }}
       </a>
-      <!-- <select 
-      v-model="searchTerm"
-      @change.prevent="handleSearch"
-      >
-      <option disabled value="">Please select one</option>
-      <option 
-        v-for="item in filteredIngredients"
-        :key="item.index" 
-        :value="item.food"
-        >{{ item.food }}
-        </option>
-      </select> -->
     </div>
     <div id="container-main">
       <ul v-if="searched">
@@ -232,7 +210,6 @@ ul {
   list-style: none;
 }
 h1 {
-  /* display: inline; */
   float: right;
 }
 li {
