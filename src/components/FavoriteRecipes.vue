@@ -12,9 +12,12 @@
     :isFavorite="isFavorite"
     />
     <ul>
-      <li v-for="item in userFavorites"
-      :key="item.RecipeID"
-      @click.prevent="handleView(item.recipe_id)">{{ item.recipe_name }}
+      <li
+        v-for="item in favoritesList"
+        :key="item.RecipeID"
+        @click.prevent="handleView(item.recipe_id)"
+      >
+        {{ item.recipe_name }}
       </li>
     </ul>
   </div>
@@ -26,7 +29,6 @@ import RecipeCard from './RecipeCard.vue';
 export default {
   data() {
     return {
-      userFavorites: [],
       selectedRecipe: {},
       recipeZoom: false,
       isFavorite: true
@@ -45,12 +47,6 @@ export default {
     RecipeCard
   },
 
-  created() {
-    getFavorites(localStorage.getItem('userid'))
-      .then(favs => {
-        this.favoritesList = favs;
-      });
-  },
   methods: {
     handleView(recipe) {
       // Make another API call, then send the returned data to the RecipeCard component/page

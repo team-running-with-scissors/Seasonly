@@ -36,7 +36,6 @@
       :toggleRain="toggleRain"
       :favoritesList="favoritesList"
     ></router-view>
-    {{ favoritesList }}
 <transition name="fade">
   <auth
     id="auth"
@@ -54,6 +53,7 @@ import {
   getShoppingList,
   addToShoppingList,
   addToFavoritesList,
+  getFavorites,
   removeFromFavorites,
   clearItemsFromShoppingList,
   clearShoppingList } from '../services/api.js';
@@ -143,7 +143,7 @@ export default {
         });
     },
     addToMasterFavoriteList(savedRecipe) {
-      console.log('aksldjfdsk', savedRecipe);
+      console.log('the sved recipe is', savedRecipe);
       addToFavoritesList(savedRecipe)
         .then(result => {
           if(result.added) {
