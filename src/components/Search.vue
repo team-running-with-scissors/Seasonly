@@ -129,9 +129,9 @@ export default {
       selectedRecipe: null,
       ingredientType: 0,
       active: 'active',
-      monthChoice: null,
+      monthChoice: 6,
       months: null,
-      activeSeason: '',
+      activeSeason: 'summer',
       highlight: 'highlight'
     };
   },
