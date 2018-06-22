@@ -11,7 +11,16 @@
       <button @click.prevent="handleSearch">Search!</button>
     </div> -->
     <div>
-      <h4>It's simple to get started. Just choose a category of food, month, click on a food and see your results!</h4>
+      <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
+      <div id="month-holder" v-if="months">
+        <button
+        v-for="month in months"
+        :key="month.id"
+        @click="monthChoice = month.id; seasonColors()"
+        :class="monthChoice === month.id ? activeSeason: ''"
+        class="filter-button"
+        >{{ month.month }}</button>
+      </div>
       <span class="food-type-button-container">
         <button :class="ingredientType === 0 ? active : '' " class="filter-button"
          @click="ingredientType = 0"  
@@ -29,23 +38,12 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-
-      <div id="month-holder" v-if="months">
-        <button
-        v-for="month in months"
-        :key="month.id"
-        @click="monthChoice = month.id; seasonColors()"
-        :class="monthChoice === month.id ? activeSeason: ''"
-        class="filter-button"
-        >{{ month.month }}</button>
-      </div>
-
       <button
         class="filter-button results"
         v-for="item in filteredIngredients"
         :key="item.index"
         @click="handleSearch(item.food)"
-        :class="[searchTerm === item.food ? activeSeason : '' ]"
+        :class="[searchTerm === item.food ? highlight : '' ]"
       >
         {{ item.food }}
       </button>
@@ -260,7 +258,6 @@ img {
 .results {
   margin-left: 1px;
   margin-right: 1px;
-  border-radius: 2px;
 }
 .filter-button:hover {
   opacity: 1;
@@ -270,30 +267,24 @@ img {
   background-color: rgb(255, 201, 60);
 }
 .active {
-  background-color: rgb(70, 54, 43);
+  background-color: rgb(90, 71, 56);
   color: white;
-  font-weight: bolder;
 }
 .winter {
   background-color: rgb(21, 82, 99);
   color: white;
-  font-weight: bolder;
 }
 .spring {
   background-color: rgb(3, 148, 60);
   color: white;
-  font-weight: bolder;
 }
 .summer {
   background-color: rgb(255, 201, 60);
   color: white;
-  font-weight: bolder;
 }
 .autum {
   background-color: rgb(255, 154, 59);
   color: white;
-  font-weight: bolder;
-  
 }
 #search-box{
   margin-top: 25px;

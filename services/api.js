@@ -4,8 +4,7 @@
 const apiKey = 'K0ACWNU09ihIYSJfG0UmG4u99d9Oj2Da';
 
 // For Everybody! :->
-//const URL = 'http://localhost:3000/api';
-const URL = '/api';
+const URL = 'http://localhost:3000/api';
 
 export {
   signIn,
@@ -74,7 +73,7 @@ function signUp(creds) {
 ///////////RECIPES////////////////
 // SEARCH RECIPES
 function searchRecipes(ingredient) {
-  const url = 'https://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
+  const url = 'http://api2.bigoven.com/recipes?pg=1&rpp=5&any_kw=' +
   encodeURIComponent(ingredient) + 
   '&api_key=' + apiKey;
   return fetch(url)
@@ -83,7 +82,7 @@ function searchRecipes(ingredient) {
 
 // GET RECIPES
 function getRecipe(recipeId) {
-  const url = 'https://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
+  const url = 'http://api2.bigoven.com/recipe/' + recipeId + '?api_key=' + apiKey;
   return fetch(url)
     .then(response => response.json());
 }
