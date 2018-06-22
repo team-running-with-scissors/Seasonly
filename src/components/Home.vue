@@ -30,7 +30,6 @@ export default {
   font-size: 2em;
   color: #fff;
   text-align: center;
-  padding-top: 20px;
 }
 p {
   color: #fff;
