@@ -55,6 +55,8 @@ export default {
         .then(result => {
           this.recipeZoom = true;
           this.selectedRecipe = result;
+          console.log('selected recipe');
+          this.selectedRecipe.map();
         });
     },
     toggleRecipe() {

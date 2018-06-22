@@ -9,18 +9,18 @@
         &nbsp;<router-link class="link" to="/search">SEARCH</router-link>
         &nbsp; |
         &nbsp;
-        <span v-if="isLoggedIn">
+        <div style="display: inline" v-if="isLoggedIn">
           <router-link class="link" to="/shopping-list">LIST</router-link>
           &nbsp; |
           &nbsp;
           <router-link class="link" to="/favorite-recipes">FAVORITES</router-link>
-        </span>
+        </div>
         <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
-        <span v-if="isLoggedIn">
+        <div style="display: inline" v-if="isLoggedIn">
           &nbsp; |
           &nbsp;
           <a href="#" class="link"  @click.prevent="logout">LOGOUT</a>
-        </span>
+        </div>
       </nav>
     </div>
     <router-view
@@ -96,6 +96,10 @@ export default {
       console.log('user logged in', this.userid);
       this.isLoggedIn = true;
       this.setMasterList(this.userid);
+      getFavorites(localStorage.getItem('userid'))
+      .then(favs => {
+        this.favoritesList = favs;
+      });
     },
     toggleLogin() {
       this.isZoomed = true;
@@ -147,7 +151,7 @@ export default {
       addToFavoritesList(savedRecipe)
         .then(result => {
           if(result.added) {
-            this.favoritesList.push(savedRecipe);
+            this.favoritesList.push(savedRecipe[0]);
           }
         });
     },
