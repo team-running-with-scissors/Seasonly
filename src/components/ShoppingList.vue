@@ -2,7 +2,7 @@
   <div id="shopping-list" class="container-main">
     <form>
       <ul v-if="userShoppingList.length > 0">
-        <h2 class="list-header">Shopping List</h2>
+        <h2 class="list-header">Your Shopping List</h2>
         <li
             v-for="(item, index) in userShoppingList"
             :class="item.selected ? 'checked' : 'unchecked'"
@@ -62,7 +62,8 @@ export default {
   font-size: 2em;
   color: #fff;
   text-align: center;
-  padding-top: 20px;
+padding-top: 0px;
+
 }
 #please-add {
   padding-top: 20px;
@@ -79,7 +80,9 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
   width: 300px;
   /* background-color: rgba(0, 0, 0, .69); */
   padding-bottom: 20px;
@@ -95,7 +98,7 @@ li {
   padding: 10px; 
 }
 li:hover {
-  font-weight: bold;
+  
   background-color: rgba(255, 255, 255, .69);
   color: rgb(21, 82, 99);
 }

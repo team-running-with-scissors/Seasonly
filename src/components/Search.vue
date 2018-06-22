@@ -1,26 +1,9 @@
 <template>
 <div>
   <div id="container-whole" class="container-main">
-    <!-- <div id="container-search">
-      <input
-        id="search-box"
-        ref="search"
-        @keypress.enter="handleSearch"
-        v-model="searchTerm"
-      >
-      <button @click.prevent="handleSearch">Search!</button>
-    </div> -->
     <div>
+      <h2 class="list-header">Recipe Search</h2>
       <h4>It's simple to get started. Just choose a month, category of food, click on a food and see your results!</h4>
-      <div id="month-holder" v-if="months">
-        <button
-        v-for="month in months"
-        :key="month.id"
-        @click="monthChoice = month.id; seasonColors()"
-        :class="monthChoice === month.id ? activeSeason: ''"
-        class="filter-button"
-        >{{ month.month }}</button>
-      </div>
       <span class="food-type-button-container">
         <button :class="ingredientType === 0 ? active : '' " class="filter-button"
          @click="ingredientType = 0"  
@@ -38,27 +21,24 @@
         @click="ingredientType = 4"
         >Seafood</button>
       </span><br/>
-      <button
+      <div id="month-holder" v-if="months">
+        <button
+        v-for="month in months"
+        :key="month.id"
+        @click="monthChoice = month.id; seasonColors()"
+        :class="monthChoice === month.id ? activeSeason: ''"
+        class="filter-button"
+        >{{ month.month }}</button>
+      </div>
+      <a
         class="filter-button results"
         v-for="item in filteredIngredients"
         :key="item.index"
         @click="handleSearch(item.food)"
-        :class="[searchTerm === item.food ? highlight : '' ]"
+        :class="[searchTerm === item.food ? 'activeIngredient' : '' ]"
       >
         {{ item.food }}
-      </button>
-      <!-- <select 
-      v-model="searchTerm"
-      @change.prevent="handleSearch"
-      >
-      <option disabled value="">Please select one</option>
-      <option 
-        v-for="item in filteredIngredients"
-        :key="item.index" 
-        :value="item.food"
-        >{{ item.food }}
-        </option>
-      </select> -->
+      </a>
     </div>
     <div id="container-main">
       <ul v-if="searched">
@@ -133,7 +113,7 @@ export default {
       active: 'active',
       monthChoice: null,
       months: null,
-      activeSeason: '',
+      activeSeason: null,
       highlight: 'highlight'
     };
   },
@@ -146,6 +126,10 @@ export default {
       .then(month => {
         this.months = month;
       });
+    const d = new Date;
+    const n = d.getMonth();
+    this.monthChoice = n + 1;
+    this.activeSeason = this.seasonColors();
   },
 
   methods: {
@@ -209,6 +193,12 @@ export default {
 </script>
 
 <style scoped>
+.list-header {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+}
 #container-whole {
   display: flex;
   flex-direction: column;
@@ -224,7 +214,6 @@ ul {
   list-style: none;
 }
 h1 {
-  /* display: inline; */
   float: right;
 }
 li {
@@ -261,8 +250,20 @@ img {
   padding: 5px;
 }
 .results {
+  color: white;
+  font-size: 1em;
   margin-left: 1px;
   margin-right: 1px;
+  border-radius: 2px;
+  background-color: rgba(222, 184, 135, 0);
+}
+.activeIngredient {
+  opacity: 1;
+  font-size: 1em;
+  border: 1px dashed white;
+  padding: 0px;
+  padding-left: 7px;
+
 }
 .filter-button:hover {
   opacity: 1;
