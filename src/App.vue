@@ -147,7 +147,7 @@ export default {
       addToFavoritesList(savedRecipe)
         .then(result => {
           if(result.added) {
-            this.favoritesList.push(savedRecipe);
+            this.favoritesList.push(savedRecipe[0]);
           }
         });
     },
