@@ -9,18 +9,18 @@
         &nbsp;<router-link class="link" to="/search">SEARCH</router-link>
         &nbsp; |
         &nbsp;
-        <span v-if="isLoggedIn">
+        <div style="display: inline" v-if="isLoggedIn">
           <router-link class="link" to="/shopping-list">LIST</router-link>
           &nbsp; |
           &nbsp;
           <router-link class="link" to="/favorite-recipes">FAVORITES</router-link>
-        </span>
+        </div>
         <a href="#" class="link" v-else @click.prevent="toggleLogin">REGISTER/LOGIN</a>
-        <span v-if="isLoggedIn">
+        <div style="display: inline" v-if="isLoggedIn">
           &nbsp; |
           &nbsp;
           <a href="#" class="link"  @click.prevent="logout">LOGOUT</a>
-        </span>
+        </div>
       </nav>
     </div>
     <router-view
