@@ -1,5 +1,11 @@
 <template>
   <div id="home" class="container-main">
+    <div id="home-images">
+      <img src="../../assets/image-sq-4.jpg">
+      <img src="../../assets/image-sq-1.jpg">
+      <img src="../../assets/image-sq-5.jpg">
+      <img src="../../assets/image-sq-7.jpg">
+      </div>
     <p class="content">Our Seasonly app helps you to consume food in a more environmentally conscious way by identifying and purchasing foods that are in season! Search for ingredients that are in season this month, find recipes using those items and automatically add them to your shopping list. You can also save your favorite recipes!</p>
     <blockquote>"Supporting local food production is so much healthier for people. It's better for the local economy, and it's a lot of fun."<br />
     - Jack Johnson</blockquote>
@@ -21,6 +27,14 @@ export default {
 p {
   color: #fff;
   font-size: 1.15em;
+}
+#home-images img {
+ margin-left: 10px;
+ margin-right: 5px;
+ border-radius: 12px;
+ border: 1px solid white;
+ width: 160px;
+
 }
 blockquote {
 color: #fff;
