@@ -27,6 +27,7 @@
       :userShoppingList="userShoppingList"
       :addToMasterList="addToMasterList"
       :addToMasterFavoriteList="addToMasterFavoriteList"
+      :removeFromMasterFavoriteList="removeFromMasterFavoriteList"
       :deleteFromMasterList="deleteFromMasterList"
       :updateMasterList="updateMasterList"
       :clearMasterList="clearMasterList"
@@ -143,9 +144,17 @@ export default {
       addToFavoritesList(savedRecipe)
         .then(result => {
           if(result.added) {
-            this.favoritesList = savedRecipe;
+            this.favoritesList.push(savedRecipe);
           }
         });
+    },
+    removeFromMasterFavoriteList(favoriteInfo) {
+      removeFromFavoritesList(favoriteInfo)
+        .then(result => {
+          if(result.removed) {
+            this.favoritesList.pop();
+          };
+        })
     }
   },
   components: {

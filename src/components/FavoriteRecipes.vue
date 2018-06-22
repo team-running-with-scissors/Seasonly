@@ -7,6 +7,9 @@
     :userShoppingList="userShoppingList"
     :userid="userid"
     :addToMasterList="addToMasterList"
+    :addToMasterFavoriteList="addToMasterFavoriteList"
+    :removeFromMasterFavoriteList="removeFromMasterFavoriteList"
+    :isFavorite="isFavorite"
     />
     <ul>
       <li v-for="item in userFavorites"
@@ -25,13 +28,16 @@ export default {
     return {
       userFavorites: [],
       selectedRecipe: {},
-      recipeZoom: false
+      recipeZoom: false,
+      isFavorite: true
     };
   },
   props: {
     userShoppingList: Array,
     userid: Number,
-    addToMasterList: Function
+    addToMasterList: Function,
+    addToMasterFavoriteList: Function,
+    removeFromMasterFavoriteList: Function
   },
 
   components: {
