@@ -97,7 +97,7 @@ li {
   padding: 10px; 
 }
 li:hover {
-  font-weight: bold;
+  
   background-color: rgba(255, 255, 255, .69);
   color: rgb(21, 82, 99);
 }
