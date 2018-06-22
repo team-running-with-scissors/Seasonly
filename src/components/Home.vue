@@ -1,5 +1,6 @@
 <template>
   <div id="home" class="container-main">
+    <h2 class="list-header">Welcome</h2>
     <div id="home-images">
       <img src="../../assets/image-sq-4.jpg">
       <img src="../../assets/image-sq-1.jpg">
@@ -24,6 +25,13 @@ export default {
 </script>
 
 <style scoped>
+.list-header {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+}
 p {
   color: #fff;
   font-size: 1.15em;

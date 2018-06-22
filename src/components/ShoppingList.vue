@@ -2,7 +2,7 @@
   <div id="shopping-list" class="container-main">
     <form>
       <ul v-if="userShoppingList.length > 0">
-        <h2 class="list-header">Shopping List</h2>
+        <h2 class="list-header">Your Shopping List</h2>
         <li
             v-for="(item, index) in userShoppingList"
             :class="item.selected ? 'checked' : 'unchecked'"
